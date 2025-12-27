@@ -220,7 +220,11 @@ export function GlobalNotificationModal({
         scheduleType === 'now'
           ? t('toast.sent')
           : t('toast.scheduled', {
-              date: scheduledDateTime?.toLocaleDateString('es-ES', { day: 'numeric', month: 'short' }) ?? '',
+              date:
+                scheduledDateTime?.toLocaleDateString('es-ES', {
+                  day: 'numeric',
+                  month: 'short',
+                }) ?? '',
               time: selectedTime,
             })
       )

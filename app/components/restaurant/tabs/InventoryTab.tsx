@@ -26,7 +26,7 @@ interface Category {
 }
 
 // Mock data
-const mockCategories: Category[] = [
+const _mockCategories: Category[] = [
   { id: 'all', name: 'Todas', count: 156 },
   { id: 'bebidas', name: 'Bebidas', count: 42 },
   { id: 'carnes', name: 'Carnes', count: 28 },

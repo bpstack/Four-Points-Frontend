@@ -147,39 +147,41 @@ export function OrdersTab() {
   }
 
   const getStatusConfig = (status: OrderStatus) => {
-    const configs: Record<OrderStatus, { color: string; labelKey: string; icon: React.ElementType }> =
-      {
-        pending: {
-          color:
-            'bg-yellow-50 text-yellow-700 border border-yellow-200 dark:bg-yellow-900/20 dark:text-yellow-400 dark:border-yellow-800',
-          labelKey: 'orders.status.pending',
-          icon: FiClock,
-        },
-        confirmed: {
-          color:
-            'bg-blue-50 text-blue-700 border border-blue-200 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-800',
-          labelKey: 'orders.status.confirmed',
-          icon: FiCheck,
-        },
-        shipped: {
-          color:
-            'bg-purple-50 text-purple-700 border border-purple-200 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-800',
-          labelKey: 'orders.status.inTransit',
-          icon: FiTruck,
-        },
-        delivered: {
-          color:
-            'bg-green-50 text-green-700 border border-green-200 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800',
-          labelKey: 'orders.status.delivered',
-          icon: FiCheck,
-        },
-        cancelled: {
-          color:
-            'bg-red-50 text-red-700 border border-red-200 dark:bg-red-900/20 dark:text-red-400 dark:border-red-800',
-          labelKey: 'orders.status.cancelled',
-          icon: FiX,
-        },
-      }
+    const configs: Record<
+      OrderStatus,
+      { color: string; labelKey: string; icon: React.ElementType }
+    > = {
+      pending: {
+        color:
+          'bg-yellow-50 text-yellow-700 border border-yellow-200 dark:bg-yellow-900/20 dark:text-yellow-400 dark:border-yellow-800',
+        labelKey: 'orders.status.pending',
+        icon: FiClock,
+      },
+      confirmed: {
+        color:
+          'bg-blue-50 text-blue-700 border border-blue-200 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-800',
+        labelKey: 'orders.status.confirmed',
+        icon: FiCheck,
+      },
+      shipped: {
+        color:
+          'bg-purple-50 text-purple-700 border border-purple-200 dark:bg-purple-900/20 dark:text-purple-400 dark:border-purple-800',
+        labelKey: 'orders.status.inTransit',
+        icon: FiTruck,
+      },
+      delivered: {
+        color:
+          'bg-green-50 text-green-700 border border-green-200 dark:bg-green-900/20 dark:text-green-400 dark:border-green-800',
+        labelKey: 'orders.status.delivered',
+        icon: FiCheck,
+      },
+      cancelled: {
+        color:
+          'bg-red-50 text-red-700 border border-red-200 dark:bg-red-900/20 dark:text-red-400 dark:border-red-800',
+        labelKey: 'orders.status.cancelled',
+        icon: FiX,
+      },
+    }
     return configs[status]
   }
 
@@ -200,7 +202,9 @@ export function OrdersTab() {
               <FiClock className="w-4 h-4 text-yellow-600 dark:text-yellow-400" />
             </div>
             <div>
-              <p className="text-[10px] text-gray-600 dark:text-gray-400">{t('orders.summary.pending')}</p>
+              <p className="text-[10px] text-gray-600 dark:text-gray-400">
+                {t('orders.summary.pending')}
+              </p>
               <p className="text-sm font-bold text-gray-900 dark:text-gray-100">{pendingCount}</p>
             </div>
           </div>
@@ -211,7 +215,9 @@ export function OrdersTab() {
               <FiTruck className="w-4 h-4 text-purple-600 dark:text-purple-400" />
             </div>
             <div>
-              <p className="text-[10px] text-gray-600 dark:text-gray-400">{t('orders.summary.inTransit')}</p>
+              <p className="text-[10px] text-gray-600 dark:text-gray-400">
+                {t('orders.summary.inTransit')}
+              </p>
               <p className="text-sm font-bold text-gray-900 dark:text-gray-100">{inTransitCount}</p>
             </div>
           </div>
@@ -222,7 +228,9 @@ export function OrdersTab() {
               <FiPackage className="w-4 h-4 text-blue-600 dark:text-blue-400" />
             </div>
             <div>
-              <p className="text-[10px] text-gray-600 dark:text-gray-400">{t('orders.summary.pendingValue')}</p>
+              <p className="text-[10px] text-gray-600 dark:text-gray-400">
+                {t('orders.summary.pendingValue')}
+              </p>
               <p className="text-sm font-bold text-gray-900 dark:text-gray-100">
                 {formatCurrency(totalPendingValue)}
               </p>
@@ -324,12 +332,14 @@ export function OrdersTab() {
 
                   {/* Items preview */}
                   <div className="mt-2 text-[10px] text-gray-500 dark:text-gray-500">
-                    {order.items.length} {order.items.length !== 1 ? t('orders.products') : t('orders.product')} ·{' '}
+                    {order.items.length}{' '}
+                    {order.items.length !== 1 ? t('orders.products') : t('orders.product')} ·{' '}
                     {order.items
                       .slice(0, 2)
                       .map((i) => i.productName)
                       .join(', ')}
-                    {order.items.length > 2 && ` ${t('orders.andMore', { count: order.items.length - 2 })}`}
+                    {order.items.length > 2 &&
+                      ` ${t('orders.andMore', { count: order.items.length - 2 })}`}
                   </div>
                 </div>
 

@@ -237,19 +237,25 @@ export function BlacklistDetailClient({
               </h3>
               <div className="grid grid-cols-3 gap-4">
                 <div>
-                  <div className="text-xs text-gray-600 dark:text-gray-400 mb-1">{t('detail.entry')}</div>
+                  <div className="text-xs text-gray-600 dark:text-gray-400 mb-1">
+                    {t('detail.entry')}
+                  </div>
                   <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
                     {formatDate(entry.check_in_date)}
                   </div>
                 </div>
                 <div>
-                  <div className="text-xs text-gray-600 dark:text-gray-400 mb-1">{t('detail.exit')}</div>
+                  <div className="text-xs text-gray-600 dark:text-gray-400 mb-1">
+                    {t('detail.exit')}
+                  </div>
                   <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
                     {formatDate(entry.check_out_date)}
                   </div>
                 </div>
                 <div>
-                  <div className="text-xs text-gray-600 dark:text-gray-400 mb-1">{t('detail.stay')}</div>
+                  <div className="text-xs text-gray-600 dark:text-gray-400 mb-1">
+                    {t('detail.stay')}
+                  </div>
                   <div className="text-sm font-medium text-gray-900 dark:text-gray-100">
                     {stayDays} {stayDays === 1 ? t('detail.day') : t('detail.days')}
                   </div>

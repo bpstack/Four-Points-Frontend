@@ -215,8 +215,7 @@ export function MessagesPanel({ onConversationSelect }: MessagesPanelProps) {
 
   const handleDeleteConversation = async () => {
     if (!conversations.selectedConversation) return
-    if (!confirm(t('actions.deleteConversation')))
-      return
+    if (!confirm(t('actions.deleteConversation'))) return
 
     try {
       await conversations.remove(conversations.selectedConversation.id)
@@ -272,7 +271,10 @@ export function MessagesPanel({ onConversationSelect }: MessagesPanelProps) {
     if (minutes < 60) return `${minutes}m`
     if (hours < 24) return `${hours}h`
     if (days < 7) return `${days}d`
-    return date.toLocaleDateString(locale === 'es' ? 'es-ES' : 'en-US', { day: 'numeric', month: 'short' })
+    return date.toLocaleDateString(locale === 'es' ? 'es-ES' : 'en-US', {
+      day: 'numeric',
+      month: 'short',
+    })
   }
 
   const getRoleColor = (role: string | undefined) => {
@@ -496,7 +498,8 @@ export function MessagesPanel({ onConversationSelect }: MessagesPanelProps) {
                       disabled={loadingParticipants}
                     >
                       {loadingParticipants ? <FiLoader className="w-3 h-3 animate-spin" /> : null}
-                      {conversations.selectedConversation.participant_count} {t('chat.participants')}
+                      {conversations.selectedConversation.participant_count}{' '}
+                      {t('chat.participants')}
                     </button>
                   )}
                 </div>
@@ -594,7 +597,9 @@ export function MessagesPanel({ onConversationSelect }: MessagesPanelProps) {
                             isOwn ? 'text-blue-200' : 'text-gray-400'
                           )}
                         >
-                          {!!msg.is_edited && <span className="text-xs italic">{t('chat.edited')}</span>}
+                          {!!msg.is_edited && (
+                            <span className="text-xs italic">{t('chat.edited')}</span>
+                          )}
                           <span className="text-xs">{formatTime(msg.created_at)}</span>
                           {isOwn && <FiCheckCircle className="w-3 h-3" />}
                         </div>
@@ -772,7 +777,9 @@ export function MessagesPanel({ onConversationSelect }: MessagesPanelProps) {
                           {u.role_name}
                         </span>
                         {u.existing_dm_id && (
-                          <span className="text-xs text-blue-500">{t('newConversation.existingChat')}</span>
+                          <span className="text-xs text-blue-500">
+                            {t('newConversation.existingChat')}
+                          </span>
                         )}
                       </button>
                     )
@@ -822,7 +829,9 @@ export function MessagesPanel({ onConversationSelect }: MessagesPanelProps) {
           >
             {/* Modal Header */}
             <div className="p-4 border-b border-gray-200 dark:border-[#30363d] flex items-center justify-between">
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{t('participants.title')}</h3>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+                {t('participants.title')}
+              </h3>
               <button
                 onClick={() => setShowParticipants(false)}
                 className="p-1 hover:bg-gray-100 dark:hover:bg-[#21262d] rounded-lg transition-colors"

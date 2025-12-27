@@ -30,7 +30,7 @@ export function ConfirmDialog({
   isLoading = false,
 }: ConfirmDialogProps) {
   const t = useTranslations('maintenance')
-  
+
   const resolvedConfirmText = confirmText ?? t('confirm.confirm')
   const resolvedCancelText = cancelText ?? t('confirm.cancel')
   const getConfirmButtonClasses = () => {

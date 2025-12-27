@@ -8,7 +8,7 @@
 
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useMemo, useState, useCallback } from 'react'
 import { useTranslations } from 'next-intl'
 import {
   FiSearch,
@@ -47,13 +47,26 @@ export function PaidInvoicesTabLazy({
   const queryClient = useQueryClient()
 
   // Helper function for month names
-  const getMonthName = (month: number): string => {
-    const monthKeys = [
-      'january', 'february', 'march', 'april', 'may', 'june',
-      'july', 'august', 'september', 'october', 'november', 'december'
-    ]
-    return t(`months.${monthKeys[month - 1]}`)
-  }
+  const getMonthName = useCallback(
+    (month: number): string => {
+      const monthKeys = [
+        'january',
+        'february',
+        'march',
+        'april',
+        'may',
+        'june',
+        'july',
+        'august',
+        'september',
+        'october',
+        'november',
+        'december',
+      ]
+      return t(`months.${monthKeys[month - 1]}`)
+    },
+    [t]
+  )
 
   const [searchTerm, setSearchTerm] = useState('')
   const [categoryFilter, setCategoryFilter] = useState<number | 'all'>('all')
@@ -126,7 +139,7 @@ export function PaidInvoicesTabLazy({
         label: `${getMonthName(m.month)} ${m.year} (${m.count})`,
         monthLabel: `${getMonthName(m.month)} (${m.count})`,
       }))
-  }, [invoices])
+  }, [invoices, getMonthName])
 
   // Initialize selectedMonth with the first available month
   const [selectedMonth, setSelectedMonth] = useState<{ year: number; month: number } | null>(() => {
@@ -394,8 +407,7 @@ export function PaidInvoicesTabLazy({
         .slice(0, 3)
         .map((inv) => inv.invoice_number)
         .join(', ')
-      const moreText =
-        invoicesWithoutPdf.length > 3 ? ` (+${invoicesWithoutPdf.length - 3})` : ''
+      const moreText = invoicesWithoutPdf.length > 3 ? ` (+${invoicesWithoutPdf.length - 3})` : ''
       toast.error(t('toast.invoicesWithoutPdf', { names: `${names}${moreText}` }))
       return
     }
@@ -467,20 +479,26 @@ export function PaidInvoicesTabLazy({
       <div className="grid grid-cols-3 gap-2 sm:gap-3">
         <div className="bg-white dark:bg-[#151b23] rounded-md border border-gray-200 dark:border-gray-800 p-3">
           <p className="text-[10px] text-gray-600 dark:text-gray-400 font-medium">
-            {dateFilter === 'specific_month' ? t('paid.summary.totalMonth', { month: selectedMonthLabel }) : t('paid.summary.totalFiltered')}
+            {dateFilter === 'specific_month'
+              ? t('paid.summary.totalMonth', { month: selectedMonthLabel })
+              : t('paid.summary.totalFiltered')}
           </p>
           <p className="text-sm sm:text-base font-bold text-green-600 dark:text-green-400 mt-0.5">
             {formatCurrency(totalMonthFiltered)}
           </p>
         </div>
         <div className="bg-white dark:bg-[#151b23] rounded-md border border-gray-200 dark:border-gray-800 p-3">
-          <p className="text-[10px] text-gray-600 dark:text-gray-400 font-medium">{t('paid.summary.directDebits')}</p>
+          <p className="text-[10px] text-gray-600 dark:text-gray-400 font-medium">
+            {t('paid.summary.directDebits')}
+          </p>
           <p className="text-sm sm:text-base font-bold text-purple-600 dark:text-purple-400 mt-0.5">
             {formatCurrency(byDirectDebit)}
           </p>
         </div>
         <div className="bg-white dark:bg-[#151b23] rounded-md border border-gray-200 dark:border-gray-800 p-3">
-          <p className="text-[10px] text-gray-600 dark:text-gray-400 font-medium">{t('paid.summary.transfers')}</p>
+          <p className="text-[10px] text-gray-600 dark:text-gray-400 font-medium">
+            {t('paid.summary.transfers')}
+          </p>
           <p className="text-sm sm:text-base font-bold text-blue-600 dark:text-blue-400 mt-0.5">
             {formatCurrency(byTransfer)}
           </p>
@@ -758,9 +776,7 @@ export function PaidInvoicesTabLazy({
       <div className="lg:hidden space-y-2">
         {filteredInvoices.length === 0 ? (
           <div className="bg-white dark:bg-[#151b23] rounded-md border border-gray-200 dark:border-gray-800 p-6 text-center">
-            <p className="text-xs text-gray-500 dark:text-gray-400">
-              {t('empty.noPaidInvoices')}
-            </p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">{t('empty.noPaidInvoices')}</p>
           </div>
         ) : (
           filteredInvoices.map((invoice) => {
@@ -786,13 +802,17 @@ export function PaidInvoicesTabLazy({
 
                 <div className="grid grid-cols-2 gap-2 text-[10px] mb-2">
                   <div>
-                    <span className="text-gray-500 dark:text-gray-500">{t('table.invoiceDate')}:</span>
+                    <span className="text-gray-500 dark:text-gray-500">
+                      {t('table.invoiceDate')}:
+                    </span>
                     <span className="ml-1 text-gray-900 dark:text-gray-100">
                       {formatDate(invoice.invoice_date)}
                     </span>
                   </div>
                   <div>
-                    <span className="text-gray-500 dark:text-gray-500">{t('table.paymentDate')}:</span>
+                    <span className="text-gray-500 dark:text-gray-500">
+                      {t('table.paymentDate')}:
+                    </span>
                     <span className="ml-1 text-gray-900 dark:text-gray-100">
                       {formatDate(invoice.paid_date)}
                     </span>
@@ -912,14 +932,16 @@ export function PaidInvoicesTabLazy({
                 {revertPreview && (
                   <div className="bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-md p-4 mb-4">
                     <p className="text-sm text-orange-800 dark:text-orange-300 mb-2">
-                      <strong>{t('modals.revertBatchPayment.month')}</strong> {getMonthName(revertPreview.month)}{' '}
-                      {revertPreview.year}
+                      <strong>{t('modals.revertBatchPayment.month')}</strong>{' '}
+                      {getMonthName(revertPreview.month)} {revertPreview.year}
                     </p>
                     <p className="text-sm text-orange-800 dark:text-orange-300 mb-2">
-                      <strong>{t('modals.revertBatchPayment.paidInvoices')}</strong> {revertPreview.count}
+                      <strong>{t('modals.revertBatchPayment.paidInvoices')}</strong>{' '}
+                      {revertPreview.count}
                     </p>
                     <p className="text-sm text-orange-800 dark:text-orange-300">
-                      <strong>{t('modals.revertBatchPayment.totalAmount')}</strong> {formatCurrency(revertPreview.total_amount)}
+                      <strong>{t('modals.revertBatchPayment.totalAmount')}</strong>{' '}
+                      {formatCurrency(revertPreview.total_amount)}
                     </p>
                   </div>
                 )}
@@ -934,7 +956,9 @@ export function PaidInvoicesTabLazy({
                   revertPreview && (
                     <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-md p-3 mb-4">
                       <p className="text-xs text-blue-800 dark:text-blue-300">
-                        {t('modals.revertBatchPayment.description', { month: getMonthName(revertPreview.month) })}
+                        {t('modals.revertBatchPayment.description', {
+                          month: getMonthName(revertPreview.month),
+                        })}
                       </p>
                     </div>
                   )
@@ -961,7 +985,9 @@ export function PaidInvoicesTabLazy({
                   >
                     {isReverting
                       ? t('actions.processing')
-                      : t('modals.revertBatchPayment.confirmButton', { count: revertPreview?.count || 0 })}
+                      : t('modals.revertBatchPayment.confirmButton', {
+                          count: revertPreview?.count || 0,
+                        })}
                   </button>
                 </div>
               </div>

@@ -28,13 +28,13 @@ export default function NotFound() {
         </h1>
 
         {/* Descripción */}
-        <p className="text-gray-600 dark:text-gray-400 mb-8">
-          {t('notFound.pageDescription')}
-        </p>
+        <p className="text-gray-600 dark:text-gray-400 mb-8">{t('notFound.pageDescription')}</p>
 
         {/* Código de error */}
         <div className="inline-flex items-center gap-2 bg-gray-100 dark:bg-[#161B22] px-4 py-2 rounded-full mb-8">
-          <span className="text-sm font-mono text-gray-600 dark:text-gray-400">{t('notFound.error404')}</span>
+          <span className="text-sm font-mono text-gray-600 dark:text-gray-400">
+            {t('notFound.error404')}
+          </span>
         </div>
 
         {/* Acciones */}

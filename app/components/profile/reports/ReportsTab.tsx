@@ -34,7 +34,7 @@ const CashierSection = lazy(() => import('./sections/CashierSection'))
 
 function SectionSkeleton() {
   const t = useTranslations('profile.reports')
-  
+
   return (
     <div className="flex items-center justify-center h-64">
       <div className="flex flex-col items-center gap-3 text-gray-400">
@@ -60,38 +60,41 @@ export function ReportsTab() {
     label: string
     description: string
     icon: React.ReactNode
-  }[] = useMemo(() => [
-    {
-      id: 'overview',
-      label: t('sections.overview'),
-      description: t('sections.overviewDesc'),
-      icon: <FiActivity className="w-5 h-5" />,
-    },
-    {
-      id: 'logbooks',
-      label: t('sections.logbooks'),
-      description: t('sections.logbooksDesc'),
-      icon: <FiBook className="w-5 h-5" />,
-    },
-    {
-      id: 'maintenance',
-      label: t('sections.maintenance'),
-      description: t('sections.maintenanceDesc'),
-      icon: <FiTool className="w-5 h-5" />,
-    },
-    {
-      id: 'groups',
-      label: t('sections.groups'),
-      description: t('sections.groupsDesc'),
-      icon: <FiUsers className="w-5 h-5" />,
-    },
-    {
-      id: 'cashier',
-      label: t('sections.cashier'),
-      description: t('sections.cashierDesc'),
-      icon: <FiDollarSign className="w-5 h-5" />,
-    },
-  ], [t])
+  }[] = useMemo(
+    () => [
+      {
+        id: 'overview',
+        label: t('sections.overview'),
+        description: t('sections.overviewDesc'),
+        icon: <FiActivity className="w-5 h-5" />,
+      },
+      {
+        id: 'logbooks',
+        label: t('sections.logbooks'),
+        description: t('sections.logbooksDesc'),
+        icon: <FiBook className="w-5 h-5" />,
+      },
+      {
+        id: 'maintenance',
+        label: t('sections.maintenance'),
+        description: t('sections.maintenanceDesc'),
+        icon: <FiTool className="w-5 h-5" />,
+      },
+      {
+        id: 'groups',
+        label: t('sections.groups'),
+        description: t('sections.groupsDesc'),
+        icon: <FiUsers className="w-5 h-5" />,
+      },
+      {
+        id: 'cashier',
+        label: t('sections.cashier'),
+        description: t('sections.cashierDesc'),
+        icon: <FiDollarSign className="w-5 h-5" />,
+      },
+    ],
+    [t]
+  )
 
   const handleRefresh = useCallback(() => {
     setRefreshKey((k) => k + 1)
@@ -127,9 +130,7 @@ export function ReportsTab() {
             <FiActivity className="w-4 h-4 text-blue-500" />
             {t('title')}
           </h3>
-          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-            {t('subtitle')}
-          </p>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{t('subtitle')}</p>
         </div>
 
         {/* Section List */}

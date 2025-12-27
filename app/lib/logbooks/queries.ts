@@ -75,7 +75,11 @@ export const logbooksApi = {
 
   // Obtener lectores
   getReaders: async (logbookId: number) => {
-    return apiClient.get(`${API_URL}/api/logbooks/${logbookId}/readers`)
+    const response = await apiClient.get<{
+      success: boolean
+      data: { user_id: string; username: string; read_at: string }[]
+    }>(`${API_URL}/api/logbooks/${logbookId}/readers`)
+    return response.data
   },
 
   // Marcar logbook como leído

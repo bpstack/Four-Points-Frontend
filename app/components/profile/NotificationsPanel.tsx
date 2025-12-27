@@ -41,7 +41,9 @@ export function NotificationsPanel() {
               {t('panel.title')}
             </h2>
             <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
-              {unreadCount > 0 ? t('panel.unreadCount', { count: unreadCount }) : t('panel.allRead')}
+              {unreadCount > 0
+                ? t('panel.unreadCount', { count: unreadCount })
+                : t('panel.allRead')}
             </p>
           </div>
           {unreadCount > 0 && (

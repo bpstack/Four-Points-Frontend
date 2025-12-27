@@ -26,14 +26,15 @@ export default function CloseShiftModal({
   // Calcular total de vales
   const totalVouchers = shift.vouchers?.reduce((sum, v) => sum + parseFloat(v.amount), 0) || 0
 
-  // ✅ CORREGIDO: Validaciones sin vales pendientes
+  // ✅ CORREGIDO: Validaciones - solo denominaciones son obligatorias
+  // Los pagos electrónicos son opcionales (puede ser 0€ si todo fue en efectivo)
   const validations = {
     hasDenominations: shift.denominations && shift.denominations.length > 0,
-    hasPayments: shift.payments && shift.payments.length > 0,
+    // hasPayments ya no es validación obligatoria, solo informativa
   }
 
-  // ✅ CORREGIDO: Solo validar denominaciones y pagos
-  const canClose = validations.hasDenominations && validations.hasPayments
+  // ✅ CORREGIDO: Solo validar denominaciones (conteo de efectivo)
+  const canClose = validations.hasDenominations
 
   // Calcular totales con vales
   const totalDenominations =
@@ -122,29 +123,29 @@ export default function CloseShiftModal({
               </span>
             </div>
 
-            {/* Pagos */}
+            {/* Pagos - Solo informativo (no bloquea cierre) */}
             <div
               className={`flex items-center gap-2 p-3 rounded-lg ${
-                validations.hasPayments
+                shift.payments && shift.payments.length > 0
                   ? 'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800'
-                  : 'bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800'
+                  : 'bg-gray-50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700'
               }`}
             >
-              {validations.hasPayments ? (
+              {shift.payments && shift.payments.length > 0 ? (
                 <FiCheckCircle className="w-5 h-5 text-green-600 dark:text-green-400" />
               ) : (
-                <FiAlertCircle className="w-5 h-5 text-red-600 dark:text-red-400" />
+                <FiDollarSign className="w-5 h-5 text-gray-500 dark:text-gray-400" />
               )}
               <span
                 className={`text-sm font-medium ${
-                  validations.hasPayments
+                  shift.payments && shift.payments.length > 0
                     ? 'text-green-700 dark:text-green-300'
-                    : 'text-red-700 dark:text-red-300'
+                    : 'text-gray-600 dark:text-gray-400'
                 }`}
               >
-                {validations.hasPayments
+                {shift.payments && shift.payments.length > 0
                   ? t('closeShift.electronicPaymentsRegistered')
-                  : t('closeShift.electronicPaymentsMissing')}
+                  : t('closeShift.noElectronicPayments')}
               </span>
             </div>
 
@@ -172,13 +173,17 @@ export default function CloseShiftModal({
 
             <div className="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-4 space-y-2">
               <div className="flex justify-between text-sm">
-                <span className="text-gray-600 dark:text-gray-400">{t('closeShift.initialFund')}:</span>
+                <span className="text-gray-600 dark:text-gray-400">
+                  {t('closeShift.initialFund')}:
+                </span>
                 <span className="font-semibold text-gray-900 dark:text-white">
                   {parseFloat(shift.initial_fund).toFixed(2)}€
                 </span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-gray-600 dark:text-gray-400">{t('closeShift.shiftIncome')}:</span>
+                <span className="text-gray-600 dark:text-gray-400">
+                  {t('closeShift.shiftIncome')}:
+                </span>
                 <span className="font-semibold text-green-600 dark:text-green-400">
                   +{parseFloat(shift.income).toFixed(2)}€
                 </span>
@@ -196,13 +201,17 @@ export default function CloseShiftModal({
               )}
 
               <div className="flex justify-between text-sm pt-2 border-t border-gray-200 dark:border-gray-700">
-                <span className="text-gray-600 dark:text-gray-400">{t('closeShift.expectedCash')}:</span>
+                <span className="text-gray-600 dark:text-gray-400">
+                  {t('closeShift.expectedCash')}:
+                </span>
                 <span className="font-semibold text-gray-900 dark:text-white">
                   {cashExpected.toFixed(2)}€
                 </span>
               </div>
               <div className="flex justify-between text-sm">
-                <span className="text-gray-600 dark:text-gray-400">{t('closeShift.countedCash')}:</span>
+                <span className="text-gray-600 dark:text-gray-400">
+                  {t('closeShift.countedCash')}:
+                </span>
                 <span className="font-semibold text-blue-600 dark:text-blue-400">
                   {cashCounted.toFixed(2)}€
                 </span>
@@ -227,13 +236,17 @@ export default function CloseShiftModal({
                 </span>
               </div>
               <div className="flex justify-between text-sm mb-2">
-                <span className="text-blue-700 dark:text-blue-300">{t('closeShift.electronicPayments')}:</span>
+                <span className="text-blue-700 dark:text-blue-300">
+                  {t('closeShift.electronicPayments')}:
+                </span>
                 <span className="font-semibold text-blue-900 dark:text-blue-100">
                   {totalPayments.toFixed(2)}€
                 </span>
               </div>
               <div className="flex justify-between text-lg pt-2 border-t-2 border-blue-200 dark:border-blue-800">
-                <span className="font-bold text-blue-900 dark:text-blue-100">{t('closeShift.grandTotal')}:</span>
+                <span className="font-bold text-blue-900 dark:text-blue-100">
+                  {t('closeShift.grandTotal')}:
+                </span>
                 <span className="font-bold text-blue-600 dark:text-blue-400">
                   {grandTotal.toFixed(2)}€
                 </span>

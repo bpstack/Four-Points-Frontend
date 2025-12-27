@@ -22,7 +22,7 @@ interface DateOnlyStepProps {
 
 export default function DateOnlyStep({ state, actions }: DateOnlyStepProps) {
   const t = useTranslations('booking')
-  
+
   return (
     <div className="space-y-6">
       {/* Fechas */}
@@ -136,7 +136,9 @@ export default function DateOnlyStep({ state, actions }: DateOnlyStepProps) {
           <Alert variant="info" className="mt-4">
             <p>
               {t('dates.duration')}{' '}
-              <span className="font-semibold">{t('dates.durationDays', { count: actions.calculateDays() })}</span>
+              <span className="font-semibold">
+                {t('dates.durationDays', { count: actions.calculateDays() })}
+              </span>
             </p>
           </Alert>
         )}

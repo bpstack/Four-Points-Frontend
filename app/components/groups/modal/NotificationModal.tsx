@@ -65,7 +65,6 @@ function getMinTimeForToday(): string {
 
 export function NotificationModal({ isOpen, onClose, groupId, groupName }: NotificationModalProps) {
   const t = useTranslations('notifications')
-  const tCommon = useTranslations('common')
   const [title, setTitle] = useState('')
   const [message, setMessage] = useState('')
   const [priority, setPriority] = useState<'low' | 'medium' | 'high'>('medium')
@@ -441,9 +440,7 @@ export function NotificationModal({ isOpen, onClose, groupId, groupName }: Notif
           {success && (
             <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-md p-2">
               <p className="text-xs text-green-600 dark:text-green-400">
-                {scheduleType === 'now'
-                  ? t('toast.sentSuccess')
-                  : t('toast.scheduledSuccess')}
+                {scheduleType === 'now' ? t('toast.sentSuccess') : t('toast.scheduledSuccess')}
               </p>
             </div>
           )}

@@ -77,7 +77,9 @@ export function BlacklistDetailSummaryPanel({ entry }: BlacklistDetailSummaryPan
       <div className="bg-white dark:bg-[#0D1117] border border-[#d0d7de] dark:border-[#30363d] rounded-xl shadow-sm p-4">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">{t('detail.checkInDate')}</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+              {t('detail.checkInDate')}
+            </p>
             <p className="text-sm font-bold text-gray-900 dark:text-gray-100 mt-0.5">
               {formatDate(entry.check_in_date)}
             </p>
@@ -92,7 +94,9 @@ export function BlacklistDetailSummaryPanel({ entry }: BlacklistDetailSummaryPan
       <div className="bg-white dark:bg-[#0D1117] border border-[#d0d7de] dark:border-[#30363d] rounded-xl shadow-sm p-4">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">{t('detail.checkOutDate')}</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+              {t('detail.checkOutDate')}
+            </p>
             <p className="text-sm font-bold text-gray-900 dark:text-gray-100 mt-0.5">
               {formatDate(entry.check_out_date)}
             </p>
@@ -107,7 +111,9 @@ export function BlacklistDetailSummaryPanel({ entry }: BlacklistDetailSummaryPan
       <div className="bg-white dark:bg-[#0D1117] border border-[#d0d7de] dark:border-[#30363d] rounded-xl shadow-sm p-4">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">{t('detail.stay')}</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+              {t('detail.stay')}
+            </p>
             <p className="text-xl font-bold text-gray-900 dark:text-gray-100 mt-0.5">
               {stayDays}{' '}
               <span className="text-sm font-normal text-gray-500">
@@ -125,7 +131,9 @@ export function BlacklistDetailSummaryPanel({ entry }: BlacklistDetailSummaryPan
       <div className="bg-white dark:bg-[#0D1117] border border-[#d0d7de] dark:border-[#30363d] rounded-xl shadow-sm p-4">
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">{t('detail.registeredBy')}</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+              {t('detail.registeredBy')}
+            </p>
             <div className="p-2 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
               <FiUser className="w-5 h-5 text-purple-600 dark:text-purple-400" />
             </div>
@@ -138,7 +146,9 @@ export function BlacklistDetailSummaryPanel({ entry }: BlacklistDetailSummaryPan
           </p>
           {entry.updated_at && (
             <div className="pt-2 border-t border-gray-200 dark:border-gray-700">
-              <p className="text-[10px] text-gray-500 dark:text-gray-400">{t('detail.lastModification')}:</p>
+              <p className="text-[10px] text-gray-500 dark:text-gray-400">
+                {t('detail.lastModification')}:
+              </p>
               <p className="text-xs text-gray-600 dark:text-gray-400">
                 {formatDateTime(entry.updated_at)}
               </p>

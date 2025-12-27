@@ -32,7 +32,10 @@ import { useTranslations } from 'next-intl'
 // HELPER FUNCTIONS
 // =============================================
 
-function formatUsername(username: string | undefined | null, unknownLabel: string = 'Unknown'): string {
+function formatUsername(
+  username: string | undefined | null,
+  unknownLabel: string = 'Unknown'
+): string {
   if (!username) return unknownLabel
   return username.charAt(0).toUpperCase() + username.slice(1).toLowerCase()
 }
@@ -166,12 +169,12 @@ export interface LogbooksListProps {
 // SUB-COMPONENTS
 // =============================================
 
-function ReadByAvatars({ 
-  users, 
+function ReadByAvatars({
+  users,
   maxVisible = 8,
   noneLabel = 'None',
-  moreLabel = '+__count__ more'
-}: { 
+  moreLabel = '+__count__ more',
+}: {
   users: ReadByUser[]
   maxVisible?: number
   noneLabel?: string
@@ -619,7 +622,9 @@ export default function LogbooksList({
                                 <span>·</span>
                                 <span
                                   className="italic"
-                                  title={t('list.comment.editedTooltip', { date: formatEditTimestamp(comment.updated_at) })}
+                                  title={t('list.comment.editedTooltip', {
+                                    date: formatEditTimestamp(comment.updated_at),
+                                  })}
                                 >
                                   {t('list.comment.edited')}
                                 </span>
@@ -673,8 +678,8 @@ export default function LogbooksList({
             </div>
 
             <div className="w-40 flex-shrink-0 pl-3 flex flex-col items-start">
-              <EntryReaders 
-                entryId={entry.id} 
+              <EntryReaders
+                entryId={entry.id}
                 useReaders={useReaders}
                 noneLabel={t('list.readers.none')}
                 moreLabel={t('list.readers.moreTemplate')}
@@ -709,7 +714,9 @@ export default function LogbooksList({
                       </p>
                       <div className="flex items-center justify-between gap-2 mt-1">
                         <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
-                          <span className="font-medium">{formatUsername(comment.author_name, t('list.unknownUser'))}</span>
+                          <span className="font-medium">
+                            {formatUsername(comment.author_name, t('list.unknownUser'))}
+                          </span>
                           <span>·</span>
                           <span>
                             {formatEditTimestamp(comment.created_at || new Date().toISOString())}
@@ -743,9 +750,11 @@ export default function LogbooksList({
               </div>
             )}
             <div className="flex items-center gap-2 pt-2 border-t border-gray-200 dark:border-gray-700">
-              <span className="text-xs text-gray-500 dark:text-gray-400">{t('list.readers.label')}</span>
-              <EntryReaders 
-                entryId={entry.id} 
+              <span className="text-xs text-gray-500 dark:text-gray-400">
+                {t('list.readers.label')}
+              </span>
+              <EntryReaders
+                entryId={entry.id}
                 useReaders={useReaders}
                 noneLabel={t('list.readers.none')}
                 moreLabel={t('list.readers.moreTemplate')}
@@ -815,7 +824,9 @@ export default function LogbooksList({
                 {entry.updated_at && entry.updated_at !== entry.timestamp && (
                   <div
                     className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400 ml-auto"
-                    title={t('list.badges.lastEditedTooltip', { date: formatEditTimestamp(entry.updated_at) })}
+                    title={t('list.badges.lastEditedTooltip', {
+                      date: formatEditTimestamp(entry.updated_at),
+                    })}
                   >
                     <FiEdit2 className="w-3 h-3 flex-shrink-0" />
                     <span className="whitespace-nowrap">

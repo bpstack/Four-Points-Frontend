@@ -142,9 +142,7 @@ export function ProfileSidebar() {
       setTimeout(() => setUsernameSuccess(null), 3000)
     } catch (error: unknown) {
       console.error('Error updating username:', error)
-      setUsernameError(
-        error instanceof Error ? error.message : t('errors.updateUsername')
-      )
+      setUsernameError(error instanceof Error ? error.message : t('errors.updateUsername'))
     } finally {
       setUsernameLoading(false)
     }
@@ -398,7 +396,9 @@ export function ProfileSidebar() {
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-2">
               <FiUser className="w-4 h-4 text-gray-400" />
-              <span className="text-xs font-medium text-gray-600 dark:text-gray-400">{t('username.label')}</span>
+              <span className="text-xs font-medium text-gray-600 dark:text-gray-400">
+                {t('username.label')}
+              </span>
             </div>
             {!isEditingUsername && (
               <button
@@ -482,7 +482,9 @@ export function ProfileSidebar() {
           <div className="flex items-center justify-between mb-2">
             <div className="flex items-center gap-2">
               <FiLock className="w-4 h-4 text-gray-400" />
-              <span className="text-xs font-medium text-gray-600 dark:text-gray-400">{t('password.label')}</span>
+              <span className="text-xs font-medium text-gray-600 dark:text-gray-400">
+                {t('password.label')}
+              </span>
             </div>
             {!isEditingPassword && (
               <button

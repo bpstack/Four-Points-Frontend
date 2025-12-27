@@ -1,5 +1,15 @@
 {
   "title": "Blacklist",
+  "error": {
+    "title": "Blacklist",
+    "subtitle": "Ha ocurrido un error al cargar el blacklist",
+    "errorTitle": "Error al cargar",
+    "errorDescription": "No se pudieron cargar los registros del blacklist. Por favor, intenta de nuevo.",
+    "errorDetails": "Detalles técnicos",
+    "retry": "Reintentar",
+    "backToDashboard": "Volver al Dashboard",
+    "helpText": "Si el problema persiste, contacta al soporte técnico o intenta más tarde."
+  },
   "page": {
     "title": "Blacklist de Huespedes",
     "subtitle": "Gestion de huespedes con mala conducta",

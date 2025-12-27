@@ -306,9 +306,7 @@ export function GroupsListClient({ initialGroups, initialStatus = 'all' }: Group
                             colSpan={7}
                             className="px-3 py-8 text-center text-xs text-gray-500 dark:text-gray-400"
                           >
-                            {searchTerm
-                              ? t('table.noResults')
-                              : t('table.noGroups')}
+                            {searchTerm ? t('table.noResults') : t('table.noGroups')}
                           </td>
                         </tr>
                       ) : (
@@ -367,9 +365,7 @@ export function GroupsListClient({ initialGroups, initialStatus = 'all' }: Group
                 {filteredGroups.length === 0 ? (
                   <div className="bg-white dark:bg-[#151b23] rounded-md border border-gray-200 dark:border-gray-800 p-6 text-center">
                     <p className="text-xs text-gray-500 dark:text-gray-400">
-                      {searchTerm
-                        ? t('table.noResults')
-                        : t('table.noGroups')}
+                      {searchTerm ? t('table.noResults') : t('table.noGroups')}
                     </p>
                   </div>
                 ) : (

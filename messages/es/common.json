@@ -24,7 +24,8 @@
     "backofficeTasks": "Tareas de backoffice",
     "hotelCashier": "Caja Hotel",
     "cashierReports": "Reportes de Caja",
-    "cashierLogs": "Registros de Caja"
+    "cashierLogs": "Registros de Caja",
+    "cashierDashboard": "Resumen"
   },
   "actions": {
     "save": "Guardar",

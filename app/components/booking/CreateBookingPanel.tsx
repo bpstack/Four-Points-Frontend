@@ -48,7 +48,7 @@ export function CreateBookingPanel({
   selectedDate,
 }: CreateBookingPanelProps) {
   const t = useTranslations('booking')
-  
+
   // Form state
   const [plateNumber, setPlateNumber] = useState('')
   const [ownerName, setOwnerName] = useState('')
@@ -446,7 +446,8 @@ export function CreateBookingPanel({
         {/* Duration Info */}
         {calculateDays() > 0 && (
           <Alert variant="info">
-            {t('dates.duration')} <strong>{t('dates.durationDays', { count: calculateDays() })}</strong>
+            {t('dates.duration')}{' '}
+            <strong>{t('dates.durationDays', { count: calculateDays() })}</strong>
           </Alert>
         )}
 

@@ -13,16 +13,12 @@ interface DateFilterProps {
   label?: string
 }
 
-export default function DateFilter({
-  selectedDate,
-  onDateChange,
-  label,
-}: DateFilterProps) {
+export default function DateFilter({ selectedDate, onDateChange, label }: DateFilterProps) {
   const t = useTranslations('profile.reports.common')
   const locale = useLocale()
   const [showCalendar, setShowCalendar] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
-  
+
   const defaultLabel = label || t('filterByDate')
 
   // Close calendar when clicking outside

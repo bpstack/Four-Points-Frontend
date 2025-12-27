@@ -120,19 +120,25 @@ export function PaymentModal({ booking, onClose, onConfirm }: PaymentModalProps)
                 </div>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-[#57606a] dark:text-[#8b949e]">{t('paymentModal.totalBooking')}</span>
+                    <span className="text-[#57606a] dark:text-[#8b949e]">
+                      {t('paymentModal.totalBooking')}
+                    </span>
                     <span className="font-semibold text-[#24292f] dark:text-[#f0f6fc]">
                       {booking.payment.total_amount.toFixed(2)} €
                     </span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-[#57606a] dark:text-[#8b949e]">{t('paymentModal.alreadyPaidAmount')}</span>
+                    <span className="text-[#57606a] dark:text-[#8b949e]">
+                      {t('paymentModal.alreadyPaidAmount')}
+                    </span>
                     <span className="text-[#1a7f37] dark:text-[#3fb950]">
                       {booking.payment.paid_amount.toFixed(2)} €
                     </span>
                   </div>
                   <div className="flex justify-between pt-2 border-t border-[#d0d7de] dark:border-[#30363d]">
-                    <span className="font-medium text-[#57606a] dark:text-[#8b949e]">{t('paymentModal.pending')}</span>
+                    <span className="font-medium text-[#57606a] dark:text-[#8b949e]">
+                      {t('paymentModal.pending')}
+                    </span>
                     <span
                       className={`font-bold ${
                         booking.payment.pending_amount > 0

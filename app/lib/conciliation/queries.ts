@@ -16,6 +16,17 @@ import type {
 const API_BASE = API_BASE_URL
 
 // ═══════════════════════════════════════════════════════
+// TIPOS DE RESPUESTA DEL BACKEND
+// ═══════════════════════════════════════════════════════
+
+interface ApiResponse<T> {
+  success: boolean
+  data: T
+  message?: string
+  code?: string
+}
+
+// ═══════════════════════════════════════════════════════
 // QUERY KEYS
 // ═══════════════════════════════════════════════════════
 
@@ -41,7 +52,10 @@ export function useConciliations() {
   return useQuery({
     queryKey: conciliationKeys.lists(),
     queryFn: async (): Promise<ConciliationSummary[]> => {
-      return apiClient.get(`${API_BASE}/api/conciliations`)
+      const response = await apiClient.get<ApiResponse<ConciliationSummary[]>>(
+        `${API_BASE}/api/conciliations`
+      )
+      return response.data
     },
     staleTime: 30 * 1000,
   })
@@ -49,30 +63,17 @@ export function useConciliations() {
 
 /**
  * Obtener conciliación por fecha específica
+ * Retorna null si no existe (el día no tiene conciliación iniciada)
  */
 export function useConciliationByDay(date: string) {
   return useQuery({
     queryKey: conciliationKeys.byDay(date),
     queryFn: async (): Promise<ConciliationDetail | null> => {
-      try {
-        const response = await apiClient.get<ConciliationDetail>(
-          `${API_BASE}/api/conciliations/day/${date}`
-        )
-        return response
-      } catch (error) {
-        const errorMessage = error instanceof Error ? error.message : String(error)
-
-        // Si es 404, día no existe aún - no es error
-        if (
-          errorMessage.includes('404') ||
-          errorMessage.includes('not found') ||
-          errorMessage.includes('No encontrado')
-        ) {
-          return null
-        }
-
-        throw error
-      }
+      const response = await apiClient.get<ApiResponse<ConciliationDetail | null>>(
+        `${API_BASE}/api/conciliations/day/${date}`
+      )
+      // El backend retorna { success: true, data: null } si no existe
+      return response.data
     },
     staleTime: 30 * 1000,
     retry: false,
@@ -86,7 +87,10 @@ export function useConciliationById(id: number) {
   return useQuery({
     queryKey: conciliationKeys.detail(id),
     queryFn: async (): Promise<ConciliationDetail> => {
-      return apiClient.get<ConciliationDetail>(`${API_BASE}/api/conciliations/${id}`)
+      const response = await apiClient.get<ApiResponse<ConciliationDetail>>(
+        `${API_BASE}/api/conciliations/${id}`
+      )
+      return response.data
     },
     staleTime: 30 * 1000,
     enabled: id > 0,
@@ -99,16 +103,20 @@ export function useConciliationById(id: number) {
 
 /**
  * Obtener resumen mensual
+ * Solo se ejecuta si year y month son válidos
  */
 export function useMonthlySummary(year: number, month: number) {
   return useQuery({
     queryKey: conciliationKeys.monthly(year, month),
     queryFn: async (): Promise<MonthlySummary> => {
-      return apiClient.get<MonthlySummary>(
+      const response = await apiClient.get<ApiResponse<MonthlySummary>>(
         `${API_BASE}/api/conciliations/monthly-summary/${year}/${month}`
       )
+      return response.data
     },
     staleTime: 5 * 60 * 1000,
+    // Solo ejecutar si year y month son números válidos
+    enabled: !isNaN(year) && !isNaN(month) && year > 0 && month >= 1 && month <= 12,
   })
 }
 
@@ -119,11 +127,14 @@ export function useMissingDays(year: number, month: number) {
   return useQuery({
     queryKey: conciliationKeys.missingDays(year, month),
     queryFn: async (): Promise<string[]> => {
-      return apiClient.get<string[]>(
+      const response = await apiClient.get<ApiResponse<string[]>>(
         `${API_BASE}/api/conciliations/monthly-summary/${year}/${month}/missing-days`
       )
+      return response.data
     },
     staleTime: 5 * 60 * 1000,
+    // Solo ejecutar si year y month son números válidos
+    enabled: !isNaN(year) && !isNaN(month) && year > 0 && month >= 1 && month <= 12,
   })
 }
 
@@ -139,7 +150,11 @@ export function useCreateConciliation() {
 
   return useMutation({
     mutationFn: async (data: CreateConciliationDTO): Promise<ConciliationDetail> => {
-      return apiClient.post<ConciliationDetail>(`${API_BASE}/api/conciliations`, data)
+      const response = await apiClient.post<ApiResponse<ConciliationDetail>>(
+        `${API_BASE}/api/conciliations`,
+        data
+      )
+      return response.data
     },
     onSuccess: (_, variables) => {
       queryClient.invalidateQueries({ queryKey: conciliationKeys.lists() })
@@ -161,8 +176,11 @@ export function useUpdateConciliationForm() {
     }: {
       id: number
       formData: ConciliationFormData
-    }): Promise<ConciliationDetail> => {
-      return apiClient.put<ConciliationDetail>(`${API_BASE}/api/conciliations/${id}/form`, formData)
+    }): Promise<{ total_reception: number; total_housekeeping: number; difference: number }> => {
+      const response = await apiClient.put<
+        ApiResponse<{ total_reception: number; total_housekeeping: number; difference: number }>
+      >(`${API_BASE}/api/conciliations/${id}/form`, formData)
+      return response.data
     },
     onSuccess: (_, { id }) => {
       queryClient.invalidateQueries({ queryKey: conciliationKeys.detail(id) })
@@ -185,12 +203,14 @@ export function useUpdateConciliationStatus() {
     }: {
       id: number
       status: ConciliationStatus
-    }): Promise<ConciliationSummary> => {
+    }): Promise<{ success: boolean; status: ConciliationStatus }> => {
+      // Este endpoint retorna { success, status } directamente, no { success, data }
       return apiClient.patch(`${API_BASE}/api/conciliations/${id}/status`, { status })
     },
     onSuccess: (_, { id }) => {
       queryClient.invalidateQueries({ queryKey: conciliationKeys.detail(id) })
       queryClient.invalidateQueries({ queryKey: conciliationKeys.lists() })
+      queryClient.invalidateQueries({ queryKey: conciliationKeys.all })
     },
   })
 }
@@ -202,8 +222,13 @@ export function useRecalculateConciliation() {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: async (id: number): Promise<ConciliationSummary> => {
-      return apiClient.post(`${API_BASE}/api/conciliations/${id}/recalculate`)
+    mutationFn: async (
+      id: number
+    ): Promise<{ total_reception: number; total_housekeeping: number; difference: number }> => {
+      const response = await apiClient.post<
+        ApiResponse<{ total_reception: number; total_housekeeping: number; difference: number }>
+      >(`${API_BASE}/api/conciliations/${id}/recalculate`)
+      return response.data
     },
     onSuccess: (_, id) => {
       queryClient.invalidateQueries({ queryKey: conciliationKeys.detail(id) })
@@ -256,75 +281,4 @@ export function useUpdateMonthlySummaryStatus() {
       queryClient.invalidateQueries({ queryKey: conciliationKeys.monthly(year, month) })
     },
   })
-}
-
-// ═══════════════════════════════════════════════════════
-// LEGACY API CLIENT (for gradual migration)
-// TODO: Migrate components to use React Query hooks above
-// ═══════════════════════════════════════════════════════
-
-export const conciliationApi = {
-  async getAll(): Promise<ConciliationSummary[]> {
-    return apiClient.get(`${API_BASE}/api/conciliations`)
-  },
-
-  async getByDay(date: string): Promise<ConciliationDetail | null> {
-    return apiClient.get(`${API_BASE}/api/conciliations/day/${date}`)
-  },
-
-  async getById(id: number): Promise<ConciliationDetail> {
-    return apiClient.get(`${API_BASE}/api/conciliations/${id}`)
-  },
-
-  async create(data: CreateConciliationDTO): Promise<ConciliationDetail> {
-    return apiClient.post(`${API_BASE}/api/conciliations`, data)
-  },
-
-  async updateForm(id: number, formData: ConciliationFormData): Promise<ConciliationDetail> {
-    return apiClient.put(`${API_BASE}/api/conciliations/${id}/form`, formData)
-  },
-
-  async updateStatus(id: number, status: ConciliationStatus): Promise<ConciliationSummary> {
-    return apiClient.patch(`${API_BASE}/api/conciliations/${id}/status`, { status })
-  },
-
-  async recalculate(id: number): Promise<ConciliationSummary> {
-    return apiClient.post(`${API_BASE}/api/conciliations/${id}/recalculate`)
-  },
-
-  async delete(id: number): Promise<void> {
-    await apiClient.delete(`${API_BASE}/api/conciliations/${id}`)
-  },
-
-  async getMonthlySummary(year: number, month: number): Promise<MonthlySummary> {
-    return apiClient.get(`${API_BASE}/api/conciliations/monthly-summary/${year}/${month}`)
-  },
-
-  async validateMonthlySummary(
-    year: number,
-    month: number
-  ): Promise<{ can_close: boolean; errors: string[] }> {
-    return apiClient.get(
-      `${API_BASE}/api/conciliations/monthly-summary/${year}/${month}/validation`
-    )
-  },
-
-  async getMissingDays(year: number, month: number): Promise<string[]> {
-    return apiClient.get(
-      `${API_BASE}/api/conciliations/monthly-summary/${year}/${month}/missing-days`
-    )
-  },
-
-  async updateMonthlySummaryStatus(
-    year: number,
-    month: number,
-    status: ConciliationStatus
-  ): Promise<{ success: boolean }> {
-    return apiClient.patch(
-      `${API_BASE}/api/conciliations/monthly-summary/${year}/${month}/status`,
-      {
-        status,
-      }
-    )
-  },
 }

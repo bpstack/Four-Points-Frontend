@@ -58,37 +58,43 @@ export default function OverviewSection() {
   const [dateFilter, setDateFilter] = useState<string | null>(null)
 
   // Source labels with translations
-  const SOURCE_LABELS = useMemo(() => ({
-    cashier: t('sources.cashier'),
-    groups: t('sources.groups'),
-    logbook: t('sources.logbook'),
-    maintenance: t('sources.maintenance'),
-  }), [t])
+  const SOURCE_LABELS = useMemo(
+    () => ({
+      cashier: t('sources.cashier'),
+      groups: t('sources.groups'),
+      logbook: t('sources.logbook'),
+      maintenance: t('sources.maintenance'),
+    }),
+    [t]
+  )
 
   // Action labels with translations
-  const ACTION_LABELS = useMemo(() => ({
-    created: t('actions.created'),
-    updated: t('actions.updated'),
-    deleted: t('actions.deleted'),
-    status_changed: t('actions.statusChanged'),
-    payment_updated: t('actions.paymentUpdated'),
-    read: t('actions.read'),
-    unread: t('actions.unread'),
-    solve: t('actions.solve'),
-    reopen: t('actions.reopen'),
-    adjustment: t('actions.adjustment'),
-    voucher_created: t('actions.voucherCreated'),
-    voucher_repaid: t('actions.voucherRepaid'),
-    daily_closed: t('actions.dailyClosed'),
-    daily_reopened: t('actions.dailyReopened'),
-    assigned: t('actions.assigned'),
-    resolved: t('actions.resolved'),
-    closed: t('actions.closed'),
-    restored: t('actions.restored'),
-    create: t('actions.create'),
-    update: t('actions.update'),
-    delete: t('actions.delete'),
-  }), [t])
+  const ACTION_LABELS = useMemo(
+    () => ({
+      created: t('actions.created'),
+      updated: t('actions.updated'),
+      deleted: t('actions.deleted'),
+      status_changed: t('actions.statusChanged'),
+      payment_updated: t('actions.paymentUpdated'),
+      read: t('actions.read'),
+      unread: t('actions.unread'),
+      solve: t('actions.solve'),
+      reopen: t('actions.reopen'),
+      adjustment: t('actions.adjustment'),
+      voucher_created: t('actions.voucherCreated'),
+      voucher_repaid: t('actions.voucherRepaid'),
+      daily_closed: t('actions.dailyClosed'),
+      daily_reopened: t('actions.dailyReopened'),
+      assigned: t('actions.assigned'),
+      resolved: t('actions.resolved'),
+      closed: t('actions.closed'),
+      restored: t('actions.restored'),
+      create: t('actions.create'),
+      update: t('actions.update'),
+      delete: t('actions.delete'),
+    }),
+    [t]
+  )
 
   const fetchActivity = useCallback(async () => {
     setLoading(true)
@@ -129,9 +135,7 @@ export default function OverviewSection() {
       <div className="flex flex-col items-center justify-center h-64 gap-4">
         <div className="text-center">
           <FiClock className="w-12 h-12 text-gray-300 dark:text-gray-600 mx-auto mb-3" />
-          <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-1">
-            {t('title')}
-          </h3>
+          <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-1">{t('title')}</h3>
           <p className="text-sm text-gray-500 dark:text-gray-400 max-w-md">
             {t('description', { count: DEFAULT_LIMIT })}
           </p>

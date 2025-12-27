@@ -4,6 +4,7 @@ import { ACTIVE_FONTS as activeFonts } from './ui/fonts-design/fonts.helper'
 import Providers from './lib/theme/ThemeProvider'
 import { NextIntlClientProvider } from 'next-intl'
 import { getLocale, getMessages } from 'next-intl/server'
+import { Analytics } from '@vercel/analytics/react'
 import type { Metadata, Viewport } from 'next'
 
 export const metadata: Metadata = {
@@ -98,6 +99,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <NextIntlClientProvider messages={messages}>
           <Providers>{children}</Providers>
         </NextIntlClientProvider>
+        <Analytics />
       </body>
     </html>
   )

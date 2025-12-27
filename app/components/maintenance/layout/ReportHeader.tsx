@@ -101,7 +101,9 @@ export function ReportHeader({ report, onEdit, onDelete }: ReportHeaderProps) {
               {report.room_number && (
                 <>
                   <span>•</span>
-                  <span>{t('detail.room')} {report.room_number}</span>
+                  <span>
+                    {t('detail.room')} {report.room_number}
+                  </span>
                 </>
               )}
             </div>

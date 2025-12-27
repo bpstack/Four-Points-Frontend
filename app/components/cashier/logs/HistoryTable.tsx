@@ -108,7 +108,9 @@ export default function HistoryTable({
         <div className="flex items-center justify-center">
           <div className="text-center">
             <div className="inline-block h-8 w-8 animate-spin rounded-full border-[3px] border-solid border-blue-600 dark:border-blue-500 border-r-transparent"></div>
-            <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">{t('page.loadingHistory')}</p>
+            <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+              {t('page.loadingHistory')}
+            </p>
           </div>
         </div>
       </div>

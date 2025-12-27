@@ -81,18 +81,7 @@ const ROLE_COLORS = {
   },
 }
 
-const tabs: { id: SettingsTab; label: string; icon: React.ReactNode; adminOnly?: boolean }[] = [
-  { id: 'users', label: 'Usuarios', icon: <FiUsers className="w-4 h-4" />, adminOnly: true },
-  {
-    id: 'departments',
-    label: 'Departamentos',
-    icon: <FiGrid className="w-4 h-4" />,
-    adminOnly: true,
-  },
-  { id: 'notifications', label: 'Notificaciones', icon: <FiBell className="w-4 h-4" /> },
-  { id: 'security', label: 'Seguridad', icon: <FiShield className="w-4 h-4" /> },
-  { id: 'reports', label: 'Reportes', icon: <FiFileText className="w-4 h-4" />, adminOnly: true },
-]
+// Tab definitions moved inside component to use translations
 
 export function SettingsPanel() {
   const { user: currentUser } = useAuth()
@@ -102,13 +91,36 @@ export function SettingsPanel() {
   const t = useTranslations('profile.settings')
 
   // Define tabs with translations (inside component to access t())
-  const tabs: { id: SettingsTab; label: string; icon: React.ReactNode; adminOnly?: boolean }[] = useMemo(() => [
-    { id: 'users', label: t('tabs.users'), icon: <FiUsers className="w-4 h-4" />, adminOnly: true },
-    { id: 'departments', label: t('tabs.departments'), icon: <FiGrid className="w-4 h-4" />, adminOnly: true },
-    { id: 'notifications', label: t('tabs.notifications'), icon: <FiBell className="w-4 h-4" /> },
-    { id: 'security', label: t('tabs.security'), icon: <FiShield className="w-4 h-4" /> },
-    { id: 'reports', label: t('tabs.reports'), icon: <FiFileText className="w-4 h-4" />, adminOnly: true },
-  ], [t])
+  const tabs: { id: SettingsTab; label: string; icon: React.ReactNode; adminOnly?: boolean }[] =
+    useMemo(
+      () => [
+        {
+          id: 'users',
+          label: t('tabs.users'),
+          icon: <FiUsers className="w-4 h-4" />,
+          adminOnly: true,
+        },
+        {
+          id: 'departments',
+          label: t('tabs.departments'),
+          icon: <FiGrid className="w-4 h-4" />,
+          adminOnly: true,
+        },
+        {
+          id: 'notifications',
+          label: t('tabs.notifications'),
+          icon: <FiBell className="w-4 h-4" />,
+        },
+        { id: 'security', label: t('tabs.security'), icon: <FiShield className="w-4 h-4" /> },
+        {
+          id: 'reports',
+          label: t('tabs.reports'),
+          icon: <FiFileText className="w-4 h-4" />,
+          adminOnly: true,
+        },
+      ],
+      [t]
+    )
 
   const activeTab =
     (searchParams.get('tab') as SettingsTab) || (isUserAdmin ? 'users' : 'notifications')
@@ -139,6 +151,7 @@ export function SettingsPanel() {
     if (activeTab === 'users' && isUserAdmin) {
       fetchUsers()
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTab, isUserAdmin])
 
   const handleTabChange = (tab: SettingsTab) => {
@@ -188,9 +201,7 @@ export function SettingsPanel() {
       {/* Header */}
       <div className="mb-6">
         <h2 className="text-xl font-semibold text-gray-900 dark:text-white">{t('title')}</h2>
-        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
-          {t('subtitle')}
-        </p>
+        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">{t('subtitle')}</p>
       </div>
 
       {/* Tabs - Mobile Dropdown */}
@@ -361,9 +372,7 @@ function DepartmentsTab() {
       <div className="px-4 py-3 border-b border-gray-200 dark:border-[#30363d]">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div>
-            <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
-              {t('title')}
-            </h3>
+            <h3 className="text-sm font-semibold text-gray-900 dark:text-white">{t('title')}</h3>
             <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
               {t('subtitle')} ({departments.length} {t('total')})
             </p>
@@ -528,11 +537,7 @@ function AddDepartmentModal({
         />
       }
     >
-      <FormField
-        label={t('departmentName')}
-        required
-        hint={t('saveHint')}
-      >
+      <FormField label={t('departmentName')} required hint={t('saveHint')}>
         <input
           type="text"
           value={name}
@@ -609,11 +614,7 @@ function EditDepartmentModal({
         />
       }
     >
-      <FormField
-        label={t('departmentName')}
-        required
-        hint={t('editHint')}
-      >
+      <FormField label={t('departmentName')} required hint={t('editHint')}>
         <input
           type="text"
           value={name}
@@ -648,18 +649,14 @@ function UserManagement({
   onOpenModal: () => void
 }) {
   const t = useTranslations('profile.settings.users')
-  
+
   return (
     <div className="bg-white dark:bg-[#161b22] rounded-lg border border-gray-200 dark:border-[#30363d]">
       <div className="px-4 py-3 border-b border-gray-200 dark:border-[#30363d]">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div>
-            <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
-              {t('title')}
-            </h3>
-            <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
-              {t('subtitle')}
-            </p>
+            <h3 className="text-sm font-semibold text-gray-900 dark:text-white">{t('title')}</h3>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{t('subtitle')}</p>
           </div>
           <div className="flex gap-2">
             <button
@@ -718,24 +715,27 @@ function UserTable({ users, onDelete }: { users: User[]; onDelete: (id: string) 
   const [resettingPassword, setResettingPassword] = useState(false)
 
   // Role config with translations
-  const ROLE_CONFIG = useMemo(() => ({
-    admin: {
-      label: t('roles.admin'),
-      ...ROLE_COLORS.admin,
-    },
-    'group-admin': {
-      label: t('roles.groupAdmin'),
-      ...ROLE_COLORS['group-admin'],
-    },
-    recepcionista: {
-      label: t('roles.receptionist'),
-      ...ROLE_COLORS.recepcionista,
-    },
-    mantenimiento: {
-      label: t('roles.maintenance'),
-      ...ROLE_COLORS.mantenimiento,
-    },
-  }), [t])
+  const ROLE_CONFIG = useMemo(
+    () => ({
+      admin: {
+        label: t('roles.admin'),
+        ...ROLE_COLORS.admin,
+      },
+      'group-admin': {
+        label: t('roles.groupAdmin'),
+        ...ROLE_COLORS['group-admin'],
+      },
+      recepcionista: {
+        label: t('roles.receptionist'),
+        ...ROLE_COLORS.recepcionista,
+      },
+      mantenimiento: {
+        label: t('roles.maintenance'),
+        ...ROLE_COLORS.mantenimiento,
+      },
+    }),
+    [t]
+  )
 
   const handleEdit = (user: User) => {
     setEditingId(user.id)
@@ -1046,12 +1046,8 @@ function NotificationsSettings() {
         <div className="px-4 py-3 border-b border-gray-200 dark:border-[#30363d]">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div>
-              <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
-                {t('title')}
-              </h3>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
-                {t('subtitle')}
-              </p>
+              <h3 className="text-sm font-semibold text-gray-900 dark:text-white">{t('title')}</h3>
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{t('subtitle')}</p>
             </div>
             <button
               onClick={() => setIsNotificationModalOpen(true)}
@@ -1063,11 +1059,7 @@ function NotificationsSettings() {
           </div>
         </div>
         <div className="p-4 space-y-3">
-          <SettingRow
-            label={t('emailNotifications')}
-            description={t('emailDesc')}
-            defaultChecked
-          />
+          <SettingRow label={t('emailNotifications')} description={t('emailDesc')} defaultChecked />
 
           <div className="py-3 border-t border-gray-200 dark:border-[#30363d]">
             <div className="flex items-center justify-between mb-2">
@@ -1075,9 +1067,7 @@ function NotificationsSettings() {
                 <p className="text-sm font-medium text-gray-900 dark:text-white">
                   {t('pushNotifications')}
                 </p>
-                <p className="text-xs text-gray-500 dark:text-gray-400">
-                  {t('pushDesc')}
-                </p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">{t('pushDesc')}</p>
               </div>
               <button
                 onClick={handleCheckNotifications}
@@ -1122,33 +1112,29 @@ function NotificationsSettings() {
 
 function SecuritySettings() {
   const t = useTranslations('profile.settings.security')
-  
+
   return (
     <div className="bg-white dark:bg-[#161b22] rounded-lg border border-gray-200 dark:border-[#30363d]">
       <div className="px-4 py-3 border-b border-gray-200 dark:border-[#30363d]">
         <h3 className="text-sm font-semibold text-gray-900 dark:text-white">{t('title')}</h3>
-        <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
-          {t('subtitle')}
-        </p>
+        <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{t('subtitle')}</p>
       </div>
       <div className="p-4 space-y-3">
-        <SettingRow
-          label={t('twoFactor')}
-          description={t('twoFactorDesc')}
-        />
+        <SettingRow label={t('twoFactor')} description={t('twoFactorDesc')} />
         <SettingRow label={t('passwordRotation')} description={t('passwordRotationDesc')} />
-        <SettingRow
-          label={t('loginAlerts')}
-          description={t('loginAlertsDesc')}
-          defaultChecked
-        />
+        <SettingRow label={t('loginAlerts')} description={t('loginAlertsDesc')} defaultChecked />
 
         <div className="pt-4 border-t border-gray-200 dark:border-[#30363d]">
           <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
             {t('activeSessions')}
           </h4>
           <div className="space-y-2">
-            <SessionItem device="Desktop - Chrome" location="Barcelona, Spain" active activeLabel={t('active')} />
+            <SessionItem
+              device="Desktop - Chrome"
+              location="Barcelona, Spain"
+              active
+              activeLabel={t('active')}
+            />
             <SessionItem device="Mobile - Safari" location="Barcelona, Spain" />
           </div>
         </div>

@@ -227,7 +227,9 @@ export function PdfViewerModal({
                   {invoiceNumber}
                 </h2>
                 <p className="text-xs text-gray-500 dark:text-gray-400">
-                  {activePdfType === 'validated' ? t('modals.pdfViewer.validatedPdf') : t('modals.pdfViewer.originalPdf')}
+                  {activePdfType === 'validated'
+                    ? t('modals.pdfViewer.validatedPdf')
+                    : t('modals.pdfViewer.originalPdf')}
                   {invoiceStatus === 'validated' && activePdfType === 'validated' && (
                     <span className="inline-flex items-center gap-1 ml-2 text-green-600 dark:text-green-400">
                       <FiCheck className="w-3 h-3" />
@@ -318,7 +320,9 @@ export function PdfViewerModal({
               <div className="flex flex-col items-center justify-center h-full text-red-500">
                 <FiAlertCircle className="w-12 h-12 mb-4" />
                 <p className="font-medium">{t('modals.pdfViewer.errorLoading')}</p>
-                <p className="text-sm mt-1 text-gray-500 dark:text-gray-400">{t(`modals.pdfViewer.${error}`)}</p>
+                <p className="text-sm mt-1 text-gray-500 dark:text-gray-400">
+                  {t(`modals.pdfViewer.${error}`)}
+                </p>
                 <button
                   onClick={() => {
                     setError(null)

@@ -85,7 +85,7 @@ export function ImageUploader({
       // Agregar archivos válidos
       onChange([...value, ...validFiles])
     },
-    [value, maxFiles, onChange, validateFile]
+    [value, maxFiles, onChange, validateFile, t]
   )
 
   // Evento: Click en botón
@@ -181,9 +181,7 @@ export function ImageUploader({
 
         <div className="text-center">
           <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
-            {isDragging
-              ? t('ui.imageUploader.dropImagesHere')
-              : t('ui.imageUploader.dragOrClick')}
+            {isDragging ? t('ui.imageUploader.dropImagesHere') : t('ui.imageUploader.dragOrClick')}
           </p>
           <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
             {acceptedFormats.map((f) => f.split('/')[1].toUpperCase()).join(', ')} -{' '}

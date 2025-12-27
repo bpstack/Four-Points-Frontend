@@ -7,7 +7,12 @@ import { useSearchParams } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { useAuth } from '@/app/lib/auth/useAuth'
 import { cn } from '@/app/lib/helpers/utils'
-import { ProfileSidebar, SettingsPanel, MessagesPanel, NotificationsPanel } from '@/app/components/profile'
+import {
+  ProfileSidebar,
+  SettingsPanel,
+  MessagesPanel,
+  NotificationsPanel,
+} from '@/app/components/profile'
 
 // Skeleton for loading state
 function ProfileSkeleton() {
@@ -100,9 +105,7 @@ function ProfileContent() {
               <h3 className="text-sm font-medium text-gray-900 dark:text-white mb-1">
                 {t('selectOption')}
               </h3>
-              <p className="text-xs text-gray-500 dark:text-gray-400">
-                {t('useLeftMenu')}
-              </p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">{t('useLeftMenu')}</p>
             </div>
           </main>
         )}

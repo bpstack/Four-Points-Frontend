@@ -28,9 +28,7 @@ export default function NotFound() {
         </h1>
 
         {/* Descripción */}
-        <p className="text-gray-600 dark:text-gray-400 mb-8">
-          {t('notFound.entryDescription')}
-        </p>
+        <p className="text-gray-600 dark:text-gray-400 mb-8">{t('notFound.entryDescription')}</p>
 
         {/* Acciones */}
         <div className="flex flex-col sm:flex-row gap-3 justify-center">

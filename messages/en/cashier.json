@@ -1,4 +1,22 @@
 {
+  "dashboard": {
+    "title": "Cashier Overview",
+    "pendingVouchersAlert": "Pending vouchers to justify",
+    "vouchersPending": "pending vouchers",
+    "viewVouchers": "View vouchers",
+    "dailyCashier": "Daily Cashier",
+    "dailyCashierDesc": "Manage shifts and cash counting",
+    "reports": "Reports",
+    "reportsDesc": "Monthly statistics and analysis",
+    "logs": "History",
+    "logsDesc": "Change log and audit trail",
+    "vouchersSummary": "Vouchers Summary",
+    "totalJustified": "Total Justified",
+    "pendingAmount": "Pending Amount",
+    "dayNotInitialized": "Day not initialized",
+    "dayNotInitializedDesc": "Today has not been initialized yet. Click to create the shifts.",
+    "initializeDay": "Initialize"
+  },
   "page": {
     "loading": "Loading day data...",
     "loadingShift": "Loading shift...",
@@ -59,7 +77,10 @@
     "newVoucher": "+ New Voucher",
     "closeShift": "Close Shift",
     "incomeUpdated": "Income updated successfully",
-    "voucherJustified": "Voucher justified successfully"
+    "voucherJustified": "Voucher justified successfully",
+    "reopen": "Reopen",
+    "reopenShift": "Reopen shift to correct data",
+    "shiftReopened": "Shift reopened successfully"
   },
   "calendar": {
     "today": "Today",
@@ -122,6 +143,7 @@
     "cashCountMissing": "Cash count missing",
     "electronicPaymentsRegistered": "Electronic payments registered",
     "electronicPaymentsMissing": "Electronic payments missing",
+    "noElectronicPayments": "No electronic payments (cash only)",
     "pendingVouchers": "pending voucher(s)",
     "canJustifyAfterClose": "Can be justified after closing",
     "financialSummary": "Financial Summary",
@@ -204,7 +226,14 @@
     "initializeButton": "Initialize Day"
   },
   "error": {
-    "title": "Error loading data",
+    "title": "Cashier",
+    "subtitle": "An error occurred",
+    "errorTitle": "Loading Error",
+    "errorDescription": "Could not load cashier data. Please try again.",
+    "errorDetails": "Technical details",
+    "retry": "Retry",
+    "backToDashboard": "Back to Dashboard",
+    "helpText": "If the problem persists, contact support or try again later.",
     "loadingReport": "Error loading report",
     "loadingVouchers": "Error loading voucher history",
     "userNotAuthenticated": "User not authenticated",
@@ -217,7 +246,8 @@
     "closeShift": "Error closing shift",
     "updateIncome": "Error updating income",
     "justifyVoucher": "Error justifying voucher",
-    "reopenDay": "Error reopening day"
+    "reopenDay": "Error reopening day",
+    "reopenShift": "Error reopening shift"
   },
   "logs": {
     "pageTitle": "History and Audit",

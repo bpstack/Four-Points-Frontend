@@ -69,10 +69,11 @@ export default function CheckInModal({
       {isLateCheckin && (
         <div className="p-4 bg-yellow-50 dark:bg-yellow-950/20 border-l-4 border-yellow-500 rounded-r-lg">
           <p className="text-sm font-medium text-yellow-900 dark:text-yellow-200">
-            ⚠️ {t('lateCheckIn', {
+            ⚠️{' '}
+            {t('lateCheckIn', {
               date: checkinDate?.toLocaleDateString(locale === 'es' ? 'es-ES' : 'en-US'),
               days: daysDifference,
-              dayWord: daysDifference === 1 ? t('day') : t('days')
+              dayWord: daysDifference === 1 ? t('day') : t('days'),
             })}
           </p>
         </div>
@@ -80,13 +81,17 @@ export default function CheckInModal({
 
       <div className="space-y-3 bg-gradient-to-br from-gray-50 to-slate-50 dark:from-slate-800/60 dark:to-slate-900/60 p-5 rounded-xl border border-gray-100 dark:border-slate-700/50">
         <div className="flex justify-between items-center">
-          <span className="text-sm text-gray-600 dark:text-gray-400 font-medium">{t('client')}:</span>
+          <span className="text-sm text-gray-600 dark:text-gray-400 font-medium">
+            {t('client')}:
+          </span>
           <span className="font-semibold text-gray-900 dark:text-gray-100">
             {booking.vehicle?.owner || t('noClient')}
           </span>
         </div>
         <div className="flex justify-between items-center">
-          <span className="text-sm text-gray-600 dark:text-gray-400 font-medium">{t('vehicle')}:</span>
+          <span className="text-sm text-gray-600 dark:text-gray-400 font-medium">
+            {t('vehicle')}:
+          </span>
           <span className="font-mono font-semibold text-gray-900 dark:text-gray-100">
             {booking.vehicle?.plate}
           </span>

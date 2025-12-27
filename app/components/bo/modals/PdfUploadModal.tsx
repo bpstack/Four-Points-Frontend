@@ -48,28 +48,31 @@ export function PdfUploadModal({
   }
 
   // Handle file selection
-  const handleFileChange = (selectedFile: File | null) => {
-    setError(null)
+  const handleFileChange = useCallback(
+    (selectedFile: File | null) => {
+      setError(null)
 
-    if (!selectedFile) {
-      setFile(null)
-      return
-    }
+      if (!selectedFile) {
+        setFile(null)
+        return
+      }
 
-    // Validate file type
-    if (selectedFile.type !== 'application/pdf') {
-      setError(t('modals.pdfUpload.errors.onlyPdf'))
-      return
-    }
+      // Validate file type
+      if (selectedFile.type !== 'application/pdf') {
+        setError(t('modals.pdfUpload.errors.onlyPdf'))
+        return
+      }
 
-    // Validate file size
-    if (selectedFile.size > MAX_FILE_SIZE) {
-      setError(t('modals.pdfUpload.errors.maxSize'))
-      return
-    }
+      // Validate file size
+      if (selectedFile.size > MAX_FILE_SIZE) {
+        setError(t('modals.pdfUpload.errors.maxSize'))
+        return
+      }
 
-    setFile(selectedFile)
-  }
+      setFile(selectedFile)
+    },
+    [t]
+  )
 
   // Handle drag events
   const handleDrag = useCallback((e: React.DragEvent) => {
@@ -83,15 +86,18 @@ export function PdfUploadModal({
   }, [])
 
   // Handle drop
-  const handleDrop = useCallback((e: React.DragEvent) => {
-    e.preventDefault()
-    e.stopPropagation()
-    setDragActive(false)
+  const handleDrop = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault()
+      e.stopPropagation()
+      setDragActive(false)
 
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      handleFileChange(e.dataTransfer.files[0])
-    }
-  }, [])
+      if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+        handleFileChange(e.dataTransfer.files[0])
+      }
+    },
+    [handleFileChange]
+  )
 
   // Handle input change
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -113,9 +119,7 @@ export function PdfUploadModal({
       try {
         await backofficeApi.uploadInvoicePdf(invoiceId, file, type)
         toast.success(
-          type === 'original'
-            ? t('toast.pdfOriginalUploaded')
-            : t('toast.pdfValidatedUploaded')
+          type === 'original' ? t('toast.pdfOriginalUploaded') : t('toast.pdfValidatedUploaded')
         )
         onSuccess()
         handleClose()
@@ -147,7 +151,9 @@ export function PdfUploadModal({
           <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-700">
             <div>
               <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
-                {type === 'original' ? t('modals.pdfUpload.originalTitle') : t('modals.pdfUpload.validatedTitle')}
+                {type === 'original'
+                  ? t('modals.pdfUpload.originalTitle')
+                  : t('modals.pdfUpload.validatedTitle')}
               </h2>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
                 {t('modals.pdfUpload.invoice')} {invoiceNumber}
@@ -167,8 +173,8 @@ export function PdfUploadModal({
             {existingPdfUrl && (
               <div className="mb-4 p-3 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-md">
                 <p className="text-xs text-yellow-800 dark:text-yellow-300">
-                  {type === 'original' 
-                    ? t('modals.pdfUpload.existingWarning.original') 
+                  {type === 'original'
+                    ? t('modals.pdfUpload.existingWarning.original')
                     : t('modals.pdfUpload.existingWarning.validated')}
                 </p>
               </div>
@@ -229,7 +235,9 @@ export function PdfUploadModal({
                       {t('modals.pdfUpload.dropzone.click')}
                     </p>
                   </div>
-                  <p className="text-xs text-gray-400 dark:text-gray-500">{t('modals.pdfUpload.dropzone.maxSize')}</p>
+                  <p className="text-xs text-gray-400 dark:text-gray-500">
+                    {t('modals.pdfUpload.dropzone.maxSize')}
+                  </p>
                 </div>
               )}
             </div>

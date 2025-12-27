@@ -85,13 +85,17 @@ export default function DenominationForm({
       <div className="bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border border-green-200 dark:border-green-800 rounded-lg p-2.5">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-[10px] text-gray-600 dark:text-gray-400 mb-0.5">{t('denomination.cashCounted')}</p>
+            <p className="text-[10px] text-gray-600 dark:text-gray-400 mb-0.5">
+              {t('denomination.cashCounted')}
+            </p>
             <p className="text-xl font-bold text-green-600 dark:text-green-400">
               {cashCounted.toFixed(2)}€
             </p>
           </div>
           <div className="text-right">
-            <p className="text-[9px] text-gray-500 dark:text-gray-400 mb-0.5">{t('denomination.completed')}</p>
+            <p className="text-[9px] text-gray-500 dark:text-gray-400 mb-0.5">
+              {t('denomination.completed')}
+            </p>
             <p className="text-sm font-semibold text-gray-700 dark:text-gray-300">
               {completedCount}/{EURO_DENOMINATIONS.length}
             </p>

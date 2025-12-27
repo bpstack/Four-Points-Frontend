@@ -47,6 +47,3 @@ export {
   useDeleteConciliation,
   useUpdateMonthlySummaryStatus,
 } from './queries'
-
-// Legacy API client (for gradual migration)
-export { conciliationApi } from './queries'

@@ -31,7 +31,6 @@ interface ImageGalleryProps {
 
 export function ImageGallery({ images, alt = 'Imagen de evidencia' }: ImageGalleryProps) {
   const t = useTranslations('blacklist')
-  const tCommon = useTranslations('common')
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 

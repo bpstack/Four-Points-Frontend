@@ -1,4 +1,14 @@
 {
+  "error": {
+    "title": "Conciliación",
+    "subtitle": "Ha ocurrido un error al cargar la conciliación",
+    "errorTitle": "Error al cargar",
+    "errorDescription": "No se pudieron cargar los datos de conciliación. Por favor, intenta de nuevo.",
+    "errorDetails": "Detalles técnicos",
+    "retry": "Reintentar",
+    "backToDashboard": "Volver al Dashboard",
+    "helpText": "Si el problema persiste, contacta al soporte técnico o intenta más tarde."
+  },
   "page": {
     "loading": "Cargando...",
     "selectDay": "Selecciona un dia",

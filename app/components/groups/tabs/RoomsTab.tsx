@@ -59,8 +59,11 @@ export function RoomsTab() {
           </h3>
           {roomsArray.length > 0 && (
             <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-              {totalRooms} {totalRooms === 1 ? t('rooms.totalRooms').toLowerCase() : t('rooms.totalRooms').toLowerCase()} · {totalGuests}{' '}
-              {totalGuests === 1 ? t('cards.guest') : t('cards.guests')}
+              {totalRooms}{' '}
+              {totalRooms === 1
+                ? t('rooms.totalRooms').toLowerCase()
+                : t('rooms.totalRooms').toLowerCase()}{' '}
+              · {totalGuests} {totalGuests === 1 ? t('cards.guest') : t('cards.guests')}
             </p>
           )}
         </div>
@@ -122,9 +125,7 @@ export function RoomsTab() {
 
       {/* Info Box */}
       <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
-        <p className="text-xs text-blue-800 dark:text-blue-300">
-          {t('rooms.infoTip')}
-        </p>
+        <p className="text-xs text-blue-800 dark:text-blue-300">{t('rooms.infoTip')}</p>
       </div>
     </div>
   )

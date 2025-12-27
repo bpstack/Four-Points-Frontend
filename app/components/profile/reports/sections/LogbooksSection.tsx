@@ -63,12 +63,15 @@ export default function LogbooksSection() {
   const [historyLoading, setHistoryLoading] = useState(false)
 
   // Priority labels with translations
-  const PRIORITY_LABELS = useMemo(() => ({
-    baja: t('priority.low'),
-    media: t('priority.medium'),
-    alta: t('priority.high'),
-    urgente: t('priority.urgent'),
-  }), [t])
+  const PRIORITY_LABELS = useMemo(
+    () => ({
+      baja: t('priority.low'),
+      media: t('priority.medium'),
+      alta: t('priority.high'),
+      urgente: t('priority.urgent'),
+    }),
+    [t]
+  )
 
   const fetchLogbooks = useCallback(async () => {
     setLoading(true)
@@ -147,12 +150,8 @@ export default function LogbooksSection() {
       <div className="flex flex-col items-center justify-center h-64 gap-4">
         <div className="text-center">
           <FiBook className="w-12 h-12 text-gray-300 dark:text-gray-600 mx-auto mb-3" />
-          <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-1">
-            {t('title')}
-          </h3>
-          <p className="text-sm text-gray-500 dark:text-gray-400 max-w-md">
-            {t('description')}
-          </p>
+          <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-1">{t('title')}</h3>
+          <p className="text-sm text-gray-500 dark:text-gray-400 max-w-md">{t('description')}</p>
         </div>
         <button
           onClick={fetchLogbooks}
@@ -173,10 +172,7 @@ export default function LogbooksSection() {
           <FiFilter className="w-4 h-4 text-gray-400" />
 
           {/* Date Filter */}
-          <DateFilter
-            selectedDate={dateFilter}
-            onDateChange={handleDateChange}
-          />
+          <DateFilter selectedDate={dateFilter} onDateChange={handleDateChange} />
 
           {/* View Mode */}
           <select
@@ -233,7 +229,9 @@ export default function LogbooksSection() {
         <div className="space-y-2">
           {logbooks.map((logbook) => {
             const priorityColor = PRIORITY_COLORS[logbook.importance_level] || PRIORITY_COLORS.baja
-            const priorityLabel = PRIORITY_LABELS[logbook.importance_level as keyof typeof PRIORITY_LABELS] || PRIORITY_LABELS.baja
+            const priorityLabel =
+              PRIORITY_LABELS[logbook.importance_level as keyof typeof PRIORITY_LABELS] ||
+              PRIORITY_LABELS.baja
             const isExpanded = expandedId === logbook.id
 
             return (
@@ -353,9 +351,7 @@ export default function LogbooksSection() {
                         ))}
                       </div>
                     ) : (
-                      <p className="text-sm text-gray-500 text-center py-4">
-                        {t('noData')}
-                      </p>
+                      <p className="text-sm text-gray-500 text-center py-4">{t('noData')}</p>
                     )}
                   </div>
                 )}

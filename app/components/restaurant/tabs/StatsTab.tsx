@@ -91,7 +91,9 @@ export function StatsTab() {
         <div className="bg-white dark:bg-[#151b23] rounded-md border border-gray-200 dark:border-gray-800 p-3">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-[10px] text-gray-600 dark:text-gray-400 font-medium">{t('statsTab.revenue')}</p>
+              <p className="text-[10px] text-gray-600 dark:text-gray-400 font-medium">
+                {t('statsTab.revenue')}
+              </p>
               <p className="text-lg font-bold text-gray-900 dark:text-gray-100 mt-0.5">
                 {formatCurrency(totalRevenue)}
               </p>
@@ -109,7 +111,9 @@ export function StatsTab() {
         <div className="bg-white dark:bg-[#151b23] rounded-md border border-gray-200 dark:border-gray-800 p-3">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-[10px] text-gray-600 dark:text-gray-400 font-medium">{t('statsTab.expenses')}</p>
+              <p className="text-[10px] text-gray-600 dark:text-gray-400 font-medium">
+                {t('statsTab.expenses')}
+              </p>
               <p className="text-lg font-bold text-gray-900 dark:text-gray-100 mt-0.5">
                 {formatCurrency(totalExpenses)}
               </p>
@@ -127,7 +131,9 @@ export function StatsTab() {
         <div className="bg-white dark:bg-[#151b23] rounded-md border border-gray-200 dark:border-gray-800 p-3">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-[10px] text-gray-600 dark:text-gray-400 font-medium">{t('statsTab.profit')}</p>
+              <p className="text-[10px] text-gray-600 dark:text-gray-400 font-medium">
+                {t('statsTab.profit')}
+              </p>
               <p className="text-lg font-bold text-gray-900 dark:text-gray-100 mt-0.5">
                 {formatCurrency(profit)}
               </p>
@@ -145,11 +151,15 @@ export function StatsTab() {
         <div className="bg-white dark:bg-[#151b23] rounded-md border border-gray-200 dark:border-gray-800 p-3">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-[10px] text-gray-600 dark:text-gray-400 font-medium">{t('statsTab.margin')}</p>
+              <p className="text-[10px] text-gray-600 dark:text-gray-400 font-medium">
+                {t('statsTab.margin')}
+              </p>
               <p className="text-lg font-bold text-gray-900 dark:text-gray-100 mt-0.5">
                 {profitMargin}%
               </p>
-              <p className="text-[10px] text-gray-500 dark:text-gray-500 mt-1">{t('statsTab.ofProfit')}</p>
+              <p className="text-[10px] text-gray-500 dark:text-gray-500 mt-1">
+                {t('statsTab.ofProfit')}
+              </p>
             </div>
             <div className="p-2 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
               <FiPackage className="w-5 h-5 text-purple-600 dark:text-purple-400" />

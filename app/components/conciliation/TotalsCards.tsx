@@ -22,12 +22,16 @@ export default function TotalsCards({
   return (
     <div className={isVertical ? 'space-y-3' : 'grid grid-cols-1 md:grid-cols-3 gap-4'}>
       {isVertical && (
-        <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100">{t('totals.title')}</h3>
+        <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100">
+          {t('totals.title')}
+        </h3>
       )}
       <div className="bg-white dark:bg-[#0D1117] border border-[#d0d7de] dark:border-[#30363d] rounded-xl shadow-sm p-4">
         <div className="flex items-center justify-between">
           <div>
-            <div className="text-xs text-blue-600 dark:text-blue-400 font-medium">{t('totals.reception')}</div>
+            <div className="text-xs text-blue-600 dark:text-blue-400 font-medium">
+              {t('totals.reception')}
+            </div>
             <div className="text-xl font-bold text-gray-900 dark:text-gray-100 mt-0.5">
               {totalReception}
             </div>

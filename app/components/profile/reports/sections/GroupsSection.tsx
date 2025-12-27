@@ -141,6 +141,7 @@ export default function GroupsSection() {
     } finally {
       setLoading(false)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dateFilter])
 
   const fetchHistory = useCallback(
@@ -187,6 +188,7 @@ export default function GroupsSection() {
     } finally {
       setLoading(false)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchId])
 
   const handleDateChange = (date: string | null) => {
@@ -347,7 +349,10 @@ export default function GroupsSection() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-2">
                         <span
-                          className={cn('px-2 py-0.5 rounded-full text-xs font-medium', statusColor)}
+                          className={cn(
+                            'px-2 py-0.5 rounded-full text-xs font-medium',
+                            statusColor
+                          )}
                         >
                           {statusLabel}
                         </span>

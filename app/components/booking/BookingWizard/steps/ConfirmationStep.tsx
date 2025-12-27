@@ -46,13 +46,17 @@ export default function ConfirmationStep({ variant, state, actions }: Confirmati
           {state.vehicleId && (
             <>
               <div className="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-0">
-                <span className="text-[#57606a] dark:text-[#8b949e]">{t('confirmation.vehicleLabel')}</span>
+                <span className="text-[#57606a] dark:text-[#8b949e]">
+                  {t('confirmation.vehicleLabel')}
+                </span>
                 <span className="font-medium text-[#24292f] dark:text-[#f0f6fc]">
                   {state.vehicleData.plate_number} - {state.vehicleData.model}
                 </span>
               </div>
               <div className="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-0">
-                <span className="text-[#57606a] dark:text-[#8b949e]">{t('confirmation.owner')}</span>
+                <span className="text-[#57606a] dark:text-[#8b949e]">
+                  {t('confirmation.owner')}
+                </span>
                 <span className="font-medium text-[#24292f] dark:text-[#f0f6fc]">
                   {state.vehicleData.owner_name}
                 </span>
@@ -93,7 +97,9 @@ export default function ConfirmationStep({ variant, state, actions }: Confirmati
           </div>
           {state.reservationData.total_amount && (
             <div className="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-0 pt-2 border-t border-[#d0d7de] dark:border-[#30363d]">
-              <span className="font-medium text-[#24292f] dark:text-[#c9d1d9]">{t('confirmation.price')}</span>
+              <span className="font-medium text-[#24292f] dark:text-[#c9d1d9]">
+                {t('confirmation.price')}
+              </span>
               <span className="font-bold text-[#1a7f37] dark:text-[#3fb950]">
                 €{parseFloat(state.reservationData.total_amount).toFixed(2)}
               </span>
@@ -157,14 +163,18 @@ export default function ConfirmationStep({ variant, state, actions }: Confirmati
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
               <div>
-                <span className="text-xs text-gray-600 dark:text-gray-400">{t('confirmation.plate')}</span>
+                <span className="text-xs text-gray-600 dark:text-gray-400">
+                  {t('confirmation.plate')}
+                </span>
                 <p className="font-mono font-semibold text-gray-900 dark:text-gray-100 text-sm sm:text-base">
                   {state.vehicleData.plate_number}{' '}
                   {state.vehicleData.model && `- ${state.vehicleData.model}`}
                 </p>
               </div>
               <div>
-                <span className="text-xs text-gray-600 dark:text-gray-400">{t('confirmation.owner')}</span>
+                <span className="text-xs text-gray-600 dark:text-gray-400">
+                  {t('confirmation.owner')}
+                </span>
                 <p className="font-semibold text-gray-900 dark:text-gray-100 text-sm sm:text-base">
                   {state.vehicleData.owner_name}
                 </p>
@@ -188,20 +198,26 @@ export default function ConfirmationStep({ variant, state, actions }: Confirmati
           </div>
           <div className="grid grid-cols-2 gap-2 sm:gap-3">
             <div>
-              <span className="text-xs text-gray-600 dark:text-gray-400">{t('confirmation.spot')}</span>
+              <span className="text-xs text-gray-600 dark:text-gray-400">
+                {t('confirmation.spot')}
+              </span>
               <p className="font-semibold text-gray-900 dark:text-gray-100 text-sm sm:text-base">
                 {normalizeLevel(state.reservationData.level_code)} ·{' '}
                 {state.reservationData.spot_number}
               </p>
             </div>
             <div>
-              <span className="text-xs text-gray-600 dark:text-gray-400">{t('confirmation.days')}</span>
+              <span className="text-xs text-gray-600 dark:text-gray-400">
+                {t('confirmation.days')}
+              </span>
               <p className="font-semibold text-gray-900 dark:text-gray-100 text-sm sm:text-base">
                 {actions.calculateDays()}
               </p>
             </div>
             <div>
-              <span className="text-xs text-gray-600 dark:text-gray-400">{t('confirmation.entry')}</span>
+              <span className="text-xs text-gray-600 dark:text-gray-400">
+                {t('confirmation.entry')}
+              </span>
               <p className="font-semibold text-gray-900 dark:text-gray-100 text-sm sm:text-base">
                 {new Date(
                   `${state.reservationData.expected_checkin_date}T${state.reservationData.expected_checkin_time}`
@@ -214,7 +230,9 @@ export default function ConfirmationStep({ variant, state, actions }: Confirmati
               </p>
             </div>
             <div>
-              <span className="text-xs text-gray-600 dark:text-gray-400">{t('confirmation.exit')}</span>
+              <span className="text-xs text-gray-600 dark:text-gray-400">
+                {t('confirmation.exit')}
+              </span>
               <p className="font-semibold text-gray-900 dark:text-gray-100 text-sm sm:text-base">
                 {new Date(
                   `${state.reservationData.expected_checkout_date}T${state.reservationData.expected_checkout_time}`

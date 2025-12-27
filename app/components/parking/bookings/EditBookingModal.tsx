@@ -423,7 +423,9 @@ export function EditBookingModal({
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   {t('editModal.availableSpots')}
-                  {loadingSpots && <span className="ml-2 text-gray-400">{t('editModal.loadingSpots')}</span>}
+                  {loadingSpots && (
+                    <span className="ml-2 text-gray-400">{t('editModal.loadingSpots')}</span>
+                  )}
                 </label>
                 <div className="grid grid-cols-4 gap-2 max-h-48 overflow-y-auto p-2 bg-gray-50 dark:bg-gray-800/50 rounded-lg">
                   {availableSpots

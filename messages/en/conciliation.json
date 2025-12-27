@@ -1,4 +1,14 @@
 {
+  "error": {
+    "title": "Conciliation",
+    "subtitle": "An error occurred while loading the conciliation",
+    "errorTitle": "Failed to load",
+    "errorDescription": "Could not load conciliation data. Please try again.",
+    "errorDetails": "Technical details",
+    "retry": "Retry",
+    "backToDashboard": "Back to Dashboard",
+    "helpText": "If the problem persists, contact technical support or try again later."
+  },
   "page": {
     "loading": "Loading...",
     "selectDay": "Select a day",

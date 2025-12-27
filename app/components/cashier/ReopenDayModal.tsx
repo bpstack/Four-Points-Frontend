@@ -80,16 +80,15 @@ export default function ReopenDayModal({ isOpen, onClose, selectedDate }: Reopen
             <FiAlertCircle className="w-5 h-5 text-yellow-600 dark:text-yellow-400 flex-shrink-0 mt-0.5" />
             <div className="text-sm text-yellow-700 dark:text-yellow-300">
               <p className="font-medium">⚠️ {t('reopenDay.attention')}</p>
-              <p className="text-xs mt-1">
-                {t('reopenDay.warningMessage')}
-              </p>
+              <p className="text-xs mt-1">{t('reopenDay.warningMessage')}</p>
             </div>
           </div>
 
           {/* Razón */}
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              {t('reopenDay.reopenReason')} <span className="text-red-500">{t('common.required')}</span>
+              {t('reopenDay.reopenReason')}{' '}
+              <span className="text-red-500">{t('common.required')}</span>
             </label>
             <textarea
               value={reason}
@@ -102,7 +101,9 @@ export default function ReopenDayModal({ isOpen, onClose, selectedDate }: Reopen
               minLength={10}
             />
             <div className="mt-1 flex items-center justify-between text-xs">
-              <span className="text-gray-500 dark:text-gray-400">{t('reopenDay.minCharacters')}</span>
+              <span className="text-gray-500 dark:text-gray-400">
+                {t('reopenDay.minCharacters')}
+              </span>
               <span
                 className={`font-medium ${
                   reason.length < 10

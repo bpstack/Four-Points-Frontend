@@ -219,11 +219,14 @@ export function ContractCard({ status, groupId }: ContractCardProps) {
           {status.contract_signed_date && (
             <p className="text-xs text-gray-600 dark:text-gray-400">
               {t('statusCards.signedOn')}{' '}
-              {new Date(status.contract_signed_date).toLocaleDateString(locale === 'es' ? 'es-ES' : 'en-US', {
-                day: '2-digit',
-                month: 'long',
-                year: 'numeric',
-              })}
+              {new Date(status.contract_signed_date).toLocaleDateString(
+                locale === 'es' ? 'es-ES' : 'en-US',
+                {
+                  day: '2-digit',
+                  month: 'long',
+                  year: 'numeric',
+                }
+              )}
             </p>
           )}
         </div>

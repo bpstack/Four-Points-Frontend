@@ -102,7 +102,9 @@ export function PaymentsTab() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           {/* Total Amount */}
           <div className="bg-white/50 dark:bg-gray-800/50 rounded-lg p-3 border border-gray-200 dark:border-gray-700">
-            <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">{t('payments.totalAmount')}</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400 mb-1">
+              {t('payments.totalAmount')}
+            </p>
             <p className="text-xl font-bold text-gray-900 dark:text-gray-100">
               {formatCurrency(balance.total_amount, currentGroup?.currency)}
             </p>
@@ -134,7 +136,9 @@ export function PaymentsTab() {
         {/* Progress bar */}
         <div className="mt-4">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs text-gray-600 dark:text-gray-400">{t('payments.paymentProgress')}</span>
+            <span className="text-xs text-gray-600 dark:text-gray-400">
+              {t('payments.paymentProgress')}
+            </span>
             <span className="text-xs font-semibold text-gray-900 dark:text-gray-100">
               {balance.percentage_paid}%
             </span>
@@ -217,13 +221,17 @@ export function PaymentsTab() {
               </p>
             </div>
             <div>
-              <p className="text-gray-500 dark:text-gray-400 mb-1">{t('payments.pendingPayments')}</p>
+              <p className="text-gray-500 dark:text-gray-400 mb-1">
+                {t('payments.pendingPayments')}
+              </p>
               <p className="font-semibold text-yellow-600 dark:text-yellow-400">
                 {payments.filter((p) => p.status === 'pending').length}
               </p>
             </div>
             <div>
-              <p className="text-gray-500 dark:text-gray-400 mb-1">{t('payments.partialPayments')}</p>
+              <p className="text-gray-500 dark:text-gray-400 mb-1">
+                {t('payments.partialPayments')}
+              </p>
               <p className="font-semibold text-orange-600 dark:text-orange-400">
                 {payments.filter((p) => p.status === 'partial').length}
               </p>
@@ -431,7 +439,9 @@ export function PaymentsTab() {
                             {/* Amounts Grid */}
                             <div className="grid grid-cols-3 gap-2 text-xs">
                               <div className="text-center p-2 bg-blue-50 dark:bg-blue-900/20 rounded">
-                                <p className="text-gray-600 dark:text-gray-400 mb-0.5">{t('payments.total')}</p>
+                                <p className="text-gray-600 dark:text-gray-400 mb-0.5">
+                                  {t('payments.total')}
+                                </p>
                                 <p className="font-semibold text-gray-900 dark:text-gray-100">
                                   {totalPago.toLocaleString('es-ES', {
                                     minimumFractionDigits: 0,
@@ -441,7 +451,9 @@ export function PaymentsTab() {
                                 </p>
                               </div>
                               <div className="text-center p-2 bg-green-50 dark:bg-green-900/20 rounded">
-                                <p className="text-gray-600 dark:text-gray-400 mb-0.5">{t('payments.paid')}</p>
+                                <p className="text-gray-600 dark:text-gray-400 mb-0.5">
+                                  {t('payments.paid')}
+                                </p>
                                 <p
                                   className={`font-semibold ${
                                     pagado > 0
@@ -457,7 +469,9 @@ export function PaymentsTab() {
                                 </p>
                               </div>
                               <div className="text-center p-2 bg-amber-50 dark:bg-amber-900/20 rounded">
-                                <p className="text-gray-600 dark:text-gray-400 mb-0.5">{t('payments.remaining_amount')}</p>
+                                <p className="text-gray-600 dark:text-gray-400 mb-0.5">
+                                  {t('payments.remaining_amount')}
+                                </p>
                                 <p
                                   className={`font-semibold ${
                                     restante > 0
@@ -492,7 +506,9 @@ export function PaymentsTab() {
                       </p>
                       <div className="grid grid-cols-3 gap-2 text-xs">
                         <div className="text-center">
-                          <p className="text-gray-600 dark:text-gray-400 mb-0.5">{t('payments.total')}</p>
+                          <p className="text-gray-600 dark:text-gray-400 mb-0.5">
+                            {t('payments.total')}
+                          </p>
                           <p className="font-bold text-blue-600 dark:text-blue-400">
                             {payments
                               .reduce((sum, p) => sum + parseFloat(String(p.amount || 0)), 0)
@@ -504,7 +520,9 @@ export function PaymentsTab() {
                           </p>
                         </div>
                         <div className="text-center">
-                          <p className="text-gray-600 dark:text-gray-400 mb-0.5">{t('payments.paid')}</p>
+                          <p className="text-gray-600 dark:text-gray-400 mb-0.5">
+                            {t('payments.paid')}
+                          </p>
                           <p className="font-bold text-green-600 dark:text-green-400">
                             {payments
                               .reduce((sum, p) => sum + parseFloat(String(p.amount_paid || 0)), 0)
@@ -516,7 +534,9 @@ export function PaymentsTab() {
                           </p>
                         </div>
                         <div className="text-center">
-                          <p className="text-gray-600 dark:text-gray-400 mb-0.5">{t('payments.remaining_amount')}</p>
+                          <p className="text-gray-600 dark:text-gray-400 mb-0.5">
+                            {t('payments.remaining_amount')}
+                          </p>
                           <p className="font-bold text-amber-600 dark:text-amber-400">
                             {payments
                               .reduce(
@@ -535,7 +555,9 @@ export function PaymentsTab() {
                         </div>
                       </div>
                       <div className="flex items-center justify-center gap-2 mt-2">
-                        <span className="text-xs text-gray-600 dark:text-gray-400">{t('payments.progress')}</span>
+                        <span className="text-xs text-gray-600 dark:text-gray-400">
+                          {t('payments.progress')}
+                        </span>
                         <span className="text-xs font-bold text-gray-900 dark:text-gray-100">
                           {balance.percentage_paid}%
                         </span>

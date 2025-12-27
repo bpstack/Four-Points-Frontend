@@ -45,6 +45,7 @@ const backOfficeLinks: NavLink[] = [
 ]
 
 const cashierLinks: Omit<NavLink, 'icon'>[] = [
+  { nameKey: 'cashierDashboard', href: '/dashboard/cashier' },
   { nameKey: 'hotelCashier', href: '/dashboard/cashier/hotel' },
   { nameKey: 'cashierReports', href: '/dashboard/cashier/reports' },
   { nameKey: 'cashierLogs', href: '/dashboard/cashier/logs' },
@@ -138,7 +139,7 @@ export default function NavLinks({ onClose, currentUserRole }: NavLinksProps) {
           <div
             className={`
               overflow-hidden transition-all duration-200 ease-in-out
-              ${isCashierOpen ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'}
+              ${isCashierOpen ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}
             `}
           >
             <div className="pl-8 pr-3 py-1 space-y-1">

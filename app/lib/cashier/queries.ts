@@ -157,6 +157,19 @@ export function useCloseShift() {
   })
 }
 
+export function useReopenShift() {
+  const queryClient = useQueryClient()
+
+  return useMutation({
+    mutationFn: ({ shiftId, reason }: { shiftId: number; reason?: string }) =>
+      apiClient.patch(`${API_BASE}/api/cashier/shifts/${shiftId}/reopen`, { reason }),
+    onSuccess: (_, { shiftId }) => {
+      queryClient.invalidateQueries({ queryKey: cashierKeys.shift(shiftId) })
+      queryClient.invalidateQueries({ queryKey: ['cashier', 'daily'] })
+    },
+  })
+}
+
 export function useUpdateDenominations() {
   const queryClient = useQueryClient()
 
@@ -255,12 +268,13 @@ export function useMonthlyReport(year: number, month: number) {
   return useQuery<MonthlyReport>({
     queryKey: ['cashier', 'reports', 'monthly', year, month],
     queryFn: async () => {
-      const response = await apiClient.get(
+      const response = await apiClient.get<{ success: boolean; data: MonthlyReport }>(
         `${API_BASE}/api/cashier/reports/monthly/${year}/${month}`
       )
-      return response as MonthlyReport
+      return response.data
     },
     staleTime: 5 * 60 * 1000, // 5 minutos
+    enabled: !isNaN(year) && !isNaN(month) && year > 0 && month >= 1 && month <= 12,
   })
 }
 
@@ -268,8 +282,10 @@ export function useDashboardOverview() {
   return useQuery<DashboardOverview>({
     queryKey: ['cashier', 'reports', 'dashboard'],
     queryFn: async () => {
-      const response = await apiClient.get(`${API_BASE}/api/cashier/reports/dashboard`)
-      return response as DashboardOverview
+      const response = await apiClient.get<{ success: boolean; data: DashboardOverview }>(
+        `${API_BASE}/api/cashier/reports/dashboard`
+      )
+      return response.data
     },
     staleTime: 1 * 60 * 1000, // 1 minuto
   })

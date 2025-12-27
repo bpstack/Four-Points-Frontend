@@ -127,7 +127,8 @@ export function HistoryTab() {
                           {actionConfig.label}
                         </p>
                         <p className="text-[10px] text-gray-500 dark:text-gray-400 mt-0.5">
-                          {entry.user_name || t('history.system')} • {formatDateTime(entry.changed_at)}
+                          {entry.user_name || t('history.system')} •{' '}
+                          {formatDateTime(entry.changed_at)}
                         </p>
                       </div>
                     </div>
@@ -140,12 +141,14 @@ export function HistoryTab() {
                       <div className="text-[10px] text-gray-500 dark:text-gray-400 space-y-0.5">
                         {entry.old_value && (
                           <p>
-                            <span className="font-medium">{t('history.previous')}</span> {entry.old_value}
+                            <span className="font-medium">{t('history.previous')}</span>{' '}
+                            {entry.old_value}
                           </p>
                         )}
                         {entry.new_value && (
                           <p>
-                            <span className="font-medium">{t('history.new')}</span> {entry.new_value}
+                            <span className="font-medium">{t('history.new')}</span>{' '}
+                            {entry.new_value}
                           </p>
                         )}
                       </div>

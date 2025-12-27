@@ -95,13 +95,13 @@ export default function VoucherList({
           {voucher.status === 'pending' && (
             <div className="flex items-center gap-1.5">
               {canJustify && onJustify && (
-                  <button
-                    onClick={() => onJustify(voucher.id)}
-                    className="px-2 py-1 text-[10px] font-medium text-green-700 dark:text-green-400 bg-green-100 dark:bg-green-900/30 hover:bg-green-200 dark:hover:bg-green-900/50 rounded"
-                  >
-                    {t('voucher.justify')}
-                  </button>
-                )}
+                <button
+                  onClick={() => onJustify(voucher.id)}
+                  className="px-2 py-1 text-[10px] font-medium text-green-700 dark:text-green-400 bg-green-100 dark:bg-green-900/30 hover:bg-green-200 dark:hover:bg-green-900/50 rounded"
+                >
+                  {t('voucher.justify')}
+                </button>
+              )}
               {onCancel && (
                 <button
                   onClick={() => onCancel(voucher.id)}

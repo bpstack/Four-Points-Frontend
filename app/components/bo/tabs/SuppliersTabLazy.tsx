@@ -161,19 +161,25 @@ export function SuppliersTabLazy({
       {/* Summary Stats */}
       <div className="grid grid-cols-3 gap-2 sm:gap-3">
         <div className="bg-white dark:bg-[#151b23] rounded-md border border-gray-200 dark:border-gray-800 p-3">
-          <p className="text-[10px] text-gray-600 dark:text-gray-400 font-medium">{t('suppliers.summary.suppliers')}</p>
+          <p className="text-[10px] text-gray-600 dark:text-gray-400 font-medium">
+            {t('suppliers.summary.suppliers')}
+          </p>
           <p className="text-sm sm:text-base font-bold text-gray-900 dark:text-gray-100 mt-0.5">
             {filteredSuppliers.length}
           </p>
         </div>
         <div className="bg-white dark:bg-[#151b23] rounded-md border border-gray-200 dark:border-gray-800 p-3">
-          <p className="text-[10px] text-gray-600 dark:text-gray-400 font-medium">{t('suppliers.summary.directDebits')}</p>
+          <p className="text-[10px] text-gray-600 dark:text-gray-400 font-medium">
+            {t('suppliers.summary.directDebits')}
+          </p>
           <p className="text-sm sm:text-base font-bold text-purple-600 dark:text-purple-400 mt-0.5">
             {domiciledCount}
           </p>
         </div>
         <div className="bg-white dark:bg-[#151b23] rounded-md border border-gray-200 dark:border-gray-800 p-3">
-          <p className="text-[10px] text-gray-600 dark:text-gray-400 font-medium">{t('paid.summary.transfers')}</p>
+          <p className="text-[10px] text-gray-600 dark:text-gray-400 font-medium">
+            {t('paid.summary.transfers')}
+          </p>
           <p className="text-sm sm:text-base font-bold text-blue-600 dark:text-blue-400 mt-0.5">
             {transferCount}
           </p>
@@ -322,7 +328,10 @@ export function SuppliersTabLazy({
           {serverPagination.total > 0 && (
             <div className="px-3 py-2 border-t border-gray-200 dark:border-gray-800 flex items-center justify-between">
               <span className="text-xs text-gray-500 dark:text-gray-400">
-                {t('pagination.showingSuppliers', { count: filteredSuppliers.length, total: serverPagination.total })}
+                {t('pagination.showingSuppliers', {
+                  count: filteredSuppliers.length,
+                  total: serverPagination.total,
+                })}
                 {serverPagination.totalPages > 1 &&
                   ` (${t('pagination.page', { current: serverPagination.page, total: serverPagination.totalPages })})`}
               </span>
@@ -392,13 +401,17 @@ export function SuppliersTabLazy({
                 {/* Stats */}
                 <div className="grid grid-cols-2 gap-2">
                   <div className="bg-gray-50 dark:bg-[#0d1117] rounded p-2">
-                    <p className="text-[10px] text-gray-500 dark:text-gray-500">{t('suppliers.detail.totalYtd')}</p>
+                    <p className="text-[10px] text-gray-500 dark:text-gray-500">
+                      {t('suppliers.detail.totalYtd')}
+                    </p>
                     <p className="text-sm font-bold text-gray-900 dark:text-gray-100">
                       {formatCurrency(selectedSupplier.ytd_total || 0)}
                     </p>
                   </div>
                   <div className="bg-gray-50 dark:bg-[#0d1117] rounded p-2">
-                    <p className="text-[10px] text-gray-500 dark:text-gray-500">{t('suppliers.detail.invoices')}</p>
+                    <p className="text-[10px] text-gray-500 dark:text-gray-500">
+                      {t('suppliers.detail.invoices')}
+                    </p>
                     <p className="text-sm font-bold text-gray-900 dark:text-gray-100">
                       {selectedSupplier.total_invoices || 0}
                     </p>
@@ -445,7 +458,9 @@ export function SuppliersTabLazy({
                 {/* CIF */}
                 {selectedSupplier.cif && (
                   <div className="pt-2 border-t border-gray-100 dark:border-gray-800">
-                    <p className="text-[10px] text-gray-500 dark:text-gray-500 mb-1">{t('suppliers.detail.cif')}</p>
+                    <p className="text-[10px] text-gray-500 dark:text-gray-500 mb-1">
+                      {t('suppliers.detail.cif')}
+                    </p>
                     <p className="text-xs text-gray-700 dark:text-gray-300 font-mono">
                       {selectedSupplier.cif}
                     </p>
@@ -479,7 +494,9 @@ export function SuppliersTabLazy({
                 {/* Contact info */}
                 {(selectedSupplier.email || selectedSupplier.phone) && (
                   <div className="pt-2 border-t border-gray-100 dark:border-gray-800 space-y-1">
-                    <p className="text-[10px] text-gray-500 dark:text-gray-500 mb-1">{t('suppliers.detail.contact')}</p>
+                    <p className="text-[10px] text-gray-500 dark:text-gray-500 mb-1">
+                      {t('suppliers.detail.contact')}
+                    </p>
                     {selectedSupplier.email && (
                       <p className="text-xs text-gray-600 dark:text-gray-400">
                         {selectedSupplier.email}
@@ -496,7 +513,9 @@ export function SuppliersTabLazy({
                 {/* Address */}
                 {selectedSupplier.address && (
                   <div className="pt-2 border-t border-gray-100 dark:border-gray-800">
-                    <p className="text-[10px] text-gray-500 dark:text-gray-500 mb-1">{t('suppliers.detail.address')}</p>
+                    <p className="text-[10px] text-gray-500 dark:text-gray-500 mb-1">
+                      {t('suppliers.detail.address')}
+                    </p>
                     <p className="text-xs text-gray-700 dark:text-gray-300">
                       {selectedSupplier.address}
                     </p>

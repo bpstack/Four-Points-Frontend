@@ -61,7 +61,11 @@ export default function EditLogbookModal({
       }
     >
       <div className="space-y-4">
-        <FormField label={t('modals.editEntry.fields.message')} required hint={t('modals.editEntry.hint')}>
+        <FormField
+          label={t('modals.editEntry.fields.message')}
+          required
+          hint={t('modals.editEntry.hint')}
+        >
           <textarea
             value={message}
             onChange={(e) => setMessage(e.target.value)}

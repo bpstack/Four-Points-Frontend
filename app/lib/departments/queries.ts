@@ -27,7 +27,9 @@ export const departmentsApi = {
    * Obtiene un departamento por ID
    */
   getById: async (id: number): Promise<Department> => {
-    const response = await apiClient.get<ApiResponse<Department>>(`${API_URL}/api/departments/${id}`)
+    const response = await apiClient.get<ApiResponse<Department>>(
+      `${API_URL}/api/departments/${id}`
+    )
     return response.data
   },
 
@@ -35,7 +37,10 @@ export const departmentsApi = {
    * Crea un nuevo departamento
    */
   create: async (data: { name: string }): Promise<Department> => {
-    const response = await apiClient.post<ApiResponse<Department>>(`${API_URL}/api/departments`, data)
+    const response = await apiClient.post<ApiResponse<Department>>(
+      `${API_URL}/api/departments`,
+      data
+    )
     return response.data
   },
 
@@ -43,7 +48,10 @@ export const departmentsApi = {
    * Actualiza un departamento existente
    */
   update: async (id: number, data: { name: string }): Promise<Department> => {
-    const response = await apiClient.put<ApiResponse<Department>>(`${API_URL}/api/departments/${id}`, data)
+    const response = await apiClient.put<ApiResponse<Department>>(
+      `${API_URL}/api/departments/${id}`,
+      data
+    )
     return response.data
   },
 

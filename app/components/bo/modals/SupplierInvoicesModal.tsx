@@ -26,10 +26,7 @@ import type {
   SupplierWithStats,
   InvoiceStatus,
 } from '@/app/lib/backoffice/types'
-import {
-  formatCurrency,
-  INVOICE_STATUS_COLORS,
-} from '@/app/lib/backoffice/types'
+import { formatCurrency, INVOICE_STATUS_COLORS } from '@/app/lib/backoffice/types'
 import { backofficeApi } from '@/app/lib/backoffice/backofficeApi'
 import toast from 'react-hot-toast'
 
@@ -485,7 +482,8 @@ export function SupplierInvoicesModal({
                                     {formatDate(invoice.invoice_date)}
                                     {invoice.paid_date && (
                                       <span className="ml-2">
-                                        {t('modals.supplierInvoices.paidDate')} {formatDate(invoice.paid_date)}
+                                        {t('modals.supplierInvoices.paidDate')}{' '}
+                                        {formatDate(invoice.paid_date)}
                                       </span>
                                     )}
                                   </p>
@@ -608,13 +606,16 @@ export function SupplierInvoicesModal({
                     </h3>
                     <div className="text-sm text-gray-600 dark:text-gray-400 text-center mb-4 space-y-2">
                       <p>
-                        <strong>{t('modals.supplierInvoices.deleteConfirm.step1.invoice')}</strong> {deletingInvoice.invoice_number}
+                        <strong>{t('modals.supplierInvoices.deleteConfirm.step1.invoice')}</strong>{' '}
+                        {deletingInvoice.invoice_number}
                       </p>
                       <p>
-                        <strong>{t('modals.supplierInvoices.deleteConfirm.step1.amount')}</strong> {formatCurrency(deletingInvoice.amount_with_vat)}
+                        <strong>{t('modals.supplierInvoices.deleteConfirm.step1.amount')}</strong>{' '}
+                        {formatCurrency(deletingInvoice.amount_with_vat)}
                       </p>
                       <p>
-                        <strong>{t('modals.supplierInvoices.deleteConfirm.step1.status')}</strong> {getStatusLabel(deletingInvoice.status)}
+                        <strong>{t('modals.supplierInvoices.deleteConfirm.step1.status')}</strong>{' '}
+                        {getStatusLabel(deletingInvoice.status)}
                       </p>
                     </div>
                     <p className="text-sm text-gray-500 dark:text-gray-400 text-center mb-6">
@@ -643,7 +644,9 @@ export function SupplierInvoicesModal({
                     </h3>
                     <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-md p-3 mb-4">
                       <p className="text-xs text-red-800 dark:text-red-300 text-center">
-                        {t('modals.supplierInvoices.deleteConfirm.step2.warning', { number: deletingInvoice.invoice_number })}
+                        {t('modals.supplierInvoices.deleteConfirm.step2.warning', {
+                          number: deletingInvoice.invoice_number,
+                        })}
                       </p>
                     </div>
                     <p className="text-sm text-gray-600 dark:text-gray-400 text-center mb-6">
@@ -657,7 +660,8 @@ export function SupplierInvoicesModal({
                       onChange={(e) => {
                         const btn = document.getElementById('final-delete-btn') as HTMLButtonElement
                         if (btn) {
-                          btn.disabled = e.target.value !== 'DELETE' && e.target.value !== 'ELIMINAR'
+                          btn.disabled =
+                            e.target.value !== 'DELETE' && e.target.value !== 'ELIMINAR'
                         }
                       }}
                     />
@@ -675,7 +679,9 @@ export function SupplierInvoicesModal({
                         disabled={true}
                         className="flex-1 px-4 py-2 text-sm font-medium text-white bg-red-600 rounded-md hover:bg-red-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                       >
-                        {isDeleting ? t('modals.supplierInvoices.deleteConfirm.step2.deleting') : t('modals.supplierInvoices.deleteConfirm.step2.confirm')}
+                        {isDeleting
+                          ? t('modals.supplierInvoices.deleteConfirm.step2.deleting')
+                          : t('modals.supplierInvoices.deleteConfirm.step2.confirm')}
                       </button>
                     </div>
                   </>

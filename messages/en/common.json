@@ -24,7 +24,8 @@
     "backofficeTasks": "Back office tasks",
     "hotelCashier": "Hotel Cashier",
     "cashierReports": "Cashier Reports",
-    "cashierLogs": "Cashier Logs"
+    "cashierLogs": "Cashier Logs",
+    "cashierDashboard": "Overview"
   },
   "actions": {
     "save": "Save",

@@ -454,8 +454,18 @@ export function PendingInvoicesTabLazy({
   // Get month name from translations
   const getMonthName = (month: number): string => {
     const monthKeys = [
-      'january', 'february', 'march', 'april', 'may', 'june',
-      'july', 'august', 'september', 'october', 'november', 'december'
+      'january',
+      'february',
+      'march',
+      'april',
+      'may',
+      'june',
+      'july',
+      'august',
+      'september',
+      'october',
+      'november',
+      'december',
     ]
     return t(`months.${monthKeys[month - 1]}`)
   }
@@ -533,7 +543,10 @@ export function PendingInvoicesTabLazy({
       {selectedInvoices.length > 0 && (
         <div className="flex items-center justify-between bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-md px-3 py-2">
           <span className="text-xs text-blue-700 dark:text-blue-400">
-            {t('selection.selected', { count: selectedInvoices.length, amount: formatCurrency(totalSelected) })}
+            {t('selection.selected', {
+              count: selectedInvoices.length,
+              amount: formatCurrency(totalSelected),
+            })}
           </span>
           <div className="flex gap-2">
             <button
@@ -667,9 +680,11 @@ export function PendingInvoicesTabLazy({
                               <button
                                 onClick={() => handleValidate(invoice)}
                                 disabled={isSubmitting}
-                              title={
-                                invoice.original_pdf_url ? t('pending.validateWithStamp') : t('actions.validate')
-                              }
+                                title={
+                                  invoice.original_pdf_url
+                                    ? t('pending.validateWithStamp')
+                                    : t('actions.validate')
+                                }
                                 className="inline-flex items-center justify-center w-7 h-7 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded transition-colors disabled:opacity-50"
                               >
                                 <FiCheck className="w-3.5 h-3.5" />
@@ -846,7 +861,11 @@ export function PendingInvoicesTabLazy({
                         <button
                           onClick={() => handleValidate(invoice)}
                           disabled={isSubmitting}
-                          title={invoice.original_pdf_url ? t('pending.validateWithStamp') : t('actions.validate')}
+                          title={
+                            invoice.original_pdf_url
+                              ? t('pending.validateWithStamp')
+                              : t('actions.validate')
+                          }
                           className="inline-flex items-center justify-center w-7 h-7 text-gray-600 dark:text-gray-400 hover:text-green-600 dark:hover:text-green-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded transition-colors disabled:opacity-50"
                         >
                           <FiCheck className="w-3.5 h-3.5" />
@@ -972,7 +991,9 @@ export function PendingInvoicesTabLazy({
         }}
         onConfirm={handleDelete}
         title={t('modals.deleteInvoice.title')}
-        message={t('modals.deleteInvoice.message', { number: deletingInvoice?.invoice_number ?? '' })}
+        message={t('modals.deleteInvoice.message', {
+          number: deletingInvoice?.invoice_number ?? '',
+        })}
         confirmText={t('modals.deleteInvoice.confirmButton')}
         variant="danger"
       />
@@ -994,13 +1015,16 @@ export function PendingInvoicesTabLazy({
                   {t('modals.validateInvoice.title')}
                 </h3>
                 <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                  <strong>{t('modals.validateInvoice.invoice')}</strong> {validatingInvoice.invoice_number}
+                  <strong>{t('modals.validateInvoice.invoice')}</strong>{' '}
+                  {validatingInvoice.invoice_number}
                 </p>
                 <p className="text-sm text-gray-600 dark:text-gray-400 mb-2">
-                  <strong>{t('modals.validateInvoice.supplier')}</strong> {validatingInvoice.supplier_name}
+                  <strong>{t('modals.validateInvoice.supplier')}</strong>{' '}
+                  {validatingInvoice.supplier_name}
                 </p>
                 <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
-                  <strong>{t('modals.validateInvoice.amount')}</strong> {formatCurrency(validatingInvoice.amount_with_vat)}
+                  <strong>{t('modals.validateInvoice.amount')}</strong>{' '}
+                  {formatCurrency(validatingInvoice.amount_with_vat)}
                 </p>
                 <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-md p-3 mb-4">
                   <p className="text-xs text-yellow-800 dark:text-yellow-300">
@@ -1025,7 +1049,9 @@ export function PendingInvoicesTabLazy({
                     disabled={isSubmitting}
                     className="flex-1 px-4 py-2 text-sm font-medium text-white bg-green-600 rounded-md hover:bg-green-700 transition-colors disabled:opacity-50"
                   >
-                    {isSubmitting ? t('actions.processing') : t('modals.validateInvoice.confirmButton')}
+                    {isSubmitting
+                      ? t('actions.processing')
+                      : t('modals.validateInvoice.confirmButton')}
                   </button>
                 </div>
               </div>
@@ -1055,14 +1081,16 @@ export function PendingInvoicesTabLazy({
 
                 <div className="bg-purple-50 dark:bg-purple-900/20 border border-purple-200 dark:border-purple-800 rounded-md p-4 mb-4">
                   <p className="text-sm text-purple-800 dark:text-purple-300 mb-2">
-                    <strong>{t('modals.batchPayment.month')}</strong> {getMonthName(batchPayPreview.month)}{' '}
-                    {batchPayPreview.year}
+                    <strong>{t('modals.batchPayment.month')}</strong>{' '}
+                    {getMonthName(batchPayPreview.month)} {batchPayPreview.year}
                   </p>
                   <p className="text-sm text-purple-800 dark:text-purple-300 mb-2">
-                    <strong>{t('modals.batchPayment.validatedInvoices')}</strong> {batchPayPreview.count}
+                    <strong>{t('modals.batchPayment.validatedInvoices')}</strong>{' '}
+                    {batchPayPreview.count}
                   </p>
                   <p className="text-sm text-purple-800 dark:text-purple-300">
-                    <strong>{t('modals.batchPayment.totalAmount')}</strong> {formatCurrency(batchPayPreview.total_amount)}
+                    <strong>{t('modals.batchPayment.totalAmount')}</strong>{' '}
+                    {formatCurrency(batchPayPreview.total_amount)}
                   </p>
                 </div>
 
@@ -1075,7 +1103,9 @@ export function PendingInvoicesTabLazy({
                 ) : (
                   <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-md p-3 mb-4">
                     <p className="text-xs text-blue-800 dark:text-blue-300">
-                      {t('modals.batchPayment.description', { month: getMonthName(batchPayPreview.month) })}
+                      {t('modals.batchPayment.description', {
+                        month: getMonthName(batchPayPreview.month),
+                      })}
                     </p>
                   </div>
                 )}

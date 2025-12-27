@@ -217,7 +217,11 @@ export function CreateBlacklistPanel({ isOpen, onClose }: CreateBlacklistPanelPr
             </select>
           </FormField>
 
-          <FormField label={t('form.documentNumber')} required error={errors.document_number?.message}>
+          <FormField
+            label={t('form.documentNumber')}
+            required
+            error={errors.document_number?.message}
+          >
             <input
               {...register('document_number')}
               type="text"
@@ -275,7 +279,11 @@ export function CreateBlacklistPanel({ isOpen, onClose }: CreateBlacklistPanelPr
 
           {/* Check-out Date */}
           <div className="relative calendar-container">
-            <FormField label={t('form.checkOutDate')} required error={errors.check_out_date?.message}>
+            <FormField
+              label={t('form.checkOutDate')}
+              required
+              error={errors.check_out_date?.message}
+            >
               <div className="relative">
                 <Controller
                   name="check_out_date"
@@ -359,7 +367,8 @@ export function CreateBlacklistPanel({ isOpen, onClose }: CreateBlacklistPanelPr
               <div className="flex flex-col items-center justify-center pt-3 pb-4">
                 <FiUpload className="w-6 h-6 mb-2 text-gray-400" />
                 <p className="text-xs text-gray-500 dark:text-gray-400">
-                  <span className="font-semibold">{t('form.clickToUpload')}</span> {t('form.dragImages')}
+                  <span className="font-semibold">{t('form.clickToUpload')}</span>{' '}
+                  {t('form.dragImages')}
                 </p>
               </div>
               <input

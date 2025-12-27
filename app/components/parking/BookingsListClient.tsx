@@ -341,6 +341,7 @@ export function BookingsListClient({
         setLoading(false)
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [statusFilter, startDate, endDate, quickFilter]
   )
 
@@ -517,9 +518,7 @@ export function BookingsListClient({
       setCheckInData({ actual_checkin: '', notes: '' })
       loadBookings(currentPage)
     } catch (error) {
-      toast.error(
-        t('messages.checkInError') + (error instanceof Error ? ': ' + error.message : '')
-      )
+      toast.error(t('messages.checkInError') + (error instanceof Error ? ': ' + error.message : ''))
     }
   }
 
@@ -561,9 +560,7 @@ export function BookingsListClient({
       setUpdateData({ expected_checkin: '', expected_checkout: '', total_amount: '', notes: '' })
       loadBookings(currentPage)
     } catch (error) {
-      toast.error(
-        t('messages.updateError') + (error instanceof Error ? ': ' + error.message : '')
-      )
+      toast.error(t('messages.updateError') + (error instanceof Error ? ': ' + error.message : ''))
     }
   }
 
@@ -739,7 +736,11 @@ export function BookingsListClient({
 
                 <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
                   {/* Vista rápida (filtros compuestos del dashboard) */}
-                  <QuickFilterDropdown value={quickFilter} onChange={handleQuickFilterChange} t={t} />
+                  <QuickFilterDropdown
+                    value={quickFilter}
+                    onChange={handleQuickFilterChange}
+                    t={t}
+                  />
 
                   {/* Fecha de entrada */}
                   <DatePickerInput
@@ -932,14 +933,18 @@ export function BookingsListClient({
 
                       <div className="flex items-center justify-between text-[10px]">
                         <div>
-                          <span className="text-gray-500 dark:text-gray-400">{t('table.entry')}: </span>
+                          <span className="text-gray-500 dark:text-gray-400">
+                            {t('table.entry')}:{' '}
+                          </span>
                           <span className="text-gray-900 dark:text-gray-100">
                             {formatDateShort(booking.schedule.expected_checkin)}{' '}
                             {formatTime(booking.schedule.expected_checkin)}
                           </span>
                         </div>
                         <div>
-                          <span className="text-gray-500 dark:text-gray-400">{t('table.exit')}: </span>
+                          <span className="text-gray-500 dark:text-gray-400">
+                            {t('table.exit')}:{' '}
+                          </span>
                           <span className="text-gray-900 dark:text-gray-100">
                             {formatDateShort(booking.schedule.expected_checkout)}{' '}
                             {formatTime(booking.schedule.expected_checkout)}
@@ -963,11 +968,14 @@ export function BookingsListClient({
                         <span className="font-medium text-gray-900 dark:text-gray-100">
                           {filteredBookings.length}
                         </span>{' '}
-                        {filteredBookings.length !== 1 ? t('bookings.reservations') : t('bookings.reservation')}
+                        {filteredBookings.length !== 1
+                          ? t('bookings.reservations')
+                          : t('bookings.reservation')}
                         {pagination.totalPages > 1 && (
                           <span className="text-gray-400 dark:text-gray-500">
                             {' '}
-                            ({t('bookings.page')} {pagination.page} {t('bookings.of')} {pagination.totalPages})
+                            ({t('bookings.page')} {pagination.page} {t('bookings.of')}{' '}
+                            {pagination.totalPages})
                           </span>
                         )}
                       </span>

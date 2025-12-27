@@ -258,7 +258,9 @@ export default function ParkingTable({
                             </p>
                           </div>
                         </td>
-                        <td className="px-3 py-2"><StatusBadgeSpot status={spot.status} /></td>
+                        <td className="px-3 py-2">
+                          <StatusBadgeSpot status={spot.status} />
+                        </td>
                         <td className="px-3 py-2 max-w-xs">
                           {spot.booking?.vehicle ? (
                             <div>
@@ -330,7 +332,9 @@ export default function ParkingTable({
         {spots.length === 0 ? (
           <div className="bg-white dark:bg-[#151b23] rounded-xl border-2 border-gray-200 dark:border-gray-600 p-8 text-center">
             <MdLocalParking className="w-12 h-12 text-gray-300 dark:text-gray-600 mx-auto mb-3" />
-            <p className="text-xs text-gray-500 dark:text-gray-400">{t('parkingTable.noSpotsToShow')}</p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">
+              {t('parkingTable.noSpotsToShow')}
+            </p>
           </div>
         ) : (
           spots.map((spot, index) => {

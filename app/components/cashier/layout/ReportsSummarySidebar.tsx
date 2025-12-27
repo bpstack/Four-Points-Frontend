@@ -36,7 +36,9 @@ export default function ReportsSummarySidebar({
       <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 border border-green-200 dark:border-green-800 rounded-xl shadow-sm p-4">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-xs text-green-700 dark:text-green-300 font-medium">{t('summary.grandTotal')}</p>
+            <p className="text-xs text-green-700 dark:text-green-300 font-medium">
+              {t('summary.grandTotal')}
+            </p>
             <p className="text-xl font-bold text-green-900 dark:text-green-100 mt-0.5">
               {grandTotal.toFixed(2)}€
             </p>
@@ -54,7 +56,9 @@ export default function ReportsSummarySidebar({
       <div className="bg-white dark:bg-[#0D1117] border border-[#d0d7de] dark:border-[#30363d] rounded-xl shadow-sm p-4">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">{t('summary.totalEffective')}</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+              {t('summary.totalEffective')}
+            </p>
             <p className="text-xl font-bold text-gray-900 dark:text-gray-100 mt-0.5">
               {totalCash.toFixed(2)}€
             </p>
@@ -92,7 +96,9 @@ export default function ReportsSummarySidebar({
       <div className="bg-white dark:bg-[#0D1117] border border-[#d0d7de] dark:border-[#30363d] rounded-xl shadow-sm p-4">
         <div className="flex items-center justify-between mb-2">
           <div>
-            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">{t('reports.daysClosed')}</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+              {t('reports.daysClosed')}
+            </p>
             <p className="text-xl font-bold text-gray-900 dark:text-gray-100 mt-0.5">
               {daysClosed}/{totalDays}
             </p>

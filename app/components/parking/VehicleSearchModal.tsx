@@ -312,7 +312,9 @@ export function VehicleSearchModal({ isOpen, onClose }: VehicleSearchModalProps)
               {loading ? (
                 <div className="py-12 text-center">
                   <div className="inline-block h-6 w-6 animate-spin rounded-full border-2 border-purple-500 border-r-transparent" />
-                  <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">{t('vehicleSearch.searching')}</p>
+                  <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+                    {t('vehicleSearch.searching')}
+                  </p>
                 </div>
               ) : searchTerm.length < 2 ? (
                 <div className="py-12 text-center">

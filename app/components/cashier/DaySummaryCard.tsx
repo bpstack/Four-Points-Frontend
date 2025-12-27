@@ -80,7 +80,9 @@ export default function DaySummaryCard({
         <div className="bg-gray-50 dark:bg-gray-800/30 p-2.5 rounded-lg border border-dashed border-gray-300 dark:border-gray-700">
           <div className="flex items-center gap-1.5 mb-0.5">
             <span className="text-sm">📝</span>
-            <p className="text-[9px] text-gray-500 dark:text-gray-400 font-medium">{t('summary.activeVouchers')}</p>
+            <p className="text-[9px] text-gray-500 dark:text-gray-400 font-medium">
+              {t('summary.activeVouchers')}
+            </p>
           </div>
           <p className="text-base font-bold text-orange-600 dark:text-orange-400">
             {parseFloat(daily.active_vouchers_total || '0').toFixed(2)}€

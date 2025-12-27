@@ -43,7 +43,7 @@ export default function DatePickerInput({
   const [alignRight, setAlignRight] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
-  
+
   const defaultPlaceholder = placeholder ?? t('calendar.selectDate')
 
   // Convertir string YYYY-MM-DD a Date

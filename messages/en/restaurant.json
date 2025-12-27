@@ -1,5 +1,15 @@
 {
   "title": "Restaurant",
+  "error": {
+    "title": "Restaurant",
+    "subtitle": "An error occurred while loading the restaurant",
+    "errorTitle": "Failed to load",
+    "errorDescription": "Could not load restaurant data. Please try again.",
+    "errorDetails": "Technical details",
+    "retry": "Retry",
+    "backToDashboard": "Back to Dashboard",
+    "helpText": "If the problem persists, contact technical support or try again later."
+  },
   "page": {
     "title": "Restaurant",
     "subtitle": "Inventory, orders and statistics management",

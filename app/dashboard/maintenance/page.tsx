@@ -44,7 +44,9 @@ export default async function MaintenancePage({ searchParams }: PageProps) {
     return (
       <div className="min-h-screen bg-white dark:bg-[#010409] flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">{t('error.title')}</h1>
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">
+            {t('error.title')}
+          </h1>
           <p className="text-sm text-gray-600 dark:text-gray-400">{error}</p>
         </div>
       </div>

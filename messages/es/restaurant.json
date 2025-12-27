@@ -1,5 +1,15 @@
 {
   "title": "Restaurante",
+  "error": {
+    "title": "Restaurante",
+    "subtitle": "Ha ocurrido un error al cargar el restaurante",
+    "errorTitle": "Error al cargar",
+    "errorDescription": "No se pudieron cargar los datos del restaurante. Por favor, intenta de nuevo.",
+    "errorDetails": "Detalles técnicos",
+    "retry": "Reintentar",
+    "backToDashboard": "Volver al Dashboard",
+    "helpText": "Si el problema persiste, contacta al soporte técnico o intenta más tarde."
+  },
   "page": {
     "title": "Restaurante",
     "subtitle": "Gestión de inventario, pedidos y estadísticas",

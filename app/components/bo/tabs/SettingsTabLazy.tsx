@@ -100,7 +100,11 @@ export function SettingsTabLazy({ initialAssets }: SettingsTabLazyProps) {
         is_default: assets.filter((a) => a.type === newAssetType).length === 0,
       })
 
-      toast.success(t('toast.assetCreated', { type: newAssetType === 'stamp' ? t('settings.stamp') : t('settings.signature') }))
+      toast.success(
+        t('toast.assetCreated', {
+          type: newAssetType === 'stamp' ? t('settings.stamp') : t('settings.signature'),
+        })
+      )
       invalidateAssets()
 
       setNewAssetName('')
@@ -141,9 +145,7 @@ export function SettingsTabLazy({ initialAssets }: SettingsTabLazyProps) {
       invalidateAssets()
     } catch (error: unknown) {
       console.error('Error setting default:', error)
-      toast.error(
-        error instanceof Error ? error.message : t('toast.assetSetDefaultError')
-      )
+      toast.error(error instanceof Error ? error.message : t('toast.assetSetDefaultError'))
     }
   }
 
@@ -239,7 +241,9 @@ export function SettingsTabLazy({ initialAssets }: SettingsTabLazyProps) {
                     onChange={() => setNewAssetType('stamp')}
                     className="text-blue-600"
                   />
-                  <span className="text-sm text-gray-700 dark:text-gray-300">{t('settings.stamp')}</span>
+                  <span className="text-sm text-gray-700 dark:text-gray-300">
+                    {t('settings.stamp')}
+                  </span>
                 </label>
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input
@@ -250,7 +254,9 @@ export function SettingsTabLazy({ initialAssets }: SettingsTabLazyProps) {
                     onChange={() => setNewAssetType('signature')}
                     className="text-blue-600"
                   />
-                  <span className="text-sm text-gray-700 dark:text-gray-300">{t('settings.signature')}</span>
+                  <span className="text-sm text-gray-700 dark:text-gray-300">
+                    {t('settings.signature')}
+                  </span>
                 </label>
               </div>
             </div>
@@ -263,7 +269,11 @@ export function SettingsTabLazy({ initialAssets }: SettingsTabLazyProps) {
                 type="text"
                 value={newAssetName}
                 onChange={(e) => setNewAssetName(e.target.value)}
-                placeholder={newAssetType === 'stamp' ? t('settings.namePlaceholder.stamp') : t('settings.namePlaceholder.signature')}
+                placeholder={
+                  newAssetType === 'stamp'
+                    ? t('settings.namePlaceholder.stamp')
+                    : t('settings.namePlaceholder.signature')
+                }
                 className="w-full px-4 py-2.5 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
               />
             </div>
@@ -307,7 +317,9 @@ export function SettingsTabLazy({ initialAssets }: SettingsTabLazyProps) {
               ) : (
                 <>
                   <FiUpload className="w-4 h-4" />
-                  {newAssetType === 'stamp' ? t('settings.uploadButton.stamp') : t('settings.uploadButton.signature')}
+                  {newAssetType === 'stamp'
+                    ? t('settings.uploadButton.stamp')
+                    : t('settings.uploadButton.signature')}
                 </>
               )}
             </button>
@@ -355,9 +367,7 @@ export function SettingsTabLazy({ initialAssets }: SettingsTabLazyProps) {
         <FiAlertCircle className="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" />
         <div className="text-sm text-blue-700 dark:text-blue-300">
           <p className="font-medium mb-1">{t('settings.info.title')}</p>
-          <p className="text-blue-600 dark:text-blue-400">
-            {t('settings.info.description')}
-          </p>
+          <p className="text-blue-600 dark:text-blue-400">{t('settings.info.description')}</p>
         </div>
       </div>
 

@@ -218,7 +218,11 @@ export function EditReportPanel({ isOpen, onClose, report, onSuccess }: EditRepo
     >
       <SlidePanelSection>
         {/* Location Type */}
-        <FormField label={t('panels.create.fields.locationType')} required error={errors.location_type?.message}>
+        <FormField
+          label={t('panels.create.fields.locationType')}
+          required
+          error={errors.location_type?.message}
+        >
           <select {...register('location_type')} className={selectClassName}>
             <option value="room">{t('locationType.room')}</option>
             <option value="common_area">{t('locationType.commonArea')}</option>
@@ -230,7 +234,11 @@ export function EditReportPanel({ isOpen, onClose, report, onSuccess }: EditRepo
 
         {/* Room Number */}
         {locationType === 'room' && (
-          <FormField label={t('panels.create.fields.roomNumber')} required error={errors.room_number?.message}>
+          <FormField
+            label={t('panels.create.fields.roomNumber')}
+            required
+            error={errors.room_number?.message}
+          >
             <input
               {...register('room_number')}
               type="text"
@@ -255,7 +263,11 @@ export function EditReportPanel({ isOpen, onClose, report, onSuccess }: EditRepo
         </FormField>
 
         {/* Title */}
-        <FormField label={t('panels.create.fields.reportTitle')} required error={errors.title?.message}>
+        <FormField
+          label={t('panels.create.fields.reportTitle')}
+          required
+          error={errors.title?.message}
+        >
           <input
             {...register('title')}
             type="text"
@@ -265,7 +277,11 @@ export function EditReportPanel({ isOpen, onClose, report, onSuccess }: EditRepo
         </FormField>
 
         {/* Description */}
-        <FormField label={t('panels.create.fields.description')} required error={errors.description?.message}>
+        <FormField
+          label={t('panels.create.fields.description')}
+          required
+          error={errors.description?.message}
+        >
           <textarea
             {...register('description')}
             rows={4}

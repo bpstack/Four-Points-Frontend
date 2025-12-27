@@ -67,7 +67,9 @@ export default function CashierCalendarNav({
             </div>
           </div>
 
-          <div className="text-xs text-gray-500 dark:text-gray-400">{t('calendar.date')}: {selectedDate}</div>
+          <div className="text-xs text-gray-500 dark:text-gray-400">
+            {t('calendar.date')}: {selectedDate}
+          </div>
         </div>
 
         {/* Mobile */}

@@ -202,14 +202,21 @@ export interface MonthlyReport {
 }
 
 export interface DashboardOverview {
-  total_shifts: number
-  open_shifts: number
-  closed_shifts: number
-  total_cash_today: number
-  total_payments_today: number
-  grand_total_today: number
-  active_vouchers_count: number
-  active_vouchers_total: number
+  today: {
+    date: string
+    total_shifts: number
+    open_shifts: number
+    closed_shifts: number
+    total_cash: number
+    total_payments: number
+    grand_total: number
+  }
+  vouchers: {
+    active_count: number
+    active_amount: number
+    total_repaid: number
+    oldest_active_date: string | null
+  }
 }
 
 export interface VoucherHistoryItem extends CashierVoucher {

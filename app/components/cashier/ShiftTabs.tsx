@@ -40,9 +40,14 @@ export default function ShiftTabs({ shifts, activeTab, onTabChange }: ShiftTabsP
             }`}
           >
             <div className="flex items-center justify-center gap-1.5">
-              <span>{SHIFT_ICONS[shift]} {t(`shifts.${shift}`)}</span>
+              <span>
+                {SHIFT_ICONS[shift]} {t(`shifts.${shift}`)}
+              </span>
               {isClosed && (
-                <span className="w-1.5 h-1.5 bg-green-500 rounded-full" title={t('summary.closed')} />
+                <span
+                  className="w-1.5 h-1.5 bg-green-500 rounded-full"
+                  title={t('summary.closed')}
+                />
               )}
               {isOpen && (
                 <span

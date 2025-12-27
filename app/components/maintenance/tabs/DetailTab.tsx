@@ -214,7 +214,9 @@ export function DetailTab() {
             <div className="flex items-center justify-between gap-4">
               {/* Estado */}
               <div className="flex-1">
-                <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">{t('detail.sections.status')}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+                  {t('detail.sections.status')}
+                </p>
                 {isEditingStatus ? (
                   <div className="flex items-center gap-2">
                     <select
@@ -327,14 +329,18 @@ export function DetailTab() {
 
             <div className="space-y-3">
               <div>
-                <label className="text-xs text-gray-500 dark:text-gray-400">{t('detail.labels.title')}</label>
+                <label className="text-xs text-gray-500 dark:text-gray-400">
+                  {t('detail.labels.title')}
+                </label>
                 <p className="text-sm text-gray-900 dark:text-gray-100 mt-1">
                   {currentReport.title}
                 </p>
               </div>
 
               <div>
-                <label className="text-xs text-gray-500 dark:text-gray-400">{t('detail.labels.description')}</label>
+                <label className="text-xs text-gray-500 dark:text-gray-400">
+                  {t('detail.labels.description')}
+                </label>
                 <p className="text-sm text-gray-900 dark:text-gray-100 mt-1 whitespace-pre-wrap">
                   {currentReport.description}
                 </p>
@@ -351,7 +357,9 @@ export function DetailTab() {
 
             <div className="space-y-3">
               <div>
-                <label className="text-xs text-gray-500 dark:text-gray-400">{t('detail.labels.type')}</label>
+                <label className="text-xs text-gray-500 dark:text-gray-400">
+                  {t('detail.labels.type')}
+                </label>
                 <p className="text-sm text-gray-900 dark:text-gray-100 mt-1">
                   {getLocationTypeLabel(currentReport.location_type)}
                 </p>
@@ -359,7 +367,9 @@ export function DetailTab() {
 
               {currentReport.room_number && (
                 <div>
-                  <label className="text-xs text-gray-500 dark:text-gray-400">{t('detail.labels.room')}</label>
+                  <label className="text-xs text-gray-500 dark:text-gray-400">
+                    {t('detail.labels.room')}
+                  </label>
                   <p className="text-sm text-gray-900 dark:text-gray-100 mt-1">
                     {currentReport.room_number}
                   </p>
@@ -367,7 +377,9 @@ export function DetailTab() {
               )}
 
               <div>
-                <label className="text-xs text-gray-500 dark:text-gray-400">{t('detail.labels.description')}</label>
+                <label className="text-xs text-gray-500 dark:text-gray-400">
+                  {t('detail.labels.description')}
+                </label>
                 <p className="text-sm text-gray-900 dark:text-gray-100 mt-1">
                   {currentReport.location_description}
                 </p>
@@ -415,7 +427,9 @@ export function DetailTab() {
                   </div>
                   {currentReport.external_contact && (
                     <div>
-                      <label className="text-xs text-gray-500 dark:text-gray-400">{t('detail.labels.contact')}</label>
+                      <label className="text-xs text-gray-500 dark:text-gray-400">
+                        {t('detail.labels.contact')}
+                      </label>
                       <p className="text-sm text-gray-900 dark:text-gray-100 mt-1">
                         {currentReport.external_contact}
                       </p>
@@ -425,7 +439,9 @@ export function DetailTab() {
               )}
 
               {!currentReport.assigned_type && (
-                <p className="text-sm text-gray-500 dark:text-gray-400">{t('detail.labels.notAssigned')}</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">
+                  {t('detail.labels.notAssigned')}
+                </p>
               )}
             </div>
           </div>
@@ -439,7 +455,9 @@ export function DetailTab() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="text-xs text-gray-500 dark:text-gray-400">{t('detail.labels.reported')}</label>
+                <label className="text-xs text-gray-500 dark:text-gray-400">
+                  {t('detail.labels.reported')}
+                </label>
                 <p className="text-sm text-gray-900 dark:text-gray-100 mt-1">
                   {formatDateTime(currentReport.report_date)}
                 </p>
@@ -447,7 +465,9 @@ export function DetailTab() {
 
               {currentReport.started_at && (
                 <div>
-                  <label className="text-xs text-gray-500 dark:text-gray-400">{t('detail.labels.started')}</label>
+                  <label className="text-xs text-gray-500 dark:text-gray-400">
+                    {t('detail.labels.started')}
+                  </label>
                   <p className="text-sm text-gray-900 dark:text-gray-100 mt-1">
                     {formatDateTime(currentReport.started_at)}
                   </p>
@@ -456,7 +476,9 @@ export function DetailTab() {
 
               {currentReport.resolved_at && (
                 <div>
-                  <label className="text-xs text-gray-500 dark:text-gray-400">{t('detail.labels.resolved')}</label>
+                  <label className="text-xs text-gray-500 dark:text-gray-400">
+                    {t('detail.labels.resolved')}
+                  </label>
                   <p className="text-sm text-gray-900 dark:text-gray-100 mt-1">
                     {formatDateTime(currentReport.resolved_at)}
                   </p>
@@ -465,7 +487,9 @@ export function DetailTab() {
 
               {currentReport.closed_at && (
                 <div>
-                  <label className="text-xs text-gray-500 dark:text-gray-400">{t('detail.labels.closed')}</label>
+                  <label className="text-xs text-gray-500 dark:text-gray-400">
+                    {t('detail.labels.closed')}
+                  </label>
                   <p className="text-sm text-gray-900 dark:text-gray-100 mt-1">
                     {formatDateTime(currentReport.closed_at)}
                   </p>
@@ -532,25 +556,33 @@ export function DetailTab() {
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
               <div>
-                <label className="text-gray-500 dark:text-gray-400">{t('detail.labels.createdBy')}</label>
+                <label className="text-gray-500 dark:text-gray-400">
+                  {t('detail.labels.createdBy')}
+                </label>
                 <p className="text-gray-900 dark:text-gray-100 mt-1">
                   {currentReport.created_by_name || currentReport.created_by}
                 </p>
               </div>
               <div>
-                <label className="text-gray-500 dark:text-gray-400">{t('detail.labels.createdAt')}</label>
+                <label className="text-gray-500 dark:text-gray-400">
+                  {t('detail.labels.createdAt')}
+                </label>
                 <p className="text-gray-900 dark:text-gray-100 mt-1">
                   {formatDateTime(currentReport.created_at)}
                 </p>
               </div>
               <div>
-                <label className="text-gray-500 dark:text-gray-400">{t('detail.labels.reportId')}</label>
+                <label className="text-gray-500 dark:text-gray-400">
+                  {t('detail.labels.reportId')}
+                </label>
                 <p className="text-gray-900 dark:text-gray-100 mt-1 font-mono text-[10px]">
                   {currentReport.id}
                 </p>
               </div>
               <div>
-                <label className="text-gray-500 dark:text-gray-400">{t('detail.labels.lastUpdate')}</label>
+                <label className="text-gray-500 dark:text-gray-400">
+                  {t('detail.labels.lastUpdate')}
+                </label>
                 <p className="text-gray-900 dark:text-gray-100 mt-1">
                   {formatDateTime(currentReport.updated_at)}
                 </p>

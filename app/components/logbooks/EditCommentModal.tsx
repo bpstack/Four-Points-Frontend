@@ -61,7 +61,11 @@ export default function EditCommentModal({
       }
     >
       <div className="space-y-4">
-        <FormField label={t('modals.editComment.fields.comment')} required hint={t('modals.editComment.hint')}>
+        <FormField
+          label={t('modals.editComment.fields.comment')}
+          required
+          hint={t('modals.editComment.hint')}
+        >
           <textarea
             value={comment}
             onChange={(e) => setComment(e.target.value)}

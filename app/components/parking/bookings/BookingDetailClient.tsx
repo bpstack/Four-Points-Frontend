@@ -58,7 +58,8 @@ export function BookingDetailClient({ code }: BookingDetailClientProps) {
         const response = await parkingApi.getBookingByCode(code)
         setBooking(response.booking)
       } catch (error) {
-        const message = error instanceof Error ? error.message : t('bookingDetail.toasts.unknownError')
+        const message =
+          error instanceof Error ? error.message : t('bookingDetail.toasts.unknownError')
         toast.error(t('bookingDetail.toasts.loadError', { message }))
         router.push('/dashboard/parking/bookings')
       } finally {
@@ -82,7 +83,8 @@ export function BookingDetailClient({ code }: BookingDetailClientProps) {
       setShowCheckInModal(false)
       loadBooking(true)
     } catch (error) {
-      const message = error instanceof Error ? error.message : t('bookingDetail.toasts.unknownError')
+      const message =
+        error instanceof Error ? error.message : t('bookingDetail.toasts.unknownError')
       toast.error(t('bookingDetail.toasts.checkInError', { message }))
       throw error
     }
@@ -102,7 +104,8 @@ export function BookingDetailClient({ code }: BookingDetailClientProps) {
       setShowCheckOutModal(false)
       loadBooking(true)
     } catch (error) {
-      const message = error instanceof Error ? error.message : t('bookingDetail.toasts.unknownError')
+      const message =
+        error instanceof Error ? error.message : t('bookingDetail.toasts.unknownError')
       toast.error(t('bookingDetail.toasts.checkOutError', { message }))
       throw error
     }
@@ -116,7 +119,8 @@ export function BookingDetailClient({ code }: BookingDetailClientProps) {
       setShowEditModal(false)
       loadBooking(true)
     } catch (error) {
-      const message = error instanceof Error ? error.message : t('bookingDetail.toasts.unknownError')
+      const message =
+        error instanceof Error ? error.message : t('bookingDetail.toasts.unknownError')
       toast.error(t('bookingDetail.toasts.updateError', { message }))
       throw error
     }
@@ -131,7 +135,8 @@ export function BookingDetailClient({ code }: BookingDetailClientProps) {
       toast.success(t('bookingDetail.toasts.cancelSuccess'))
       loadBooking(true)
     } catch (error) {
-      const message = error instanceof Error ? error.message : t('bookingDetail.toasts.unknownError')
+      const message =
+        error instanceof Error ? error.message : t('bookingDetail.toasts.unknownError')
       toast.error(t('bookingDetail.toasts.cancelError', { message }))
     }
   }
@@ -145,22 +150,23 @@ export function BookingDetailClient({ code }: BookingDetailClientProps) {
       toast.success(t('bookingDetail.toasts.noShowSuccess'))
       loadBooking(true)
     } catch (error) {
-      const message = error instanceof Error ? error.message : t('bookingDetail.toasts.unknownError')
+      const message =
+        error instanceof Error ? error.message : t('bookingDetail.toasts.unknownError')
       toast.error(t('bookingDetail.toasts.noShowError', { message }))
     }
   }
 
   const handleDelete = async () => {
     if (!booking) return
-    if (!confirm(t('bookingDetail.confirmations.delete')))
-      return
+    if (!confirm(t('bookingDetail.confirmations.delete'))) return
 
     try {
       await parkingApi.deleteBooking(booking.booking_code)
       toast.success(t('bookingDetail.toasts.deleteSuccess'))
       router.push('/dashboard/parking/bookings')
     } catch (error) {
-      const message = error instanceof Error ? error.message : t('bookingDetail.toasts.unknownError')
+      const message =
+        error instanceof Error ? error.message : t('bookingDetail.toasts.unknownError')
       toast.error(t('bookingDetail.toasts.deleteError', { message }))
     }
   }
@@ -181,7 +187,8 @@ export function BookingDetailClient({ code }: BookingDetailClientProps) {
       setShowPaymentModal(false)
       loadBooking(true)
     } catch (error) {
-      const message = error instanceof Error ? error.message : t('bookingDetail.toasts.unknownError')
+      const message =
+        error instanceof Error ? error.message : t('bookingDetail.toasts.unknownError')
       toast.error(t('bookingDetail.toasts.paymentError', { message }))
       throw error
     }
@@ -294,7 +301,10 @@ export function BookingDetailClient({ code }: BookingDetailClientProps) {
                   {t('bookingDetail.duration')}
                 </p>
                 <p className="text-sm sm:text-base font-bold text-[#24292f] dark:text-[#f0f6fc] mt-0.5">
-                  {booking.schedule.planned_days} {booking.schedule.planned_days === 1 ? t('bookingDetail.day') : t('bookingDetail.days')}
+                  {booking.schedule.planned_days}{' '}
+                  {booking.schedule.planned_days === 1
+                    ? t('bookingDetail.day')
+                    : t('bookingDetail.days')}
                 </p>
               </div>
               <FiClock className="w-5 h-5 sm:w-6 sm:h-6 text-[#8250df] dark:text-[#a371f7]" />
@@ -314,13 +324,17 @@ export function BookingDetailClient({ code }: BookingDetailClientProps) {
             >
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-xs text-[#57606a] dark:text-[#8b949e] mb-1">{t('bookingDetail.location')}</p>
+                  <p className="text-xs text-[#57606a] dark:text-[#8b949e] mb-1">
+                    {t('bookingDetail.location')}
+                  </p>
                   <p className="text-xl font-bold text-[#24292f] dark:text-[#f0f6fc]">
                     {booking.spot.level} - {booking.spot.number}
                   </p>
                 </div>
                 <div>
-                  <p className="text-xs text-[#57606a] dark:text-[#8b949e] mb-1">{t('bookingDetail.spotType')}</p>
+                  <p className="text-xs text-[#57606a] dark:text-[#8b949e] mb-1">
+                    {t('bookingDetail.spotType')}
+                  </p>
                   <p className="text-base font-medium text-[#24292f] dark:text-[#f0f6fc]">
                     {t(`spotTypes.${booking.spot.type}` as const) || booking.spot.type}
                   </p>
@@ -332,7 +346,12 @@ export function BookingDetailClient({ code }: BookingDetailClientProps) {
             <InfoCard title={t('bookingDetail.vehicle')} icon={<FiTruck className="w-4 h-4" />}>
               {booking.vehicle ? (
                 <div className="space-y-1">
-                  <InfoRow label={t('bookingDetail.plate')} value={booking.vehicle.plate} mono highlight />
+                  <InfoRow
+                    label={t('bookingDetail.plate')}
+                    value={booking.vehicle.plate}
+                    mono
+                    highlight
+                  />
                   <InfoRow label={t('bookingDetail.owner')} value={booking.vehicle.owner} />
                   {booking.vehicle.model && (
                     <InfoRow label={t('bookingDetail.model')} value={booking.vehicle.model} />
@@ -406,14 +425,18 @@ export function BookingDetailClient({ code }: BookingDetailClientProps) {
               </div>
 
               <div className="mt-4 pt-4 border-t border-[#d0d7de] dark:border-[#30363d] flex justify-between text-sm">
-                <span className="text-[#57606a] dark:text-[#8b949e]">{t('bookingDetail.plannedDays')}</span>
+                <span className="text-[#57606a] dark:text-[#8b949e]">
+                  {t('bookingDetail.plannedDays')}
+                </span>
                 <span className="font-bold text-[#24292f] dark:text-[#f0f6fc]">
                   {booking.schedule.planned_days}
                 </span>
               </div>
               {booking.schedule.actual_days && (
                 <div className="flex justify-between text-sm mt-1">
-                  <span className="text-[#57606a] dark:text-[#8b949e]">{t('bookingDetail.actualDays')}</span>
+                  <span className="text-[#57606a] dark:text-[#8b949e]">
+                    {t('bookingDetail.actualDays')}
+                  </span>
                   <span className="font-bold text-[#1a7f37] dark:text-[#3fb950]">
                     {booking.schedule.actual_days}
                   </span>
@@ -432,14 +455,24 @@ export function BookingDetailClient({ code }: BookingDetailClientProps) {
 
             {/* Informacion de Reserva - Only on mobile */}
             <div className="min-[1400px]:hidden space-y-5">
-              <InfoCard title={t('bookingDetail.bookingInfo')} icon={<FiInfo className="w-4 h-4" />}>
+              <InfoCard
+                title={t('bookingDetail.bookingInfo')}
+                icon={<FiInfo className="w-4 h-4" />}
+              >
                 <div className="space-y-1">
                   <InfoRow
                     label={t('bookingDetail.source')}
-                    value={t(`bookingSources.${booking.booking_info.source}` as const) || booking.booking_info.source}
+                    value={
+                      t(`bookingSources.${booking.booking_info.source}` as const) ||
+                      booking.booking_info.source
+                    }
                   />
                   {booking.booking_info.external_id && (
-                    <InfoRow label={t('bookingDetail.externalId')} value={booking.booking_info.external_id} mono />
+                    <InfoRow
+                      label={t('bookingDetail.externalId')}
+                      value={booking.booking_info.external_id}
+                      mono
+                    />
                   )}
                 </div>
               </InfoCard>
@@ -484,7 +517,9 @@ export function BookingDetailClient({ code }: BookingDetailClientProps) {
               <div className="p-4">
                 {/* Total */}
                 <div className="flex justify-between items-center pb-3 border-b border-[#d0d7de] dark:border-[#30363d]">
-                  <span className="text-xs text-[#57606a] dark:text-[#8b949e]">{t('bookingDetail.payment.total')}</span>
+                  <span className="text-xs text-[#57606a] dark:text-[#8b949e]">
+                    {t('bookingDetail.payment.total')}
+                  </span>
                   <span className="text-xl font-bold text-[#24292f] dark:text-[#f0f6fc]">
                     {booking.payment.total_amount.toFixed(2)} €
                   </span>
@@ -505,13 +540,17 @@ export function BookingDetailClient({ code }: BookingDetailClientProps) {
                 {/* Amounts */}
                 <div className="space-y-2">
                   <div className="flex justify-between items-center">
-                    <span className="text-xs text-[#57606a] dark:text-[#8b949e]">{t('bookingDetail.payment.paid')}</span>
+                    <span className="text-xs text-[#57606a] dark:text-[#8b949e]">
+                      {t('bookingDetail.payment.paid')}
+                    </span>
                     <span className="text-sm font-semibold text-[#1a7f37] dark:text-[#3fb950]">
                       {booking.payment.paid_amount.toFixed(2)} €
                     </span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-xs text-[#57606a] dark:text-[#8b949e]">{t('bookingDetail.payment.pending')}</span>
+                    <span className="text-xs text-[#57606a] dark:text-[#8b949e]">
+                      {t('bookingDetail.payment.pending')}
+                    </span>
                     <span
                       className={`text-sm font-semibold ${
                         booking.payment.pending_amount > 0
@@ -528,14 +567,19 @@ export function BookingDetailClient({ code }: BookingDetailClientProps) {
                 {booking.payment.method && (
                   <div className="mt-3 pt-3 border-t border-[#d0d7de] dark:border-[#30363d] space-y-2">
                     <div className="flex justify-between text-xs">
-                      <span className="text-[#57606a] dark:text-[#8b949e]">{t('bookingDetail.payment.method')}</span>
+                      <span className="text-[#57606a] dark:text-[#8b949e]">
+                        {t('bookingDetail.payment.method')}
+                      </span>
                       <span className="font-medium text-[#24292f] dark:text-[#f0f6fc]">
-                        {t(`paymentMethods.${booking.payment.method}` as const) || booking.payment.method}
+                        {t(`paymentMethods.${booking.payment.method}` as const) ||
+                          booking.payment.method}
                       </span>
                     </div>
                     {booking.payment.reference && (
                       <div className="flex justify-between text-xs">
-                        <span className="text-[#57606a] dark:text-[#8b949e]">{t('bookingDetail.payment.reference')}</span>
+                        <span className="text-[#57606a] dark:text-[#8b949e]">
+                          {t('bookingDetail.payment.reference')}
+                        </span>
                         <span className="font-mono text-[#24292f] dark:text-[#f0f6fc]">
                           {booking.payment.reference}
                         </span>
@@ -543,7 +587,9 @@ export function BookingDetailClient({ code }: BookingDetailClientProps) {
                     )}
                     {booking.payment.date && (
                       <div className="flex justify-between text-xs">
-                        <span className="text-[#57606a] dark:text-[#8b949e]">{t('bookingDetail.payment.date')}</span>
+                        <span className="text-[#57606a] dark:text-[#8b949e]">
+                          {t('bookingDetail.payment.date')}
+                        </span>
                         <span className="text-[#24292f] dark:text-[#f0f6fc]">
                           {formatDate(booking.payment.date)}
                         </span>
@@ -563,7 +609,9 @@ export function BookingDetailClient({ code }: BookingDetailClientProps) {
                     }`}
                   >
                     <FiDollarSign className="w-4 h-4" />
-                    {isPaid ? t('bookingDetail.payment.modifyPayment') : t('bookingDetail.payment.registerPayment')}
+                    {isPaid
+                      ? t('bookingDetail.payment.modifyPayment')
+                      : t('bookingDetail.payment.registerPayment')}
                   </button>
                 )}
               </div>
@@ -571,14 +619,24 @@ export function BookingDetailClient({ code }: BookingDetailClientProps) {
 
             {/* Info Reserva - Desktop */}
             <div className="hidden min-[1400px]:block">
-              <InfoCard title={t('bookingDetail.bookingInfo')} icon={<FiInfo className="w-4 h-4" />}>
+              <InfoCard
+                title={t('bookingDetail.bookingInfo')}
+                icon={<FiInfo className="w-4 h-4" />}
+              >
                 <div className="space-y-1">
                   <InfoRow
                     label={t('bookingDetail.source')}
-                    value={t(`bookingSources.${booking.booking_info.source}` as const) || booking.booking_info.source}
+                    value={
+                      t(`bookingSources.${booking.booking_info.source}` as const) ||
+                      booking.booking_info.source
+                    }
                   />
                   {booking.booking_info.external_id && (
-                    <InfoRow label={t('bookingDetail.externalId')} value={booking.booking_info.external_id} mono />
+                    <InfoRow
+                      label={t('bookingDetail.externalId')}
+                      value={booking.booking_info.external_id}
+                      mono
+                    />
                   )}
                 </div>
               </InfoCard>

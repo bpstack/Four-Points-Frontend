@@ -73,20 +73,26 @@ export default function MaintenanceSection() {
   const [historyLoading, setHistoryLoading] = useState(false)
 
   // Labels with translations
-  const STATUS_LABELS = useMemo(() => ({
-    reported: t('status.reported'),
-    pending: t('status.pending'),
-    in_progress: t('status.in_progress'),
-    resolved: t('status.resolved'),
-    closed: t('status.closed'),
-  }), [t])
+  const STATUS_LABELS = useMemo(
+    () => ({
+      reported: t('status.reported'),
+      pending: t('status.pending'),
+      in_progress: t('status.in_progress'),
+      resolved: t('status.resolved'),
+      closed: t('status.closed'),
+    }),
+    [t]
+  )
 
-  const PRIORITY_LABELS = useMemo(() => ({
-    low: t('priority.low'),
-    medium: t('priority.medium'),
-    high: t('priority.high'),
-    urgent: t('priority.urgent'),
-  }), [t])
+  const PRIORITY_LABELS = useMemo(
+    () => ({
+      low: t('priority.low'),
+      medium: t('priority.medium'),
+      high: t('priority.high'),
+      urgent: t('priority.urgent'),
+    }),
+    [t]
+  )
 
   const fetchReports = useCallback(async () => {
     setLoading(true)
@@ -174,12 +180,8 @@ export default function MaintenanceSection() {
       <div className="flex flex-col items-center justify-center h-64 gap-4">
         <div className="text-center">
           <FiTool className="w-12 h-12 text-gray-300 dark:text-gray-600 mx-auto mb-3" />
-          <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-1">
-            {t('title')}
-          </h3>
-          <p className="text-sm text-gray-500 dark:text-gray-400 max-w-md">
-            {t('description')}
-          </p>
+          <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-1">{t('title')}</h3>
+          <p className="text-sm text-gray-500 dark:text-gray-400 max-w-md">{t('description')}</p>
         </div>
         <button
           onClick={fetchReports}
@@ -200,10 +202,7 @@ export default function MaintenanceSection() {
           <FiFilter className="w-4 h-4 text-gray-400" />
 
           {/* Date Filter */}
-          <DateFilter
-            selectedDate={dateFilter}
-            onDateChange={handleDateChange}
-          />
+          <DateFilter selectedDate={dateFilter} onDateChange={handleDateChange} />
 
           {/* Status Filter */}
           <select
@@ -276,9 +275,12 @@ export default function MaintenanceSection() {
         <div className="space-y-2">
           {reports.map((report) => {
             const statusColor = STATUS_COLORS[report.status] || STATUS_COLORS.pending
-            const statusLabel = STATUS_LABELS[report.status as keyof typeof STATUS_LABELS] || STATUS_LABELS.pending
+            const statusLabel =
+              STATUS_LABELS[report.status as keyof typeof STATUS_LABELS] || STATUS_LABELS.pending
             const priorityColor = PRIORITY_COLORS[report.priority] || PRIORITY_COLORS.medium
-            const priorityLabel = PRIORITY_LABELS[report.priority as keyof typeof PRIORITY_LABELS] || PRIORITY_LABELS.medium
+            const priorityLabel =
+              PRIORITY_LABELS[report.priority as keyof typeof PRIORITY_LABELS] ||
+              PRIORITY_LABELS.medium
             const isExpanded = expandedId === report.id
 
             return (
@@ -305,8 +307,12 @@ export default function MaintenanceSection() {
                             priorityColor
                           )}
                         >
-                          {report.priority === 'high' && <FiAlertTriangle className="w-3.5 h-3.5" />}
-                          {report.priority === 'urgent' && <FiAlertCircle className="w-3.5 h-3.5" />}
+                          {report.priority === 'high' && (
+                            <FiAlertTriangle className="w-3.5 h-3.5" />
+                          )}
+                          {report.priority === 'urgent' && (
+                            <FiAlertCircle className="w-3.5 h-3.5" />
+                          )}
                           {priorityLabel}
                         </span>
                         {report.deleted_at && (
@@ -410,9 +416,7 @@ export default function MaintenanceSection() {
                         ))}
                       </div>
                     ) : (
-                      <p className="text-sm text-gray-500 text-center py-4">
-                        {t('noData')}
-                      </p>
+                      <p className="text-sm text-gray-500 text-center py-4">{t('noData')}</p>
                     )}
                   </div>
                 )}

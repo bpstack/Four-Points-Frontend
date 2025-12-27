@@ -191,7 +191,11 @@ export function EditGroupPanel({ isOpen, onClose, group, onSuccess }: EditGroupP
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {/* Arrival Date */}
           <div className="relative" ref={arrivalCalRef}>
-            <FormField label={t('createPanel.arrivalDate')} required error={errors.arrival_date?.message}>
+            <FormField
+              label={t('createPanel.arrivalDate')}
+              required
+              error={errors.arrival_date?.message}
+            >
               <div className="relative">
                 <input
                   type="text"
@@ -223,7 +227,11 @@ export function EditGroupPanel({ isOpen, onClose, group, onSuccess }: EditGroupP
 
           {/* Departure Date */}
           <div className="relative" ref={departureCalRef}>
-            <FormField label={t('createPanel.departureDate')} required error={errors.departure_date?.message}>
+            <FormField
+              label={t('createPanel.departureDate')}
+              required
+              error={errors.departure_date?.message}
+            >
               <div className="relative">
                 <input
                   type="text"
@@ -256,11 +264,7 @@ export function EditGroupPanel({ isOpen, onClose, group, onSuccess }: EditGroupP
           </div>
         </div>
 
-        {datesLocked && (
-          <Alert variant="warning">
-            {t('editPanel.datesLocked')}
-          </Alert>
-        )}
+        {datesLocked && <Alert variant="warning">{t('editPanel.datesLocked')}</Alert>}
 
         {/* Status */}
         <FormField label={t('createPanel.status')} error={errors.status?.message}>

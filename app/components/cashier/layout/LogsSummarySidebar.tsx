@@ -55,12 +55,16 @@ export default function LogsSummarySidebar({ stats, isLoading }: LogsSummarySide
 
   return (
     <div className="sticky top-4 space-y-3">
-      <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-3">{t('logs.statistics')}</h3>
+      <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-3">
+        {t('logs.statistics')}
+      </h3>
 
       {/* Total Registros */}
       <div className="bg-white dark:bg-[#0D1117] border border-[#d0d7de] dark:border-[#30363d] rounded-xl shadow-sm p-4">
         <div className="flex items-center justify-between mb-3">
-          <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">{t('logs.totalRecords')}</p>
+          <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+            {t('logs.totalRecords')}
+          </p>
           <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
             <FiActivity className="w-4 h-4 text-blue-600 dark:text-blue-400" />
           </div>
@@ -83,7 +87,9 @@ export default function LogsSummarySidebar({ stats, isLoading }: LogsSummarySide
       {/* Usuarios Más Activos */}
       <div className="bg-white dark:bg-[#0D1117] border border-[#d0d7de] dark:border-[#30363d] rounded-xl shadow-sm p-4">
         <div className="flex items-center justify-between mb-3">
-          <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">{t('logs.activeUsers')}</p>
+          <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+            {t('logs.activeUsers')}
+          </p>
           <div className="p-2 bg-green-100 dark:bg-green-900/20 rounded-lg">
             <FiUsers className="w-4 h-4 text-green-600 dark:text-green-400" />
           </div>
@@ -116,7 +122,9 @@ export default function LogsSummarySidebar({ stats, isLoading }: LogsSummarySide
       {/* Actividad Reciente */}
       <div className="bg-white dark:bg-[#0D1117] border border-[#d0d7de] dark:border-[#30363d] rounded-xl shadow-sm p-4">
         <div className="flex items-center justify-between mb-3">
-          <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">{t('logs.recentActivity')}</p>
+          <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+            {t('logs.recentActivity')}
+          </p>
           <div className="p-2 bg-purple-100 dark:bg-purple-900/20 rounded-lg">
             <FiList className="w-4 h-4 text-purple-600 dark:text-purple-400" />
           </div>

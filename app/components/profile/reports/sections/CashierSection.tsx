@@ -237,6 +237,7 @@ export default function CashierSection() {
     } finally {
       setLoading(false)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [viewMode, voucherStatus, historyDate, dashboardDate])
 
   const formatCurrency = (amount: number) => {
@@ -568,7 +569,8 @@ export default function CashierSection() {
                   {dailyReport.summary.shifts_count}
                 </p>
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                  {t('dashboard.shifts')} ({t('dashboard.shiftsClosed', { count: dailyReport.summary.shifts_closed })})
+                  {t('dashboard.shifts')} (
+                  {t('dashboard.shiftsClosed', { count: dailyReport.summary.shifts_closed })})
                 </p>
               </div>
             </div>
@@ -814,7 +816,8 @@ export default function CashierSection() {
           <p>
             {voucherStatus !== 'all'
               ? t('empty.noVouchersWithStatus', {
-                  status: VOUCHER_STATUS_LABELS[voucherStatus as keyof typeof VOUCHER_STATUS_LABELS],
+                  status:
+                    VOUCHER_STATUS_LABELS[voucherStatus as keyof typeof VOUCHER_STATUS_LABELS],
                 })
               : t('empty.noVouchers')}
           </p>

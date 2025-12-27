@@ -3,8 +3,21 @@
 
 import { useState } from 'react'
 import { useTranslations } from 'next-intl'
-import { FiDollarSign, FiUsers, FiEdit2, FiSave, FiX, FiCheckCircle } from 'react-icons/fi'
-import { useShiftDetails, useUpdateShift, useDailyDetails } from '@/app/lib/cashier/queries'
+import {
+  FiDollarSign,
+  FiUsers,
+  FiEdit2,
+  FiSave,
+  FiX,
+  FiCheckCircle,
+  FiRotateCcw,
+} from 'react-icons/fi'
+import {
+  useShiftDetails,
+  useUpdateShift,
+  useDailyDetails,
+  useReopenShift,
+} from '@/app/lib/cashier/queries'
 import type {
   ShiftType,
   CashierShiftUser,
@@ -40,6 +53,7 @@ export default function ShiftCard({ shiftId, shiftType }: ShiftCardProps) {
   const [isEditingPayments, setIsEditingPayments] = useState(false)
   const [showCreateVoucherModal, setShowCreateVoucherModal] = useState(false)
   const justifyVoucherMutation = useJustifyVoucher()
+  const reopenShiftMutation = useReopenShift()
   const [showCloseShiftModal, setShowCloseShiftModal] = useState(false)
 
   console.log('🔍 [ShiftCard] Rendering with shiftId:', shiftId)
@@ -95,6 +109,17 @@ export default function ShiftCard({ shiftId, shiftType }: ShiftCardProps) {
     }
   }
 
+  const handleReopenShift = async () => {
+    try {
+      await reopenShiftMutation.mutateAsync({ shiftId, reason: 'Reabierto para corrección' })
+      toast.success(t('shiftCard.shiftReopened'))
+    } catch (error) {
+      console.error('Error reabriendo turno:', error)
+      const errorMessage = error instanceof Error ? error.message : t('error.reopenShift')
+      toast.error(errorMessage)
+    }
+  }
+
   if (isLoading) {
     return (
       <div className="text-center py-8 text-gray-500 dark:text-gray-400">
@@ -136,10 +161,23 @@ export default function ShiftCard({ shiftId, shiftType }: ShiftCardProps) {
           </div>
           <div className="flex items-center gap-2">
             {shift.status === 'closed' && (
-              <span className="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-medium rounded-full flex items-center gap-1">
-                <FiCheckCircle className="w-3 h-3" />
-                {t('summary.closed')}
-              </span>
+              <>
+                <span className="px-3 py-1 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 text-xs font-medium rounded-full flex items-center gap-1">
+                  <FiCheckCircle className="w-3 h-3" />
+                  {t('summary.closed')}
+                </span>
+                <button
+                  onClick={handleReopenShift}
+                  disabled={reopenShiftMutation.isPending}
+                  className="px-3 py-1 bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-400 text-xs font-medium rounded-full flex items-center gap-1 hover:bg-orange-200 dark:hover:bg-orange-900/50 transition-colors disabled:opacity-50"
+                  title={t('shiftCard.reopenShift')}
+                >
+                  <FiRotateCcw
+                    className={`w-3 h-3 ${reopenShiftMutation.isPending ? 'animate-spin' : ''}`}
+                  />
+                  {t('shiftCard.reopen')}
+                </button>
+              </>
             )}
             {shift.status === 'open' && (
               <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 text-xs font-medium rounded-full flex items-center gap-1">
@@ -176,7 +214,9 @@ export default function ShiftCard({ shiftId, shiftType }: ShiftCardProps) {
       {/* Grid de métricas */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="bg-white dark:bg-[#0d1117] border border-gray-200 dark:border-gray-800 rounded-lg p-4">
-          <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">{t('shiftCard.initialFund')}</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+            {t('shiftCard.initialFund')}
+          </p>
           <p className="text-xl font-bold text-gray-900 dark:text-white">
             {parseFloat(shift.initial_fund || '0').toFixed(2)}€
           </p>
@@ -229,14 +269,18 @@ export default function ShiftCard({ shiftId, shiftType }: ShiftCardProps) {
         </div>
 
         <div className="bg-white dark:bg-[#0d1117] border border-gray-200 dark:border-gray-800 rounded-lg p-4">
-          <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">{t('shiftCard.cashCounted')}</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+            {t('shiftCard.cashCounted')}
+          </p>
           <p className="text-xl font-bold text-blue-600 dark:text-blue-400">
             {parseFloat(shift.cash_counted || '0').toFixed(2)}€
           </p>
         </div>
 
         <div className="bg-white dark:bg-[#0d1117] border border-gray-200 dark:border-gray-800 rounded-lg p-4">
-          <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">{t('shiftCard.discrepancy')}</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mb-1">
+            {t('shiftCard.discrepancy')}
+          </p>
           <p
             className={`text-xl font-bold ${
               parseFloat(shift.difference || '0') === 0
@@ -407,7 +451,10 @@ export default function ShiftCard({ shiftId, shiftType }: ShiftCardProps) {
       <div className="bg-white dark:bg-[#0d1117] border border-gray-200 dark:border-gray-800 rounded-lg p-4">
         <div className="flex items-center justify-between mb-3">
           <h4 className="font-medium text-gray-900 dark:text-white flex items-center gap-2">
-            📝 {shiftType === 'closing' ? t('shiftCard.pendingDayVouchers') : t('shiftCard.shiftVouchers')}
+            📝{' '}
+            {shiftType === 'closing'
+              ? t('shiftCard.pendingDayVouchers')
+              : t('shiftCard.shiftVouchers')}
             <span className="text-xs text-gray-500 dark:text-gray-400">({vouchersCount})</span>
           </h4>
           {shift.status === 'open' &&

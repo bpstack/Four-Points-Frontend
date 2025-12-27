@@ -34,7 +34,11 @@ function RestaurantContent() {
   const searchParams = useSearchParams()
   const currentTab = (searchParams.get('tab') as TabType) || 'inventory'
 
-  const tabs: { id: TabType; labelKey: 'inventory' | 'orders' | 'stats'; icon: React.ElementType }[] = [
+  const tabs: {
+    id: TabType
+    labelKey: 'inventory' | 'orders' | 'stats'
+    icon: React.ElementType
+  }[] = [
     { id: 'inventory', labelKey: 'inventory', icon: FiPackage },
     { id: 'orders', labelKey: 'orders', icon: FiShoppingCart },
     { id: 'stats', labelKey: 'stats', icon: FiBarChart2 },

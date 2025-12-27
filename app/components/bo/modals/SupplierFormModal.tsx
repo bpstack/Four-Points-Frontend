@@ -430,7 +430,9 @@ export function SupplierFormModal({
                 ) : (
                   <>
                     <FiSave className="w-4 h-4" />
-                    {supplier ? t('modals.supplier.buttons.update') : t('modals.supplier.buttons.create')}
+                    {supplier
+                      ? t('modals.supplier.buttons.update')
+                      : t('modals.supplier.buttons.create')}
                   </>
                 )}
               </button>

@@ -5,7 +5,8 @@ import { useState, useEffect, useCallback } from 'react'
 import { FiAlertCircle } from 'react-icons/fi'
 import { useTranslations } from 'next-intl'
 import {
-  conciliationApi,
+  useUpdateConciliationForm,
+  useUpdateConciliationStatus,
   RECEPTION_REASONS_ORDERED,
   HOUSEKEEPING_REASONS_ORDERED,
   RECEPTION_CONFIG,
@@ -79,17 +80,23 @@ export default function ConciliationForm({
   const { user } = useAuth()
   const t = useTranslations('conciliation')
 
+  // React Query mutations
+  const updateFormMutation = useUpdateConciliationForm()
+  const updateStatusMutation = useUpdateConciliationStatus()
+
   const [receptionForm, setReceptionForm] = useState<Record<ReceptionReason, EntryForm>>(
     {} as Record<ReceptionReason, EntryForm>
   )
   const [housekeepingForm, setHousekeepingForm] = useState<Record<HousekeepingReason, EntryForm>>(
     {} as Record<HousekeepingReason, EntryForm>
   )
-  const [saving, setSaving] = useState(false)
   const [notes, setNotes] = useState<Note[]>([])
   const [newNoteText, setNewNoteText] = useState('')
   const [roomPopover, setRoomPopover] = useState<RoomPopoverState | null>(null)
   const [notePopover, setNotePopover] = useState<NotePopoverState | null>(null)
+
+  // Estado de saving derivado de mutations
+  const saving = updateFormMutation.isPending || updateStatusMutation.isPending
 
   // Inicializar formularios cuando cambia la conciliacion
   useEffect(() => {
@@ -320,7 +327,6 @@ export default function ConciliationForm({
   // Save handlers
   const handleSave = async () => {
     if (!conciliation) return
-    setSaving(true)
     try {
       const formData: ConciliationFormData = {
         reception: RECEPTION_REASONS_ORDERED.map((reason) => ({
@@ -337,13 +343,11 @@ export default function ConciliationForm({
         })),
         notes: JSON.stringify(notes),
       }
-      await conciliationApi.updateForm(conciliation.id!, formData)
+      await updateFormMutation.mutateAsync({ id: conciliation.id!, formData })
       onUpdate()
     } catch (error) {
       console.error('Error saving:', error)
       alert(t('alerts.errorSaving'))
-    } finally {
-      setSaving(false)
     }
   }
 
@@ -351,7 +355,7 @@ export default function ConciliationForm({
     if (!conciliation) return
     await handleSave()
     try {
-      await conciliationApi.updateStatus(conciliation.id!, 'confirmed')
+      await updateStatusMutation.mutateAsync({ id: conciliation.id!, status: 'confirmed' })
       onUpdate()
     } catch (error) {
       console.error('Error confirming:', error)
@@ -362,7 +366,7 @@ export default function ConciliationForm({
   const handleReopen = async () => {
     if (!conciliation) return
     try {
-      await conciliationApi.updateStatus(conciliation.id!, 'draft')
+      await updateStatusMutation.mutateAsync({ id: conciliation.id!, status: 'draft' })
       onUpdate()
     } catch (error) {
       console.error('Error reopening:', error)
@@ -374,7 +378,7 @@ export default function ConciliationForm({
     if (!conciliation) return
     if (!confirm(t('alerts.confirmClose'))) return
     try {
-      await conciliationApi.updateStatus(conciliation.id!, 'closed')
+      await updateStatusMutation.mutateAsync({ id: conciliation.id!, status: 'closed' })
       onUpdate()
     } catch (error) {
       console.error('Error closing:', error)

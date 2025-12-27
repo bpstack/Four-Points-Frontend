@@ -153,7 +153,10 @@ export default function BookingWizard({
   // Variant modal - using SlidePanel (same as CreateGroupPanel, CreateReportPanel)
   if (variant === 'modal') {
     const subtitle = preSelectedSpot
-      ? t('wizard.spotSubtitle', { level: preSelectedSpot.level_code.replace('-', ''), spot: preSelectedSpot.spot_number })
+      ? t('wizard.spotSubtitle', {
+          level: preSelectedSpot.level_code.replace('-', ''),
+          spot: preSelectedSpot.spot_number,
+        })
       : t('wizard.subtitle')
 
     // Determine footer buttons based on current step

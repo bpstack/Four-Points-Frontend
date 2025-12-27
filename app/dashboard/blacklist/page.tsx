@@ -293,9 +293,7 @@ export default function BlacklistPage() {
                             colSpan={7}
                             className="px-3 py-8 text-center text-xs text-gray-500 dark:text-gray-400"
                           >
-                            {searchTerm
-                              ? t('table.noResultsSearch')
-                              : t('table.noEntries')}
+                            {searchTerm ? t('table.noResultsSearch') : t('table.noEntries')}
                           </td>
                         </tr>
                       ) : (
@@ -360,7 +358,9 @@ export default function BlacklistPage() {
                                   variant={entry.status === 'ACTIVE' ? 'success' : 'default'}
                                   size="sm"
                                 >
-                                  {entry.status === 'ACTIVE' ? t('status.active') : t('status.deleted')}
+                                  {entry.status === 'ACTIVE'
+                                    ? t('status.active')
+                                    : t('status.deleted')}
                                 </Badge>
                               </td>
                               <td className="px-3 py-2 text-gray-700 dark:text-gray-300">
@@ -396,9 +396,7 @@ export default function BlacklistPage() {
                 {entries.length === 0 ? (
                   <div className="bg-white dark:bg-[#151b23] rounded-md border border-gray-200 dark:border-gray-800 p-6 text-center">
                     <p className="text-xs text-gray-500 dark:text-gray-400">
-                      {searchTerm
-                        ? t('table.noResultsSearch')
-                        : t('table.noEntries')}
+                      {searchTerm ? t('table.noResultsSearch') : t('table.noEntries')}
                     </p>
                   </div>
                 ) : (

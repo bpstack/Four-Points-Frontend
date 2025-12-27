@@ -1,5 +1,15 @@
 {
   "title": "Grupos",
+  "error": {
+    "title": "Grupos",
+    "subtitle": "Ha ocurrido un error al cargar los grupos",
+    "errorTitle": "Error al cargar",
+    "errorDescription": "No se pudieron cargar los datos de grupos. Por favor, intenta de nuevo.",
+    "errorDetails": "Detalles técnicos",
+    "retry": "Reintentar",
+    "backToDashboard": "Volver al Dashboard",
+    "helpText": "Si el problema persiste, contacta al soporte técnico o intenta más tarde."
+  },
   "subtitle": "Gestiona los grupos de hotel",
   "loading": "Cargando grupos...",
   "loadingGroup": "Cargando grupo...",

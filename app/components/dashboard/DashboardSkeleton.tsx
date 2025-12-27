@@ -121,7 +121,7 @@ function HeaderSkeleton() {
 
 export function DashboardSkeleton() {
   const t = useTranslations('common.skeleton')
-  
+
   return (
     <div className="flex h-screen bg-white dark:bg-[#010409] antialiased">
       {/* Sidebar */}

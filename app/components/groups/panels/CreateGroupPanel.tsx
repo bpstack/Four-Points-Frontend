@@ -29,7 +29,7 @@ interface CreateGroupPanelProps {
 
 export function CreateGroupPanel({ isOpen, onClose }: CreateGroupPanelProps) {
   const t = useTranslations('groups')
-  
+
   // Calendar state
   const [showArrivalCal, setShowArrivalCal] = useState(false)
   const [showDepartureCal, setShowDepartureCal] = useState(false)
@@ -168,7 +168,11 @@ export function CreateGroupPanel({ isOpen, onClose }: CreateGroupPanelProps) {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {/* Arrival Date */}
           <div className="relative" ref={arrivalCalRef}>
-            <FormField label={t('createPanel.arrivalDate')} required error={errors.arrival_date?.message}>
+            <FormField
+              label={t('createPanel.arrivalDate')}
+              required
+              error={errors.arrival_date?.message}
+            >
               <div className="relative">
                 <input
                   type="text"
@@ -197,7 +201,11 @@ export function CreateGroupPanel({ isOpen, onClose }: CreateGroupPanelProps) {
 
           {/* Departure Date */}
           <div className="relative" ref={departureCalRef}>
-            <FormField label={t('createPanel.departureDate')} required error={errors.departure_date?.message}>
+            <FormField
+              label={t('createPanel.departureDate')}
+              required
+              error={errors.departure_date?.message}
+            >
               <div className="relative">
                 <input
                   type="text"

@@ -108,7 +108,9 @@ export function ImportantLogbooksCard({
           <FiAlertCircle className="w-4 h-4 text-blue-600 dark:text-blue-400" />
           <span className="text-sm text-blue-700 dark:text-blue-300">
             <strong className="font-bold">{entries.length}</strong>{' '}
-            {entries.length !== 1 ? t('entriesCountPlural', { count: '' }).trim() : t('entriesCount', { count: '' }).trim()}{' '}
+            {entries.length !== 1
+              ? t('entriesCountPlural', { count: '' }).trim()
+              : t('entriesCount', { count: '' }).trim()}{' '}
             {periodLabel}
           </span>
         </div>

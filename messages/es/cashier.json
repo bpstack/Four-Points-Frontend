@@ -1,4 +1,22 @@
 {
+  "dashboard": {
+    "title": "Resumen de Caja",
+    "pendingVouchersAlert": "Vales pendientes de justificar",
+    "vouchersPending": "vales pendientes",
+    "viewVouchers": "Ver vales",
+    "dailyCashier": "Caja Diaria",
+    "dailyCashierDesc": "Gestionar turnos y conteo de efectivo",
+    "reports": "Reportes",
+    "reportsDesc": "Estadisticas y analisis mensual",
+    "logs": "Historial",
+    "logsDesc": "Registro de cambios y auditoria",
+    "vouchersSummary": "Resumen de Vales",
+    "totalJustified": "Total Justificado",
+    "pendingAmount": "Monto Pendiente",
+    "dayNotInitialized": "Dia no inicializado",
+    "dayNotInitializedDesc": "El dia de hoy aun no ha sido inicializado. Haz clic para crear los turnos.",
+    "initializeDay": "Inicializar"
+  },
   "page": {
     "loading": "Cargando datos del dia...",
     "loadingShift": "Cargando turno...",
@@ -59,7 +77,10 @@
     "newVoucher": "+ Nuevo Vale",
     "closeShift": "Cerrar Turno",
     "incomeUpdated": "Ingresos actualizados correctamente",
-    "voucherJustified": "Vale justificado correctamente"
+    "voucherJustified": "Vale justificado correctamente",
+    "reopen": "Reabrir",
+    "reopenShift": "Reabrir turno para corregir datos",
+    "shiftReopened": "Turno reabierto correctamente"
   },
   "calendar": {
     "today": "Hoy",
@@ -122,6 +143,7 @@
     "cashCountMissing": "Falta conteo de efectivo",
     "electronicPaymentsRegistered": "Pagos electronicos registrados",
     "electronicPaymentsMissing": "Faltan pagos electronicos",
+    "noElectronicPayments": "Sin pagos electronicos (solo efectivo)",
     "pendingVouchers": "vale(s) pendiente(s)",
     "canJustifyAfterClose": "Se pueden justificar despues del cierre",
     "financialSummary": "Resumen Financiero",
@@ -204,7 +226,14 @@
     "initializeButton": "Inicializar Dia"
   },
   "error": {
-    "title": "Error al cargar datos",
+    "title": "Caja",
+    "subtitle": "Ha ocurrido un error",
+    "errorTitle": "Error al cargar",
+    "errorDescription": "No se pudieron cargar los datos de caja. Por favor, intenta de nuevo.",
+    "errorDetails": "Detalles tecnicos",
+    "retry": "Reintentar",
+    "backToDashboard": "Volver al Dashboard",
+    "helpText": "Si el problema persiste, contacta al soporte tecnico o intenta mas tarde.",
     "loadingReport": "Error al cargar reporte",
     "loadingVouchers": "Error al cargar historico de vales",
     "userNotAuthenticated": "Usuario no autenticado",
@@ -217,7 +246,8 @@
     "closeShift": "Error al cerrar turno",
     "updateIncome": "Error al actualizar ingresos",
     "justifyVoucher": "Error al justificar vale",
-    "reopenDay": "Error al reabrir dia"
+    "reopenDay": "Error al reabrir dia",
+    "reopenShift": "Error al reabrir turno"
   },
   "logs": {
     "pageTitle": "Historial y Auditoria",

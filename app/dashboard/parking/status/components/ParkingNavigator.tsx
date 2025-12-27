@@ -165,7 +165,9 @@ export default function ParkingNavigator() {
                         : 'text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800'
                     }`}
                   >
-                    {level === 'all' ? t('statusPageNav.allLevels') : t('statusPageNav.level', { level: level.replace('-', '') })}
+                    {level === 'all'
+                      ? t('statusPageNav.allLevels')
+                      : t('statusPageNav.level', { level: level.replace('-', '') })}
                   </button>
                 ))}
               </div>
@@ -233,7 +235,9 @@ export default function ParkingNavigator() {
                       : 'text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700'
                   }`}
                 >
-                  {level === 'all' ? t('statusPageNav.allLevelsMobile') : t('statusPageNav.level', { level: level.replace('-', '') })}
+                  {level === 'all'
+                    ? t('statusPageNav.allLevelsMobile')
+                    : t('statusPageNav.level', { level: level.replace('-', '') })}
                 </button>
               ))}
             </div>

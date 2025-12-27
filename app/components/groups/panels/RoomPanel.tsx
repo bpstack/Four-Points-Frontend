@@ -169,7 +169,11 @@ export function RoomPanel({ isOpen, onClose, room, groupId }: RoomPanelProps) {
         </FormField>
 
         {/* Guests per Room */}
-        <FormField label={t('roomPanel.guestsPerRoom')} required error={errors.guests_per_room?.message}>
+        <FormField
+          label={t('roomPanel.guestsPerRoom')}
+          required
+          error={errors.guests_per_room?.message}
+        >
           <input
             {...register('guests_per_room', { valueAsNumber: true })}
             type="number"
@@ -188,7 +192,10 @@ export function RoomPanel({ isOpen, onClose, room, groupId }: RoomPanelProps) {
               <span className="text-lg font-bold">{totalGuests}</span>
             </div>
             <p className="text-xs mt-1 opacity-80">
-              {quantity} {quantity !== 1 ? t('roomPanel.roomsCalcPlural') : t('roomPanel.roomsCalc')} × {guestsPerRoom} {guestsPerRoom !== 1 ? t('roomPanel.personsCalc') : t('roomPanel.personCalc')}
+              {quantity}{' '}
+              {quantity !== 1 ? t('roomPanel.roomsCalcPlural') : t('roomPanel.roomsCalc')} ×{' '}
+              {guestsPerRoom}{' '}
+              {guestsPerRoom !== 1 ? t('roomPanel.personsCalc') : t('roomPanel.personCalc')}
             </p>
           </Alert>
         )}

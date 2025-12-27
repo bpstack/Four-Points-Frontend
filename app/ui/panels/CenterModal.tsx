@@ -278,7 +278,7 @@ export function CenterModalFooterButtons({
   const resolvedCancelText = cancelText ?? t('actions.cancel')
   const resolvedSubmitText = submitText ?? t('actions.confirm')
   const resolvedBackText = backText ?? t('actions.back')
-  
+
   const variantClasses = {
     primary: 'bg-blue-600 hover:bg-blue-700 focus:ring-blue-500',
     success: 'bg-green-600 hover:bg-green-700 focus:ring-green-500',

@@ -330,7 +330,11 @@ export function EditBlacklistPanel({ isOpen, onClose, entry, onSuccess }: EditBl
             </select>
           </FormField>
 
-          <FormField label={t('form.documentNumber')} required error={errors.document_number?.message}>
+          <FormField
+            label={t('form.documentNumber')}
+            required
+            error={errors.document_number?.message}
+          >
             <input
               {...register('document_number')}
               type="text"
@@ -388,7 +392,11 @@ export function EditBlacklistPanel({ isOpen, onClose, entry, onSuccess }: EditBl
 
           {/* Check-out Date */}
           <div className="relative calendar-container">
-            <FormField label={t('form.checkOutDate')} required error={errors.check_out_date?.message}>
+            <FormField
+              label={t('form.checkOutDate')}
+              required
+              error={errors.check_out_date?.message}
+            >
               <div className="relative">
                 <Controller
                   name="check_out_date"

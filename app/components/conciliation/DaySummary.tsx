@@ -1,34 +1,10 @@
 // app/components/conciliation/DaySummary.tsx
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useMemo } from 'react'
 import { FiCalendar } from 'react-icons/fi'
 import { useTranslations } from 'next-intl'
-import { conciliationApi, type ConciliationDetail } from '@/app/lib/conciliation'
-
-interface MonthlySummaryItem {
-  reason: string
-  label: string
-  total: number
-}
-
-interface MonthlySummary {
-  period: {
-    start: string
-    end: string
-    total_days: number
-    conciliations_count: number
-    missing_days: number
-  }
-  totals: {
-    total_reception: number
-    total_housekeeping: number
-    difference: number
-  }
-  reception_summary: MonthlySummaryItem[]
-  housekeeping_summary: MonthlySummaryItem[]
-  validation_errors: string[]
-}
+import { useMonthlySummary, type ConciliationDetail } from '@/app/lib/conciliation'
 
 interface DaySummaryProps {
   conciliation: ConciliationDetail
@@ -61,35 +37,17 @@ function getPreviousDay(dateString: string): number {
 
 export default function DaySummary({ conciliation, baseRooms }: DaySummaryProps) {
   const t = useTranslations('conciliation')
-  const [monthlySummary, setMonthlySummary] = useState<MonthlySummary | null>(null)
-  const [loadingMonthlySummary, setLoadingMonthlySummary] = useState(false)
 
   const showMonthlySummary = isLastDayOfMonth(conciliation.date)
 
-  // Cargar resumen mensual
-  const loadMonthlySummary = useCallback(async () => {
+  // Extraer año y mes de la fecha
+  const { year, month } = useMemo(() => {
     const date = new Date(conciliation.date)
-    const year = date.getFullYear()
-    const month = date.getMonth() + 1
-
-    setLoadingMonthlySummary(true)
-    try {
-      const data = await conciliationApi.getMonthlySummary(year, month)
-      setMonthlySummary(data)
-    } catch (error) {
-      console.error('Error loading monthly summary:', error)
-    } finally {
-      setLoadingMonthlySummary(false)
-    }
+    return { year: date.getFullYear(), month: date.getMonth() + 1 }
   }, [conciliation.date])
 
-  useEffect(() => {
-    if (showMonthlySummary) {
-      loadMonthlySummary()
-    } else {
-      setMonthlySummary(null)
-    }
-  }, [showMonthlySummary, loadMonthlySummary])
+  // React Query: cargar resumen mensual solo si es último día del mes
+  const { data: monthlySummary, isLoading: loadingMonthlySummary } = useMonthlySummary(year, month)
 
   // Componente de firma
   const SignatureSection = () => (
@@ -106,7 +64,9 @@ export default function DaySummary({ conciliation, baseRooms }: DaySummaryProps)
     <div className="space-y-3">
       <div className="flex items-center gap-2 text-sm">
         <FiCalendar className="w-4 h-4 text-gray-500" />
-        <span className="font-medium text-gray-700 dark:text-gray-300">{t('daySummary.date')}:</span>
+        <span className="font-medium text-gray-700 dark:text-gray-300">
+          {t('daySummary.date')}:
+        </span>
         <span className="text-gray-900 dark:text-gray-100">{formatDate(conciliation.date)}</span>
       </div>
 

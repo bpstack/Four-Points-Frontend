@@ -255,7 +255,11 @@ export function PaymentPanel({
 
       <SlidePanelSection>
         {/* Payment Name */}
-        <FormField label={t('paymentPanel.paymentName')} required error={errors.payment_name?.message}>
+        <FormField
+          label={t('paymentPanel.paymentName')}
+          required
+          error={errors.payment_name?.message}
+        >
           <input
             {...register('payment_name')}
             type="text"

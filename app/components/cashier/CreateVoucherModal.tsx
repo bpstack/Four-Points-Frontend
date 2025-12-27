@@ -108,7 +108,8 @@ export default function CreateVoucherModal({
             <div className="text-sm text-yellow-700 dark:text-yellow-300">
               <p className="font-medium">{t('voucher.limitAlmostReached')}</p>
               <p className="text-xs mt-1">
-                {t('voucher.youHave')} {currentVouchersCount} {t('voucher.of')} 5 {t('voucher.vouchers')}. {t('voucher.thisWillBe')}{' '}
+                {t('voucher.youHave')} {currentVouchersCount} {t('voucher.of')} 5{' '}
+                {t('voucher.vouchers')}. {t('voucher.thisWillBe')}{' '}
                 {currentVouchersCount === 4 ? t('voucher.last') : t('voucher.secondToLast')}.
               </p>
             </div>
@@ -120,7 +121,8 @@ export default function CreateVoucherModal({
           {/* Monto */}
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              {t('voucher.voucherAmount')} <span className="text-red-500">{t('common.required')}</span>
+              {t('voucher.voucherAmount')}{' '}
+              <span className="text-red-500">{t('common.required')}</span>
             </label>
             <div className="relative">
               <input

@@ -259,7 +259,8 @@ function BlacklistCard({ entry, searchTerm, t }: BlacklistCardProps) {
       {/* Footer */}
       <div className="flex items-center justify-between pt-3 border-t border-gray-200 dark:border-gray-700">
         <div className="text-xs text-gray-500 dark:text-gray-400">
-          Por: <span className="font-medium">{entry.created_by_username || t('detail.unknown')}</span>
+          Por:{' '}
+          <span className="font-medium">{entry.created_by_username || t('detail.unknown')}</span>
         </div>
         <div className="text-xs text-gray-500 dark:text-gray-400">
           {formatDate(entry.created_at)}

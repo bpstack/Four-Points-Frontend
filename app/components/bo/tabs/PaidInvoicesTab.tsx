@@ -302,7 +302,7 @@ export function PaidInvoicesTab({
   onPageChange,
 }: PaidInvoicesTabProps) {
   const t = useTranslations('backoffice')
-  
+
   // Helper function to get month name from translations
   const getMonthName = (month: number): string => {
     const monthKeys = [
@@ -321,7 +321,7 @@ export function PaidInvoicesTab({
     ]
     return t(`months.${monthKeys[month - 1]}`) || ''
   }
-  
+
   // Use mock data or real data based on flag
   const initialInvoices = USE_MOCK_DATA ? MOCK_INVOICES : realInvoices
   const categories = USE_MOCK_DATA ? MOCK_CATEGORIES : realCategories
@@ -705,20 +705,26 @@ export function PaidInvoicesTab({
       <div className="grid grid-cols-3 gap-2 sm:gap-3">
         <div className="bg-white dark:bg-[#151b23] rounded-md border border-gray-200 dark:border-gray-800 p-3">
           <p className="text-[10px] text-gray-600 dark:text-gray-400 font-medium">
-            {dateFilter === 'specific_month' ? t('paid.summary.totalMonth', { month: selectedMonthLabel }) : t('paid.summary.totalFiltered')}
+            {dateFilter === 'specific_month'
+              ? t('paid.summary.totalMonth', { month: selectedMonthLabel })
+              : t('paid.summary.totalFiltered')}
           </p>
           <p className="text-sm sm:text-base font-bold text-green-600 dark:text-green-400 mt-0.5">
             {formatCurrency(totalMonthFiltered)}
           </p>
         </div>
         <div className="bg-white dark:bg-[#151b23] rounded-md border border-gray-200 dark:border-gray-800 p-3">
-          <p className="text-[10px] text-gray-600 dark:text-gray-400 font-medium">{t('paid.summary.directDebits')}</p>
+          <p className="text-[10px] text-gray-600 dark:text-gray-400 font-medium">
+            {t('paid.summary.directDebits')}
+          </p>
           <p className="text-sm sm:text-base font-bold text-purple-600 dark:text-purple-400 mt-0.5">
             {formatCurrency(byDirectDebit)}
           </p>
         </div>
         <div className="bg-white dark:bg-[#151b23] rounded-md border border-gray-200 dark:border-gray-800 p-3">
-          <p className="text-[10px] text-gray-600 dark:text-gray-400 font-medium">{t('paid.summary.transfers')}</p>
+          <p className="text-[10px] text-gray-600 dark:text-gray-400 font-medium">
+            {t('paid.summary.transfers')}
+          </p>
           <p className="text-sm sm:text-base font-bold text-blue-600 dark:text-blue-400 mt-0.5">
             {formatCurrency(byTransfer)}
           </p>
@@ -927,7 +933,9 @@ export function PaidInvoicesTab({
                       </td>
                       <td className="px-3 py-2 text-center">
                         <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-medium bg-purple-50 text-purple-700 dark:bg-purple-900/20 dark:text-purple-400">
-                          {invoice.payment_method === 'transfer' ? t('filters.transfer') : t('filters.directDebit')}
+                          {invoice.payment_method === 'transfer'
+                            ? t('filters.transfer')
+                            : t('filters.directDebit')}
                         </span>
                       </td>
                       <td className="px-3 py-2">
@@ -996,9 +1004,7 @@ export function PaidInvoicesTab({
       <div className="lg:hidden space-y-2">
         {filteredInvoices.length === 0 ? (
           <div className="bg-white dark:bg-[#151b23] rounded-md border border-gray-200 dark:border-gray-800 p-6 text-center">
-            <p className="text-xs text-gray-500 dark:text-gray-400">
-              {t('empty.noPaidInvoices')}
-            </p>
+            <p className="text-xs text-gray-500 dark:text-gray-400">{t('empty.noPaidInvoices')}</p>
           </div>
         ) : (
           filteredInvoices.map((invoice) => {
@@ -1024,13 +1030,17 @@ export function PaidInvoicesTab({
 
                 <div className="grid grid-cols-2 gap-2 text-[10px] mb-2">
                   <div>
-                    <span className="text-gray-500 dark:text-gray-500">{t('table.invoiceDate')}:</span>
+                    <span className="text-gray-500 dark:text-gray-500">
+                      {t('table.invoiceDate')}:
+                    </span>
                     <span className="ml-1 text-gray-900 dark:text-gray-100">
                       {formatDate(invoice.invoice_date)}
                     </span>
                   </div>
                   <div>
-                    <span className="text-gray-500 dark:text-gray-500">{t('table.paymentDate')}:</span>
+                    <span className="text-gray-500 dark:text-gray-500">
+                      {t('table.paymentDate')}:
+                    </span>
                     <span className="ml-1 text-gray-900 dark:text-gray-100">
                       {formatDate(invoice.paid_date)}
                     </span>
@@ -1150,14 +1160,16 @@ export function PaidInvoicesTab({
                 {revertPreview && (
                   <div className="bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800 rounded-md p-4 mb-4">
                     <p className="text-sm text-orange-800 dark:text-orange-300 mb-2">
-                      <strong>{t('modals.revertBatchPayment.month')}</strong> {getMonthName(revertPreview.month)}{' '}
-                      {revertPreview.year}
+                      <strong>{t('modals.revertBatchPayment.month')}</strong>{' '}
+                      {getMonthName(revertPreview.month)} {revertPreview.year}
                     </p>
                     <p className="text-sm text-orange-800 dark:text-orange-300 mb-2">
-                      <strong>{t('modals.revertBatchPayment.paidInvoices')}</strong> {revertPreview.count}
+                      <strong>{t('modals.revertBatchPayment.paidInvoices')}</strong>{' '}
+                      {revertPreview.count}
                     </p>
                     <p className="text-sm text-orange-800 dark:text-orange-300">
-                      <strong>{t('modals.revertBatchPayment.totalAmount')}</strong> {formatCurrency(revertPreview.total_amount)}
+                      <strong>{t('modals.revertBatchPayment.totalAmount')}</strong>{' '}
+                      {formatCurrency(revertPreview.total_amount)}
                     </p>
                   </div>
                 )}
@@ -1172,7 +1184,9 @@ export function PaidInvoicesTab({
                   revertPreview && (
                     <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-md p-3 mb-4">
                       <p className="text-xs text-blue-800 dark:text-blue-300">
-                        {t('modals.revertBatchPayment.description', { month: getMonthName(revertPreview.month) })}
+                        {t('modals.revertBatchPayment.description', {
+                          month: getMonthName(revertPreview.month),
+                        })}
                       </p>
                     </div>
                   )
@@ -1199,7 +1213,9 @@ export function PaidInvoicesTab({
                   >
                     {isReverting
                       ? t('actions.processing')
-                      : t('modals.revertBatchPayment.confirmButton', { count: revertPreview?.count || 0 })}
+                      : t('modals.revertBatchPayment.confirmButton', {
+                          count: revertPreview?.count || 0,
+                        })}
                   </button>
                 </div>
               </div>

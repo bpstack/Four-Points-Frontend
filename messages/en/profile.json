@@ -1,4 +1,14 @@
 {
+  "error": {
+    "title": "Profile",
+    "subtitle": "An error occurred while loading the profile",
+    "errorTitle": "Failed to load",
+    "errorDescription": "Could not load profile data. Please try again.",
+    "errorDetails": "Technical details",
+    "retry": "Retry",
+    "backToDashboard": "Back to Dashboard",
+    "helpText": "If the problem persists, contact technical support or try again later."
+  },
   "page": {
     "unableToLoad": "Unable to load profile",
     "selectOption": "Select an option",

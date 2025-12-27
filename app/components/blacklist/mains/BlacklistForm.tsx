@@ -167,9 +167,7 @@ export function BlacklistForm({ mode, initialData, onSuccess }: BlacklistFormPro
       toast.dismiss()
 
       if (result.success) {
-        toast.success(
-          mode === 'create' ? t('messages.createSuccess') : t('messages.updateSuccess')
-        )
+        toast.success(mode === 'create' ? t('messages.createSuccess') : t('messages.updateSuccess'))
 
         if (onSuccess) {
           onSuccess()
@@ -344,11 +342,7 @@ export function BlacklistForm({ mode, initialData, onSuccess }: BlacklistFormPro
               value={field.value}
               onChange={field.onChange}
               error={errors.images?.message}
-              helperText={
-                mode === 'create'
-                  ? t('form.uploadHint')
-                  : t('form.uploadHintEdit')
-              }
+              helperText={mode === 'create' ? t('form.uploadHint') : t('form.uploadHintEdit')}
               maxFiles={5}
               maxSizeMB={5}
               required={mode === 'create'}

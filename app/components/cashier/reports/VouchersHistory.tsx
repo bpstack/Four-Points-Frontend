@@ -126,7 +126,9 @@ export default function VouchersHistory({ year, month }: VouchersHistoryProps) {
       {/* Estadísticas */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div className="bg-white dark:bg-[#0d1117] border border-gray-200 dark:border-gray-800 rounded-lg p-4">
-          <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">{t('vouchersHistory.totalVouchers')}</p>
+          <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+            {t('vouchersHistory.totalVouchers')}
+          </p>
           <p className="text-2xl font-bold text-gray-900 dark:text-white">{totals.all}</p>
           <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
             {totals.totalAmount.toFixed(2)}€
@@ -134,7 +136,9 @@ export default function VouchersHistory({ year, month }: VouchersHistoryProps) {
         </div>
 
         <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4">
-          <p className="text-sm text-yellow-700 dark:text-yellow-300 mb-1">{t('vouchersHistory.pending')}</p>
+          <p className="text-sm text-yellow-700 dark:text-yellow-300 mb-1">
+            {t('vouchersHistory.pending')}
+          </p>
           <p className="text-2xl font-bold text-yellow-900 dark:text-yellow-100">
             {totals.pending}
           </p>
@@ -144,14 +148,18 @@ export default function VouchersHistory({ year, month }: VouchersHistoryProps) {
         </div>
 
         <div className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg p-4">
-          <p className="text-sm text-green-700 dark:text-green-300 mb-1">{t('vouchersHistory.justified')}</p>
+          <p className="text-sm text-green-700 dark:text-green-300 mb-1">
+            {t('vouchersHistory.justified')}
+          </p>
           <p className="text-2xl font-bold text-green-900 dark:text-green-100">
             {totals.justified}
           </p>
         </div>
 
         <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
-          <p className="text-sm text-red-700 dark:text-red-300 mb-1">{t('vouchersHistory.cancelled')}</p>
+          <p className="text-sm text-red-700 dark:text-red-300 mb-1">
+            {t('vouchersHistory.cancelled')}
+          </p>
           <p className="text-2xl font-bold text-red-900 dark:text-red-100">{totals.cancelled}</p>
         </div>
       </div>

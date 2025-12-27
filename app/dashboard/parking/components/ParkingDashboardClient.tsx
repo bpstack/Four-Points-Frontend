@@ -231,7 +231,11 @@ export default function ParkingDashboardClient({
                       : 'text-[#24292f] dark:text-[#c9d1d9] hover:bg-[#f6f8fa] dark:hover:bg-[#21262d]'
                   }`}
                 >
-                  {period === 'today' ? t('periods.today') : period === 'week' ? t('periods.week') : t('periods.month')}
+                  {period === 'today'
+                    ? t('periods.today')
+                    : period === 'week'
+                      ? t('periods.week')
+                      : t('periods.month')}
                 </button>
               ))}
             </div>
@@ -459,7 +463,11 @@ export default function ParkingDashboardClient({
                   <div className="text-[10px] text-[#57606a] dark:text-[#8b949e] font-medium">
                     {selectedPeriod === 'today'
                       ? t('control.spotsAvailable', { count: stats.available_spots })
-                      : t('control.dailyAvg', { count: Math.round(stats.total_bookings / (selectedPeriod === 'week' ? 7 : 30)) })}
+                      : t('control.dailyAvg', {
+                          count: Math.round(
+                            stats.total_bookings / (selectedPeriod === 'week' ? 7 : 30)
+                          ),
+                        })}
                   </div>
                 </Link>
 
@@ -506,9 +514,10 @@ export default function ParkingDashboardClient({
                   </div>
                   {selectedPeriod !== 'today' && (
                     <div className="text-[9px] text-[#57606a] dark:text-[#8b949e] mt-1.5 font-medium">
-                      {t('control.maxCapacity', { 
-                        period: selectedPeriod === 'week' ? t('control.weekly') : t('control.monthly'),
-                        count: stats.total_spots * (selectedPeriod === 'week' ? 7 : 30)
+                      {t('control.maxCapacity', {
+                        period:
+                          selectedPeriod === 'week' ? t('control.weekly') : t('control.monthly'),
+                        count: stats.total_spots * (selectedPeriod === 'week' ? 7 : 30),
                       })}
                     </div>
                   )}

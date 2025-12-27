@@ -71,23 +71,31 @@ export function CheckOutModal({ booking, onClose, onConfirm }: CheckOutModalProp
           <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
             <div className="flex items-center gap-2 mb-3">
               <FiDollarSign className="w-5 h-5 text-blue-600 dark:text-blue-400" />
-              <span className="font-medium text-blue-900 dark:text-blue-100">{t('checkOutModal.paymentSummary')}</span>
+              <span className="font-medium text-blue-900 dark:text-blue-100">
+                {t('checkOutModal.paymentSummary')}
+              </span>
             </div>
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
-                <span className="text-blue-700 dark:text-blue-300">{t('checkOutModal.totalBooking')}</span>
+                <span className="text-blue-700 dark:text-blue-300">
+                  {t('checkOutModal.totalBooking')}
+                </span>
                 <span className="font-semibold text-blue-900 dark:text-blue-100">
                   {booking.payment.total_amount.toFixed(2)}
                 </span>
               </div>
               <div className="flex justify-between">
-                <span className="text-blue-700 dark:text-blue-300">{t('checkOutModal.alreadyPaid')}</span>
+                <span className="text-blue-700 dark:text-blue-300">
+                  {t('checkOutModal.alreadyPaid')}
+                </span>
                 <span className="text-blue-900 dark:text-blue-100">
                   {booking.payment.paid_amount.toFixed(2)}
                 </span>
               </div>
               <div className="flex justify-between pt-2 border-t border-blue-200 dark:border-blue-700">
-                <span className="font-medium text-blue-700 dark:text-blue-300">{t('checkOutModal.pending')}</span>
+                <span className="font-medium text-blue-700 dark:text-blue-300">
+                  {t('checkOutModal.pending')}
+                </span>
                 <span className="font-bold text-blue-900 dark:text-blue-100">
                   {booking.payment.pending_amount.toFixed(2)}
                 </span>

@@ -310,12 +310,18 @@ export function RoomingCard({ status, groupId }: RoomingCardProps) {
           <div className="space-y-1 text-xs text-gray-600 dark:text-gray-400">
             {status.rooming_requested_date && (
               <p>
-                {t('statusCards.requested')} {new Date(status.rooming_requested_date).toLocaleDateString(locale === 'es' ? 'es-ES' : 'en-US')}
+                {t('statusCards.requested')}{' '}
+                {new Date(status.rooming_requested_date).toLocaleDateString(
+                  locale === 'es' ? 'es-ES' : 'en-US'
+                )}
               </p>
             )}
             {status.rooming_received_date && (
               <p>
-                {t('statusCards.received')} {new Date(status.rooming_received_date).toLocaleDateString(locale === 'es' ? 'es-ES' : 'en-US')}
+                {t('statusCards.received')}{' '}
+                {new Date(status.rooming_received_date).toLocaleDateString(
+                  locale === 'es' ? 'es-ES' : 'en-US'
+                )}
               </p>
             )}
           </div>

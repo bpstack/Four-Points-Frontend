@@ -1,5 +1,15 @@
 {
   "title": "Mantenimiento",
+  "error": {
+    "title": "Mantenimiento",
+    "subtitle": "Ha ocurrido un error al cargar mantenimiento",
+    "errorTitle": "Error al cargar",
+    "errorDescription": "No se pudieron cargar los reportes de mantenimiento. Por favor, intenta de nuevo.",
+    "errorDetails": "Detalles técnicos",
+    "retry": "Reintentar",
+    "backToDashboard": "Volver al Dashboard",
+    "helpText": "Si el problema persiste, contacta al soporte técnico o intenta más tarde."
+  },
   "subtitle": "Gestión de reportes de mantenimiento",
   "newReport": "Nuevo Reporte",
   "loading": "Cargando reportes...",

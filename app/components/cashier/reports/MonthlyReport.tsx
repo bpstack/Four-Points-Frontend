@@ -185,7 +185,9 @@ export default function MonthlyReport({ year, month }: MonthlyReportProps) {
       {/* Tabla de Días */}
       <div className="bg-white dark:bg-[#151b23] border border-gray-200 dark:border-gray-800 rounded-md overflow-hidden">
         <div className="flex items-center justify-between px-3 py-2 border-b border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-[#0d1117]">
-          <h3 className="text-sm font-semibold text-gray-900 dark:text-white">{t('reports.dailyBreakdown')}</h3>
+          <h3 className="text-sm font-semibold text-gray-900 dark:text-white">
+            {t('reports.dailyBreakdown')}
+          </h3>
           <button
             className="px-2 py-1 text-[10px] font-medium text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-700 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors flex items-center gap-1"
             onClick={() => {

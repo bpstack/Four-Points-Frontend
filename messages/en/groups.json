@@ -1,5 +1,15 @@
 {
   "title": "Groups",
+  "error": {
+    "title": "Groups",
+    "subtitle": "An error occurred while loading the groups",
+    "errorTitle": "Failed to load",
+    "errorDescription": "Could not load groups data. Please try again.",
+    "errorDetails": "Technical details",
+    "retry": "Retry",
+    "backToDashboard": "Back to Dashboard",
+    "helpText": "If the problem persists, contact technical support or try again later."
+  },
   "subtitle": "Manage hotel groups",
   "loading": "Loading groups...",
   "loadingGroup": "Loading group...",

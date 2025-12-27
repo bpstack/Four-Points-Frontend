@@ -134,7 +134,9 @@ export default function ConciliationTable<T extends string>({
                       {rooms.length > 0 ? (
                         <span className="flex items-center gap-1">
                           <span className="font-medium">{rooms.length}</span>
-                          <span className="text-[#57606a] dark:text-[#8b949e]">{t('table.rooms')}</span>
+                          <span className="text-[#57606a] dark:text-[#8b949e]">
+                            {t('table.rooms')}
+                          </span>
                         </span>
                       ) : (
                         <span className="text-[#57606a] dark:text-[#8b949e]">{t('table.add')}</span>

@@ -173,7 +173,9 @@ export function OverviewTab() {
             <div className="flex-1 min-w-0">
               <p className="text-xs text-gray-500 dark:text-gray-400">{t('overview.booking')}</p>
               <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
-                {currentGroup.booking_confirmed ? t('overview.bookingConfirmed') : t('overview.bookingPending')}
+                {currentGroup.booking_confirmed
+                  ? t('overview.bookingConfirmed')
+                  : t('overview.bookingPending')}
               </p>
               {currentGroup.booking_confirmed_date && (
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
@@ -195,7 +197,9 @@ export function OverviewTab() {
             <div className="flex-1 min-w-0">
               <p className="text-xs text-gray-500 dark:text-gray-400">{t('overview.contract')}</p>
               <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
-                {currentGroup.contract_signed ? t('overview.contractSigned') : t('overview.contractPending')}
+                {currentGroup.contract_signed
+                  ? t('overview.contractSigned')
+                  : t('overview.contractPending')}
               </p>
               {currentGroup.contract_signed_date && (
                 <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
@@ -217,7 +221,9 @@ export function OverviewTab() {
               <FiFileText className="w-8 h-8 text-gray-400 dark:text-gray-500 flex-shrink-0" />
             )}
             <div className="flex-1 min-w-0">
-              <p className="text-xs text-gray-500 dark:text-gray-400">{t('overview.roomingList')}</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400">
+                {t('overview.roomingList')}
+              </p>
               <p className="text-sm font-medium text-gray-900 dark:text-gray-100">
                 {currentGroup.rooming_status === 'received'
                   ? t('overview.roomingReceived')
@@ -249,7 +255,8 @@ export function OverviewTab() {
               </p>
               {!balanceStatus.isPaid && balanceStatus.remaining > 0 && (
                 <p className="text-xs text-orange-600 dark:text-orange-400 mt-0.5 font-medium">
-                  {formatCurrency(balanceStatus.remaining, currentGroup.currency)} {t('overview.remaining')}
+                  {formatCurrency(balanceStatus.remaining, currentGroup.currency)}{' '}
+                  {t('overview.remaining')}
                 </p>
               )}
               {balanceStatus.isPaid && (

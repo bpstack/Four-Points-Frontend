@@ -27,7 +27,7 @@ const fullStyles = {
 
 export default function VehicleStep({ variant, state, actions, onCancel }: VehicleStepProps) {
   const t = useTranslations('booking')
-  
+
   // Full variant - mantiene estilos GitHub originales con botones
   if (variant === 'full') {
     return (
@@ -193,9 +193,7 @@ export default function VehicleStep({ variant, state, actions, onCancel }: Vehic
             </div>
           )}
         </div>
-        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-          {t('vehicle.searchHint')}
-        </p>
+        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{t('vehicle.searchHint')}</p>
       </SlidePanelSection>
 
       {/* Separador */}

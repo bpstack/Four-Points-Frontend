@@ -167,9 +167,7 @@ export default function LogbooksContainer() {
                 <FiCalendar className="w-4 h-4" /> {t('container.today')}
               </button>
               <div className="ml-4 flex items-center gap-4 text-sm text-gray-700 dark:text-gray-400 flex-shrink-0">
-                <span>
-                  {t('container.dailyEntries', { count: orderedEntries.length })}
-                </span>
+                <span>{t('container.dailyEntries', { count: orderedEntries.length })}</span>
                 <span className="flex items-center gap-1.5 text-xs text-gray-500 dark:text-gray-400">
                   <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
                   {t('container.lastUpdate')}
@@ -182,7 +180,6 @@ export default function LogbooksContainer() {
             >
               <FiPlus className="w-4 h-4" /> {t('container.newEntry')}
             </button>
-
           </div>
 
           {/* Mobile */}

@@ -40,7 +40,9 @@ export default function DaySummarySidebar({
       <div className="bg-white dark:bg-[#0D1117] border border-[#d0d7de] dark:border-[#30363d] rounded-xl shadow-sm p-4">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">{t('summary.status')}</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+              {t('summary.status')}
+            </p>
             <p className="text-sm font-semibold text-gray-900 dark:text-gray-100 mt-0.5">
               {selectedDate}
             </p>
@@ -61,7 +63,9 @@ export default function DaySummarySidebar({
       <div className="bg-white dark:bg-[#0D1117] border border-[#d0d7de] dark:border-[#30363d] rounded-xl shadow-sm p-4">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">{t('summary.grandTotal')}</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+              {t('summary.grandTotal')}
+            </p>
             <p className="text-xl font-bold text-purple-700 dark:text-purple-400 mt-0.5">
               {grandTotal.toFixed(2)}€
             </p>
@@ -76,7 +80,9 @@ export default function DaySummarySidebar({
       <div className="bg-white dark:bg-[#0D1117] border border-[#d0d7de] dark:border-[#30363d] rounded-xl shadow-sm p-4">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">{t('summary.cash')}</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+              {t('summary.cash')}
+            </p>
             <p className="text-xl font-bold text-blue-700 dark:text-blue-400 mt-0.5">
               {totalCash.toFixed(2)}€
             </p>
@@ -91,7 +97,9 @@ export default function DaySummarySidebar({
       <div className="bg-white dark:bg-[#0D1117] border border-[#d0d7de] dark:border-[#30363d] rounded-xl shadow-sm p-4">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">{t('summary.electronic')}</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+              {t('summary.electronic')}
+            </p>
             <p className="text-xl font-bold text-green-700 dark:text-green-400 mt-0.5">
               {electronicPayments.toFixed(2)}€
             </p>
@@ -107,7 +115,9 @@ export default function DaySummarySidebar({
         <div className="bg-white dark:bg-[#0D1117] border border-[#d0d7de] dark:border-[#30363d] rounded-xl shadow-sm p-4">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">{t('summary.activeVouchers')}</p>
+              <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+                {t('summary.activeVouchers')}
+              </p>
               <p className="text-xl font-bold text-orange-600 dark:text-orange-400 mt-0.5">
                 {activeVouchers.toFixed(2)}€
               </p>

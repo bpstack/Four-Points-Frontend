@@ -144,7 +144,9 @@ function FieldChange({ field, oldValue, newValue }: FieldChangeProps) {
       <div className="space-y-1 pl-2">
         {/* Valor anterior */}
         <div className="flex items-start gap-2">
-          <div className="text-[10px] text-gray-500 dark:text-gray-500 min-w-[45px]">{t('audit.before')}</div>
+          <div className="text-[10px] text-gray-500 dark:text-gray-500 min-w-[45px]">
+            {t('audit.before')}
+          </div>
           <div className="bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 px-2 py-0.5 rounded text-[11px] border border-red-200 dark:border-red-800 flex-1 min-w-0 break-all">
             {formatValue(oldValue, t)}
           </div>
@@ -152,7 +154,9 @@ function FieldChange({ field, oldValue, newValue }: FieldChangeProps) {
 
         {/* Valor nuevo */}
         <div className="flex items-start gap-2">
-          <div className="text-[10px] text-gray-500 dark:text-gray-500 min-w-[45px]">{t('audit.after')}</div>
+          <div className="text-[10px] text-gray-500 dark:text-gray-500 min-w-[45px]">
+            {t('audit.after')}
+          </div>
           <div className="bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 px-2 py-0.5 rounded text-[11px] border border-green-200 dark:border-green-800 flex-1 min-w-0 break-all">
             {formatValue(newValue, t)}
           </div>
@@ -217,7 +221,9 @@ function formatValue(value: unknown, t: any): string {
   }
 
   if (Array.isArray(value)) {
-    return value.length > 0 ? t('audit.values.elements', { count: value.length }) : t('audit.values.empty')
+    return value.length > 0
+      ? t('audit.values.elements', { count: value.length })
+      : t('audit.values.empty')
   }
 
   if (typeof value === 'object') {

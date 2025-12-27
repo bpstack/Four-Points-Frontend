@@ -1,5 +1,15 @@
 {
   "title": "Parking",
+  "error": {
+    "title": "Parking",
+    "subtitle": "Ha ocurrido un error al cargar el parking",
+    "errorTitle": "Error al cargar",
+    "errorDescription": "No se pudieron cargar los datos del parking. Por favor, intenta de nuevo.",
+    "errorDetails": "Detalles técnicos",
+    "retry": "Reintentar",
+    "backToDashboard": "Volver al Dashboard",
+    "helpText": "Si el problema persiste, contacta al soporte técnico o intenta más tarde."
+  },
   "dashboard": {
     "title": "Parking",
     "today": "Hoy",

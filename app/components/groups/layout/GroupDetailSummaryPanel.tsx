@@ -57,7 +57,9 @@ export function GroupDetailSummaryPanel() {
       <div className="bg-white dark:bg-[#0D1117] border border-[#d0d7de] dark:border-[#30363d] rounded-xl shadow-sm p-4">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">{t('table.arrival')}</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+              {t('table.arrival')}
+            </p>
             <p className="text-sm font-bold text-gray-900 dark:text-gray-100 mt-0.5">
               {formatDate(currentGroup.arrival_date, 'long')}
             </p>
@@ -72,7 +74,9 @@ export function GroupDetailSummaryPanel() {
       <div className="bg-white dark:bg-[#0D1117] border border-[#d0d7de] dark:border-[#30363d] rounded-xl shadow-sm p-4">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">{t('table.departure')}</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+              {t('table.departure')}
+            </p>
             <p className="text-sm font-bold text-gray-900 dark:text-gray-100 mt-0.5">
               {formatDate(currentGroup.departure_date, 'long')}
             </p>
@@ -87,9 +91,12 @@ export function GroupDetailSummaryPanel() {
       <div className="bg-white dark:bg-[#0D1117] border border-[#d0d7de] dark:border-[#30363d] rounded-xl shadow-sm p-4">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">{t('summaryPanel.stay')}</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+              {t('summaryPanel.stay')}
+            </p>
             <p className="text-xl font-bold text-gray-900 dark:text-gray-100 mt-0.5">
-              {stayNights} <span className="text-sm font-normal text-gray-500">{t('summaryPanel.nights')}</span>
+              {stayNights}{' '}
+              <span className="text-sm font-normal text-gray-500">{t('summaryPanel.nights')}</span>
             </p>
           </div>
           <div className="p-2 bg-blue-100 dark:bg-blue-900/20 rounded-lg">
@@ -102,7 +109,9 @@ export function GroupDetailSummaryPanel() {
       <div className="bg-white dark:bg-[#0D1117] border border-[#d0d7de] dark:border-[#30363d] rounded-xl shadow-sm p-4">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">{t('overview.totalAmount')}</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+              {t('overview.totalAmount')}
+            </p>
             <p className="text-xl font-bold text-gray-900 dark:text-gray-100 mt-0.5">
               {formatCurrency(currentGroup.total_amount, currentGroup.currency)}
             </p>
@@ -123,7 +132,9 @@ export function GroupDetailSummaryPanel() {
       >
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">{t('statusTab.paymentStatus')}</p>
+            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+              {t('statusTab.paymentStatus')}
+            </p>
             <span
               className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
                 balanceStatus.isPaid

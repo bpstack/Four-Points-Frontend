@@ -12,7 +12,7 @@ import { IoChevronBack } from 'react-icons/io5'
 import { useTranslations } from 'next-intl'
 import { BlacklistForm } from '@/app/components/blacklist/mains/BlacklistForm'
 import { getBlacklistById } from '../../actions'
-import type { BlacklistEntry, AuditEntry } from '@/app/lib/blacklist/types'
+import type { BlacklistEntry } from '@/app/lib/blacklist/types'
 
 interface PageProps {
   params: Promise<{
@@ -32,7 +32,7 @@ export default function EditBlacklistPage({ params }: PageProps) {
 
   useEffect(() => {
     if (!id) return
-    
+
     const loadData = async () => {
       try {
         const data = await getBlacklistById(id)
@@ -70,7 +70,9 @@ export default function EditBlacklistPage({ params }: PageProps) {
         </Link>
 
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">{t('editPage.title')}</h1>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">
+            {t('editPage.title')}
+          </h1>
           <p className="text-gray-600 dark:text-gray-400 mt-1">{entry.guest_name}</p>
         </div>
 

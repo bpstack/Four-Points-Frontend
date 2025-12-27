@@ -120,7 +120,9 @@ export default function CloseDayModal({
         <div className="p-6 space-y-6">
           {/* Fecha */}
           <div className="text-center p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
-            <p className="text-sm text-blue-700 dark:text-blue-300 mb-1">{t('closeDay.dateOfDay')}</p>
+            <p className="text-sm text-blue-700 dark:text-blue-300 mb-1">
+              {t('closeDay.dateOfDay')}
+            </p>
             <p className="text-2xl font-bold text-blue-900 dark:text-blue-100">
               {new Date(selectedDate).toLocaleDateString('es-ES', {
                 weekday: 'long',
@@ -241,7 +243,9 @@ export default function CloseDayModal({
                         ✓ {t('summary.closed')}
                       </span>
                     ) : (
-                      <span className="text-xs text-gray-500 dark:text-gray-400">{t('summary.open')}</span>
+                      <span className="text-xs text-gray-500 dark:text-gray-400">
+                        {t('summary.open')}
+                      </span>
                     )}
                   </div>
                 )
@@ -266,35 +270,45 @@ export default function CloseDayModal({
               </div>
 
               <div className="p-3 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
-                <p className="text-xs text-blue-700 dark:text-blue-300 mb-1">{t('closeDay.card')}</p>
+                <p className="text-xs text-blue-700 dark:text-blue-300 mb-1">
+                  {t('closeDay.card')}
+                </p>
                 <p className="text-xl font-bold text-blue-600 dark:text-blue-400">
                   {totals.card.toFixed(2)}€
                 </p>
               </div>
 
               <div className="p-3 bg-purple-50 dark:bg-purple-900/20 rounded-lg border border-purple-200 dark:border-purple-800">
-                <p className="text-xs text-purple-700 dark:text-purple-300 mb-1">{t('closeDay.bacs')}</p>
+                <p className="text-xs text-purple-700 dark:text-purple-300 mb-1">
+                  {t('closeDay.bacs')}
+                </p>
                 <p className="text-xl font-bold text-purple-600 dark:text-purple-400">
                   {totals.bacs.toFixed(2)}€
                 </p>
               </div>
 
               <div className="p-3 bg-orange-50 dark:bg-orange-900/20 rounded-lg border border-orange-200 dark:border-orange-800">
-                <p className="text-xs text-orange-700 dark:text-orange-300 mb-1">{t('closeDay.webPayment')}</p>
+                <p className="text-xs text-orange-700 dark:text-orange-300 mb-1">
+                  {t('closeDay.webPayment')}
+                </p>
                 <p className="text-xl font-bold text-orange-600 dark:text-orange-400">
                   {totals.webPayment.toFixed(2)}€
                 </p>
               </div>
 
               <div className="p-3 bg-pink-50 dark:bg-pink-900/20 rounded-lg border border-pink-200 dark:border-pink-800">
-                <p className="text-xs text-pink-700 dark:text-pink-300 mb-1">{t('closeDay.transfer')}</p>
+                <p className="text-xs text-pink-700 dark:text-pink-300 mb-1">
+                  {t('closeDay.transfer')}
+                </p>
                 <p className="text-xl font-bold text-pink-600 dark:text-pink-400">
                   {totals.transfer.toFixed(2)}€
                 </p>
               </div>
 
               <div className="p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg border border-gray-200 dark:border-gray-700">
-                <p className="text-xs text-gray-700 dark:text-gray-300 mb-1">{t('closeDay.others')}</p>
+                <p className="text-xs text-gray-700 dark:text-gray-300 mb-1">
+                  {t('closeDay.others')}
+                </p>
                 <p className="text-xl font-bold text-gray-600 dark:text-gray-400">
                   {totals.other.toFixed(2)}€
                 </p>

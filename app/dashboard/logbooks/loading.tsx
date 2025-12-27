@@ -79,7 +79,7 @@ export default function LogbooksLoading() {
             <div className="h-4 w-32 bg-gray-200 dark:bg-gray-700 rounded animate-pulse" />
             <div className="h-3 w-20 bg-gray-100 dark:bg-gray-800 rounded animate-pulse" />
           </div>
-          
+
           {[...Array(4)].map((_, i) => (
             <LogbookEntrySkeleton key={i} />
           ))}
