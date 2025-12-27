@@ -91,7 +91,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         `}
       >
         <SideNav
-          onClose={() => setSidebarOpen(false)}
+          onClose={sidebarOpen ? () => setSidebarOpen(false) : undefined}
           collapsed={sidebarCollapsed}
           onToggleCollapse={toggleSidebarCollapsed}
         />

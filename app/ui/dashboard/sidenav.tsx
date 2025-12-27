@@ -20,23 +20,27 @@ interface SideNavProps {
 
 export default function SideNav({ onClose, collapsed = false, onToggleCollapse }: SideNavProps) {
   const { user } = useAuth()
+  
+  // Mobile sidebar (when onClose is provided) should always be expanded
+  const isMobile = !!onClose
+  const isCollapsed = isMobile ? false : collapsed
 
   return (
     <div className="flex h-full flex-col bg-white dark:bg-[#0d1117]">
       {/* Logo Section with Close button on mobile */}
       <div className="flex h-16 items-center justify-between border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-[#010409]">
         <Link
-          className={`flex flex-1 h-full items-center gap-3 hover:bg-blue-600 dark:hover:bg-blue-700 transition-colors group ${collapsed ? 'justify-center px-2' : 'px-6'}`}
+          className={`flex flex-1 h-full items-center gap-3 hover:bg-blue-600 dark:hover:bg-blue-700 transition-colors group ${isCollapsed ? 'justify-center px-2' : 'px-6'}`}
           href="/dashboard"
           onClick={onClose}
         >
           <div className="flex items-center gap-2 p-2 rounded-lg bg-blue-50 dark:bg-blue-900/20 group-hover:bg-blue-500 dark:group-hover:bg-blue-600 transition-colors">
             <Fa4 className="text-blue-600 dark:text-white group-hover:text-white text-xl group-hover:scale-110 transition-all duration-300" />
-            {!collapsed && (
+            {!isCollapsed && (
               <TbTransformPointTopLeft className="text-blue-600 dark:text-white group-hover:text-white text-xl group-hover:rotate-12 group-hover:scale-110 transition-all duration-300" />
             )}
           </div>
-          {!collapsed && (
+          {!isCollapsed && (
             <div className="flex flex-col">
               <span className="text-base font-display font-semibold text-gray-900 dark:text-gray-100 group-hover:text-white dark:group-hover:text-white transition-colors">
                 Hotel PMS
@@ -62,8 +66,8 @@ export default function SideNav({ onClose, collapsed = false, onToggleCollapse }
 
       {/* Navigation Links */}
       <nav className="flex-1 overflow-y-auto py-4 md:pt-8">
-        <div className={collapsed ? 'px-2' : 'px-3'}>
-          <NavLinks onClose={onClose} currentUserRole={user?.role} collapsed={collapsed} />
+        <div className={isCollapsed ? 'px-2' : 'px-3'}>
+          <NavLinks onClose={onClose} currentUserRole={user?.role} collapsed={isCollapsed} />
         </div>
       </nav>
 
@@ -72,10 +76,10 @@ export default function SideNav({ onClose, collapsed = false, onToggleCollapse }
         <div className="hidden md:block border-t border-gray-200 dark:border-gray-800 p-2">
           <button
             onClick={onToggleCollapse}
-            className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-200 transition-colors ${collapsed ? 'justify-center' : ''}`}
-            title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+            className={`w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-200 transition-colors ${isCollapsed ? 'justify-center' : ''}`}
+            title={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
           >
-            {collapsed ? (
+            {isCollapsed ? (
               <ChevronDoubleRightIcon className="w-5 h-5" />
             ) : (
               <>
