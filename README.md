@@ -2,15 +2,20 @@
 
 **[Live Demo](https://four-points.stackbp.es)**
 
+**Demo Credentials:**
+
+```
+Username: demo
+Password: demo987654
+```
+
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)
 ![Next.js](https://img.shields.io/badge/Next.js_15-black?style=flat&logo=next.js&logoColor=white)
 ![React](https://img.shields.io/badge/React_19-61DAFB?style=flat&logo=react&logoColor=black)
 ![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
 
-A comprehensive, full-stack **Hotel Management System** designed for real-world hotel operations.
-Features a modern, responsive dashboard with role-based access control, multi-language support (EN/ES),
-and dark/light mode theming.
+A comprehensive, full-stack **Hotel Management System** built from scratch after 15+ years of hotel reception experience. I got tired of slow, clunky, overpriced software that hotels are forced to use. So I built my own.
 
 > **Note**: This repository contains only the frontend. The backend API is private.
 
@@ -39,7 +44,7 @@ and dark/light mode theming.
 
 ---
 
-## Tech Stack
+## The Stack
 
 | Technology                | Purpose                                  |
 | ------------------------- | ---------------------------------------- |
@@ -71,7 +76,7 @@ and dark/light mode theming.
 
 ---
 
-## Features
+## What I Built
 
 ### Core Modules
 
@@ -90,15 +95,26 @@ and dark/light mode theming.
 | **Messaging**      | Internal communication system with direct messages and group chats                                                               |
 | **Notifications**  | Multi-module alert system with priority levels, scheduled delivery, email integration                                            |
 
+### Special Features
+
+| Feature                  | Description                                                     |
+| ------------------------ | --------------------------------------------------------------- |
+| **Internationalization** | Full English and Spanish support with 19 translation namespaces |
+| **Dark/Light Mode**      | Complete theme support with system preference detection         |
+| **Role-Based Access**    | 4 roles with granular permissions per module                    |
+| **Real-time Updates**    | Live notifications, unread counters, activity feeds             |
+| **Responsive Design**    | Mobile-first approach, works on all devices                     |
+| **Demo Mode**            | Restricted operations for public deployments                    |
+
 ---
 
-### Schedule Module (In Development)
+## Schedule Module (In Development)
 
 > Currently being developed on a separate branch
 
 Automated staff scheduling system featuring a **hybrid generation engine** that combines a custom algorithm with optional AI optimization.
 
-#### Generation Architecture
+### Generation Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -136,20 +152,7 @@ Automated staff scheduling system featuring a **hybrid generation engine** that 
 └─────────────────────────────────────────────────────────────┘
 ```
 
-#### Key Features
-
-| Feature                     | Description                                                           |
-| --------------------------- | --------------------------------------------------------------------- |
-| **Modular Phase System**    | 11 independent, testable phases executed in configurable order        |
-| **Constraint Management**   | Vacations, sick leave, training, holidays, employee requests          |
-| **Business Rules**          | Min/max consecutive work days, 48h rest periods, night block rotation |
-| **Coverage Validation**     | Ensures minimum staff per shift (Morning/Afternoon/Night)             |
-| **Employee-Specific Rules** | Custom preferences per employee (preferred shifts, max shifts/month)  |
-| **AI Provider Selection**   | Choose between Claude, OpenAI, Ollama, or algorithm-only              |
-| **Real-time Validation**    | Instant feedback on constraint violations                             |
-| **Excel Export**            | Compatible with existing spreadsheet workflows                        |
-
-#### Supported Shift Types
+### Supported Shift Types
 
 | Code | Type       | Description                   |
 | ---- | ---------- | ----------------------------- |
@@ -162,19 +165,6 @@ Automated staff scheduling system featuring a **hybrid generation engine** that 
 | IT   | Sick Leave | Medical leave                 |
 | FO   | Training   | Training day                  |
 | PI   | Support    | Backup when understaffed      |
-
----
-
-## Special Features
-
-| Feature                  | Description                                                     |
-| ------------------------ | --------------------------------------------------------------- |
-| **Internationalization** | Full English and Spanish support with 19 translation namespaces |
-| **Dark/Light Mode**      | Complete theme support with system preference detection         |
-| **Role-Based Access**    | 4 roles with granular permissions per module                    |
-| **Real-time Updates**    | Live notifications, unread counters, activity feeds             |
-| **Responsive Design**    | Mobile-first approach, works on all devices                     |
-| **Demo Mode**            | Restricted operations for public deployments                    |
 
 ---
 
@@ -205,6 +195,70 @@ Automated staff scheduling system featuring a **hybrid generation engine** that 
 
 ---
 
+## Problems I Faced (And How I Fixed Them)
+
+### 1. TypeScript Migration
+
+Started in vanilla JavaScript. Seemed fine until the codebase grew and runtime errors appeared everywhere.
+
+**The Solution**: Migrated everything to TypeScript. Two weeks of pain, but worth every second. IDE catches bugs before I run code.
+
+### 2. MySQL Trigger Chaos
+
+Implemented automatic calculations using database triggers. Infinite loops followed. Debugging trigger logic is hell - no console.log().
+
+**The Solution**: Moved calculations to the application layer. More code to maintain, but at least I can debug it.
+
+### 3. Timezone Hell
+
+Server in one timezone, database in another, users in a third. Cashier shifts showing wrong times.
+
+**The Solution**: Store everything in UTC, convert to user's timezone only in frontend, use toISOString() religiously.
+
+### 4. Database Schema Drift
+
+Local MySQL, production on Aiven Cloud. Schema changes in dev not matching production.
+
+**The Solution**: Migration scripts for EVERY schema change. Version control for database schema. Schema is code, treat it like code.
+
+### 5. Role-Based Access Complexity
+
+Started with simple if/else checks. Became unmaintainable fast.
+
+**The Solution**: Centralized permission system with middleware checks. Clean, testable, maintainable.
+
+### 6. Image Upload Optimization
+
+10MB phone photos killing server storage and bandwidth.
+
+**The Solution**: Sharp for processing, resize to 1920px, compress to 80%, generate thumbnails, Cloudinary storage. Went from 10MB to 200KB.
+
+### 7. Concurrent User State Management
+
+Multiple receptionists updating the same data. User A books room 101, User B books room 101 two seconds later.
+
+**The Solution**: Optimistic locking with version numbers, real-time availability checks before confirming, React Query for automatic refetching.
+
+### 8. AI-Powered Scheduling
+
+Staff scheduling is an NP-hard problem. Manual balancing takes 8+ hours per month.
+
+**The Solution**: Built multi-phase constraint solver with 11 modular phases. AI optimization with Claude/Gemini/Ollama. Schedule generation in 30 seconds vs 8 hours.
+
+---
+
+## What I Learned
+
+- **TypeScript is Non-Negotiable**: If your project will have more than 500 lines of code, use TypeScript from day one.
+- **Database Design Matters More Than You Think**: Spent the first month just designing the schema. Best investment ever.
+- **Don't Optimize Prematurely (But Do Optimize Strategically)**: Started with simple queries, identified bottlenecks with real usage data, then optimized.
+- **AI is a Tool, Not Magic**: Integrating AI was amazing, but required proper prompt engineering, fallbacks, and cost management.
+- **Testing Saves Time**: Yes, writing tests feels slow at first. But catching bugs before production is priceless.
+- **i18n Should Be Day-One Decision**: Adding internationalization after building features is pain. Adding it from the start is minimal overhead.
+- **PDF Generation is Tedious**: Every PDF library will frustrate you. Pick one, learn it deeply, build reusable components.
+
+---
+
 ## Getting Started
 
 ### Prerequisites
@@ -229,18 +283,7 @@ cp .env.example .env.local
 pnpm dev
 ```
 
-Open [https://four-points.stackbp.es/](https://four-points.stackbp.es/) to view the application.
-
-### Demo Credentials
-
-```
-Username: demo
-Password: demo987654
-```
-
----
-
-## Environment Variables
+### Environment Variables
 
 Create a `.env.local` file based on `.env.example`:
 
@@ -305,10 +348,6 @@ frontend/
 | ------------ | -------------- | ---------------------------------- |
 | Server state | TanStack Query | Data fetching, caching, mutations  |
 | Client state | Zustand        | UI state (selected items, filters) |
-
-### React Query Modules
-
-BackOffice, Parking, Maintenance, Logbooks, Notifications, Groups (with SSR prefetch)
 
 ---
 
@@ -375,14 +414,14 @@ This is a personal portfolio project. The code is visible for demonstration and 
 
 **What you can do:**
 
-- ✅ View the code
-- ✅ Learn from it
-- ✅ Use as reference for your own projects
+- View the code
+- Learn from it
+- Use as reference for your own projects
 
 **What you cannot do:**
 
-- ❌ Use commercially without permission
-- ❌ Redistribute as your own work
+- Use commercially without permission
+- Redistribute as your own work
 
 © 2025 Salvador Pérez (bpstack)
 
