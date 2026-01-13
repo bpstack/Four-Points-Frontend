@@ -152,7 +152,20 @@ Automated staff scheduling system featuring a **hybrid generation engine** that 
 └─────────────────────────────────────────────────────────────┘
 ```
 
-### Supported Shift Types
+#### Key Features
+
+| Feature                     | Description                                                           |
+| --------------------------- | --------------------------------------------------------------------- |
+| **Modular Phase System**    | 11 independent, testable phases executed in configurable order        |
+| **Constraint Management**   | Vacations, sick leave, training, holidays, employee requests          |
+| **Business Rules**          | Min/max consecutive work days, 48h rest periods, night block rotation |
+| **Coverage Validation**     | Ensures minimum staff per shift (Morning/Afternoon/Night)             |
+| **Employee-Specific Rules** | Custom preferences per employee (preferred shifts, max shifts/month)  |
+| **AI Provider Selection**   | Choose between Claude, OpenAI, Ollama, or algorithm-only              |
+| **Real-time Validation**    | Instant feedback on constraint violations                             |
+| **Excel Export**            | Compatible with existing spreadsheet workflows                        |
+
+#### Supported Shift Types
 
 | Code | Type       | Description                   |
 | ---- | ---------- | ----------------------------- |
@@ -165,6 +178,19 @@ Automated staff scheduling system featuring a **hybrid generation engine** that 
 | IT   | Sick Leave | Medical leave                 |
 | FO   | Training   | Training day                  |
 | PI   | Support    | Backup when understaffed      |
+
+---
+
+## Special Features
+
+| Feature                  | Description                                                     |
+| ------------------------ | --------------------------------------------------------------- |
+| **Internationalization** | Full English and Spanish support with 19 translation namespaces |
+| **Dark/Light Mode**      | Complete theme support with system preference detection         |
+| **Role-Based Access**    | 4 roles with granular permissions per module                    |
+| **Real-time Updates**    | Live notifications, unread counters, activity feeds             |
+| **Responsive Design**    | Mobile-first approach, works on all devices                     |
+| **Demo Mode**            | Restricted operations for public deployments                    |
 
 ---
 
@@ -192,70 +218,6 @@ Automated staff scheduling system featuring a **hybrid generation engine** that 
 - In-app PDF preview for uploaded invoices
 - Thumbnail generation for document lists
 - Full document viewer with zoom controls
-
----
-
-## Problems I Faced (And How I Fixed Them)
-
-### 1. TypeScript Migration
-
-Started in vanilla JavaScript. Seemed fine until the codebase grew and runtime errors appeared everywhere.
-
-**The Solution**: Migrated everything to TypeScript. Two weeks of pain, but worth every second. IDE catches bugs before I run code.
-
-### 2. MySQL Trigger Chaos
-
-Implemented automatic calculations using database triggers. Infinite loops followed. Debugging trigger logic is hell - no console.log().
-
-**The Solution**: Moved calculations to the application layer. More code to maintain, but at least I can debug it.
-
-### 3. Timezone Hell
-
-Server in one timezone, database in another, users in a third. Cashier shifts showing wrong times.
-
-**The Solution**: Store everything in UTC, convert to user's timezone only in frontend, use toISOString() religiously.
-
-### 4. Database Schema Drift
-
-Local MySQL, production on Aiven Cloud. Schema changes in dev not matching production.
-
-**The Solution**: Migration scripts for EVERY schema change. Version control for database schema. Schema is code, treat it like code.
-
-### 5. Role-Based Access Complexity
-
-Started with simple if/else checks. Became unmaintainable fast.
-
-**The Solution**: Centralized permission system with middleware checks. Clean, testable, maintainable.
-
-### 6. Image Upload Optimization
-
-10MB phone photos killing server storage and bandwidth.
-
-**The Solution**: Sharp for processing, resize to 1920px, compress to 80%, generate thumbnails, Cloudinary storage. Went from 10MB to 200KB.
-
-### 7. Concurrent User State Management
-
-Multiple receptionists updating the same data. User A books room 101, User B books room 101 two seconds later.
-
-**The Solution**: Optimistic locking with version numbers, real-time availability checks before confirming, React Query for automatic refetching.
-
-### 8. AI-Powered Scheduling
-
-Staff scheduling is an NP-hard problem. Manual balancing takes 8+ hours per month.
-
-**The Solution**: Built multi-phase constraint solver with 11 modular phases. AI optimization with Claude/Gemini/Ollama. Schedule generation in 30 seconds vs 8 hours.
-
----
-
-## What I Learned
-
-- **TypeScript is Non-Negotiable**: If your project will have more than 500 lines of code, use TypeScript from day one.
-- **Database Design Matters More Than You Think**: Spent the first month just designing the schema. Best investment ever.
-- **Don't Optimize Prematurely (But Do Optimize Strategically)**: Started with simple queries, identified bottlenecks with real usage data, then optimized.
-- **AI is a Tool, Not Magic**: Integrating AI was amazing, but required proper prompt engineering, fallbacks, and cost management.
-- **Testing Saves Time**: Yes, writing tests feels slow at first. But catching bugs before production is priceless.
-- **i18n Should Be Day-One Decision**: Adding internationalization after building features is pain. Adding it from the start is minimal overhead.
-- **PDF Generation is Tedious**: Every PDF library will frustrate you. Pick one, learn it deeply, build reusable components.
 
 ---
 
@@ -348,6 +310,10 @@ frontend/
 | ------------ | -------------- | ---------------------------------- |
 | Server state | TanStack Query | Data fetching, caching, mutations  |
 | Client state | Zustand        | UI state (selected items, filters) |
+
+### React Query Modules
+
+BackOffice, Parking, Maintenance, Logbooks, Notifications, Groups (with SSR prefetch)
 
 ---
 
